@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-restaurant-page',
-  templateUrl: './restaurant-page.component.html',
-  styleUrls: ['./restaurant-page.component.css']
+  selector: 'app-restaurant-container',
+  templateUrl: './restaurant-container.component.html',
+  styleUrls: ['./restaurant-container.component.css']
 })
-export class RestaurantPageComponent implements OnInit {
+export class RestaurantContainerComponent implements OnInit {
 
   public id: Observable<string>;
 

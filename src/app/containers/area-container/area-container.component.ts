@@ -12,11 +12,11 @@ const mockRestaurants = [[
 ]];
 
 @Component({
-  selector: 'app-area-page',
-  templateUrl: './area-page.component.html',
-  styleUrls: ['./area-page.component.css']
+  selector: 'app-area-container',
+  templateUrl: './area-container.component.html',
+  styleUrls: ['./area-container.component.css']
 })
-export class AreaPageComponent implements OnInit {
+export class AreaContainerComponent implements OnInit {
 
   public restaurants$: Observable<Restaurant[]>;
   public id$: Observable<string>;

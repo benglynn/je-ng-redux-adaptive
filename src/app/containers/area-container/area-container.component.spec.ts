@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorPage404Component } from './error-page-404.component';
+import { AreaContainerComponent } from './area-container.component';
 
-describe('ErrorPage404Component', () => {
-  let component: ErrorPage404Component;
-  let fixture: ComponentFixture<ErrorPage404Component>;
+describe('AreaContainerComponent', () => {
+  let component: AreaContainerComponent;
+  let fixture: ComponentFixture<AreaContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorPage404Component ]
+      declarations: [ AreaContainerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorPage404Component);
+    fixture = TestBed.createComponent(AreaContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AreaPageComponent } from './area-page.component';
+import { HomeContainerComponent } from './home-container.component';
 
-describe('AreaPageComponent', () => {
-  let component: AreaPageComponent;
-  let fixture: ComponentFixture<AreaPageComponent>;
+describe('HomeContainerComponent', () => {
+  let component: HomeContainerComponent;
+  let fixture: ComponentFixture<HomeContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AreaPageComponent ]
+      declarations: [ HomeContainerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AreaPageComponent);
+    fixture = TestBed.createComponent(HomeContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

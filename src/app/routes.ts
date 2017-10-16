@@ -1,8 +1,8 @@
 import { Routes, UrlSegment } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
-import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
-import { ErrorPage404Component } from './error-page-404/error-page-404.component';
-import { AreaPageComponent } from './area-page/area-page.component';
+import { HomeContainerComponent } from './containers/home-container/home-container.component';
+import { RestaurantContainerComponent } from './containers/restaurant-container/restaurant-container.component';
+import { ErrorContainerComponent } from './containers/error-container/error-container.component';
+import { AreaContainerComponent } from './containers/area-container/area-container.component';
 
 
 export function restaurantMatcher(url: UrlSegment[]) {
@@ -12,8 +12,8 @@ export function restaurantMatcher(url: UrlSegment[]) {
 }
 
 export const appRoutes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'area/:id', component: AreaPageComponent },
-  { matcher: restaurantMatcher, component: RestaurantPageComponent },
-  { path: '**', component: ErrorPage404Component }
+  { path: '', component: HomeContainerComponent },
+  { path: 'area/:id', component: AreaContainerComponent },
+  { matcher: restaurantMatcher, component: RestaurantContainerComponent },
+  { path: '**', component: ErrorContainerComponent }
 ];

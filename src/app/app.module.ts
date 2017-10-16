@@ -4,18 +4,18 @@ import { RouterModule, Routes, UrlSegment } from '@angular/router';
 
 import { appRoutes, restaurantMatcher } from './routes';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
-import { ErrorPage404Component } from './error-page-404/error-page-404.component';
-import { AreaPageComponent } from './area-page/area-page.component';
+import { HomeContainerComponent } from './containers/home-container/home-container.component';
+import { RestaurantContainerComponent } from './containers/restaurant-container/restaurant-container.component';
+import { ErrorContainerComponent } from './containers/error-container/error-container.component';
+import { AreaContainerComponent } from './containers/area-container/area-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
-    RestaurantPageComponent,
-    ErrorPage404Component,
-    AreaPageComponent
+    HomeContainerComponent,
+    RestaurantContainerComponent,
+    ErrorContainerComponent,
+    AreaContainerComponent
   ],
   imports: [
     BrowserModule,

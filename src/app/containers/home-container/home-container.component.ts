@@ -8,11 +8,11 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/combineLatest';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  selector: 'app-home-container',
+  templateUrl: './home-container.component.html',
+  styleUrls: ['./home-container.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomeContainerComponent implements OnInit {
 
   readonly postcodePattern = /([A-Z]{1,2}[0-9][0-9A-Z]?)\s?([0-9][A-Z]{2})/i;
 
