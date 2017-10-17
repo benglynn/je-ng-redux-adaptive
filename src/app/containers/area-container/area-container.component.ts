@@ -19,12 +19,12 @@ const mockRestaurants = [[
 export class AreaContainerComponent implements OnInit {
 
   public restaurants$: Observable<Restaurant[]>;
-  public id$: Observable<string>;
+  public postcode$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute
   ) {
-    this.id$ = route.params.map(p => String(p.id).toUpperCase());
+    this.postcode$ = route.params.map(p => String(p.postcode));
     this.restaurants$ = Observable.from(mockRestaurants);
   }
 

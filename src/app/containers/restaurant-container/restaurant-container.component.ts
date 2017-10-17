@@ -9,13 +9,14 @@ import { Observable } from 'rxjs/Observable';
 })
 export class RestaurantContainerComponent implements OnInit {
 
-  public id: Observable<string>;
+  public postcode: Observable<string>;
+  public name: Observable<string>;
 
   constructor(
     private route: ActivatedRoute
   ) {
-    this.id = route.url
-      .map(segments => segments[0].path.replace(/restaurant-/, ''));
+    this.postcode = route.params.map(p => String(p.postcode));
+    this.name = route.params.map(p => String(p.restaurant));
   }
 
   ngOnInit() {

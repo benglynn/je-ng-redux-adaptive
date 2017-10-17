@@ -5,7 +5,8 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/withlatestfrom';
 
 @Component({
   selector: 'app-home-container',
@@ -14,35 +15,36 @@ import 'rxjs/add/observable/combineLatest';
 })
 export class HomeContainerComponent implements OnInit {
 
-  readonly postcodePattern = /([A-Z]{1,2}[0-9][0-9A-Z]?)\s?([0-9][A-Z]{2})/i;
+  readonly postcodePattern =
+    /^\s*([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})\s*$/i;
 
-  public postcode$: Subject<string>;
+  public inputKeyUp$: Subject<Event>;
   public buttonClick$: Subject<Event>;
+  public postcode$: Observable<string>;
   public isValidPostcode$: Observable<boolean>;
-  public validPostcode$: Observable<string>;
 
   constructor(
     private router: Router
   ) {
-    this.postcode$ = new Subject<string>();
+    this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
+
+    this.postcode$ = this.inputKeyUp$.map(event =>
+        (event.target as HTMLInputElement).value);
 
     this.isValidPostcode$ = this.postcode$
       .map(value => value.match(this.postcodePattern) !== null)
       .startWith(false);
 
-    this.validPostcode$ = this.postcode$
-      .filter(value => value.match(this.postcodePattern) !== null);
-
-    Observable.combineLatest(this.validPostcode$, this.buttonClick$)
-      .subscribe((latest: [string, Event]) => {
-        const postcode = latest[0];
+    this.inputKeyUp$
+      .filter((e => (e as KeyboardEvent).keyCode === 13))
+      .merge(this.buttonClick$)
+      .withLatestFrom(this.postcode$, (event, postcode) => {
         const match = postcode.match(this.postcodePattern);
-        if (match !== null) {
-          const incode = match[1].toLowerCase();
-          this.router.navigateByUrl(`/area/${incode}`);
-        }
-      });
+        return match ? `/${(match[1] + match[2]).toLocaleLowerCase()}` : null;
+      })
+      .filter(pathPart => pathPart !== null)
+      .subscribe(pathPart => this.router.navigateByUrl((pathPart as string)));
   }
 
   ngOnInit() {

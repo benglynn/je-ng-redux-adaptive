@@ -13,7 +13,7 @@ export function restaurantMatcher(url: UrlSegment[]) {
 
 export const appRoutes: Routes = [
   { path: '', component: HomeContainerComponent },
-  { path: 'area/:id', component: AreaContainerComponent },
-  { matcher: restaurantMatcher, component: RestaurantContainerComponent },
+  { path: ':postcode', component: AreaContainerComponent },
+  { path: ':postcode/:restaurant', component: RestaurantContainerComponent },
   { path: '**', component: ErrorContainerComponent }
 ];

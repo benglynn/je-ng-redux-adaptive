@@ -1,6 +1,6 @@
-<h1>{{ (restaurants$|async).length }} restaurants in {{ id$|async }}</h1>
+<h1>{{ (restaurants$|async).length }} restaurants in {{ postcode$ | async }}</h1>
 <ul>
-    <li *ngFor="let restaurant of restaurants$|async">
-      <a [routerLink]="['/restaurant-'+restaurant.name]">{{ restaurant.title }}</a>
+    <li *ngFor="let restaurant of restaurants$ | async">
+      <a [routerLink]="['/' + (postcode$ | async) + '/'+restaurant.name]">{{ restaurant.title }}</a>
     </li>
 </ul>

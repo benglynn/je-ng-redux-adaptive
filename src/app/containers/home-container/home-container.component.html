@@ -1,9 +1,9 @@
 <h1>Delivering your night in</h1>
 <h2>Order takeaway online from over 27,000 restaurants</h2>
 <div>
-    <input #postcode
+    <input
       autocomplete="true"
-      (keyup)="postcode$.next(postcode.value)"
+      (keyup)="postcode$.next($event)"
       placeholder="Enter postcode"
       type="text">
     <button
