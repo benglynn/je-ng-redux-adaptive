@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+import * as fromReducers from '../../reducers';
+import * as fromPostcode from '../../reducers/postcode';
+
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/filter';
@@ -18,33 +23,41 @@ export class HomeContainerComponent implements OnInit {
   readonly postcodePattern =
     /^\s*([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})\s*$/i;
 
-  public inputKeyUp$: Subject<Event>;
-  public buttonClick$: Subject<Event>;
-  public postcode$: Observable<string>;
-  public isValidPostcode$: Observable<boolean>;
+  inputKeyUp$: Subject<Event>;
+  buttonClick$: Subject<Event>;
+  input$: Observable<string>;
+  isValidPostcode$: Observable<boolean>;
+  postcode$: Observable<fromPostcode.State>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private store: Store<fromReducers.State>
   ) {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
+    this.postcode$ = store.select('postcode');
 
-    this.postcode$ = this.inputKeyUp$.map(event =>
+    this.input$ = this.inputKeyUp$.map(event =>
         (event.target as HTMLInputElement).value);
 
-    this.isValidPostcode$ = this.postcode$
+    this.isValidPostcode$ = this.input$
       .map(value => value.match(this.postcodePattern) !== null)
       .startWith(false);
 
     this.inputKeyUp$
       .filter((e => (e as KeyboardEvent).keyCode === 13))
       .merge(this.buttonClick$)
-      .withLatestFrom(this.postcode$, (event, postcode) => {
-        const match = postcode.match(this.postcodePattern);
-        return match ? `/${(match[1] + match[2]).toLocaleLowerCase()}` : null;
+      .withLatestFrom(this.input$, (event, str) => {
+        return str.match(this.postcodePattern);
       })
-      .filter(pathPart => pathPart !== null)
-      .subscribe(pathPart => this.router.navigateByUrl((pathPart as string)));
+      .subscribe(match => {
+        if (match !== null) {
+          const title = (`${match[1]} ${match[2]}`).toUpperCase();
+          const name = (`${match[1]}${match[2]}`).toLowerCase();
+          this.store.dispatch(new fromPostcode.Update({name: name, title: title}));
+          this.router.navigateByUrl(`/${name}`);
+        }
+      });
   }
 
   ngOnInit() {

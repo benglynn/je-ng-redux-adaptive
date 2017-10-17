@@ -3,10 +3,11 @@
 <div>
     <input
       autocomplete="true"
-      (keyup)="postcode$.next($event)"
+      (keyup)="inputKeyUp$.next($event)"
       placeholder="Enter postcode"
-      type="text">
+      type="text"
+      [value]="(postcode$|async)?.title">
     <button
       (click)="buttonClick$.next($event)"
-      [disabled]="!(isValidPostcode$|async)" >Find restaurants</button>
+      [disabled]="!(isValidPostcode$ | async)">Find restaurants</button>
 </div>

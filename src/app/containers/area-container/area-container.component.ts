@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromReducers from '../../reducers';
+import * as fromPostcode from '../../reducers/postcode';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 
 class Restaurant {
-  constructor(public title: string, public name: string) {};
+  constructor(public title: string, public name: string) {}
 }
 const mockRestaurants = [[
   new Restaurant('Test restaurant', 'test-restaurant'),
@@ -18,14 +21,17 @@ const mockRestaurants = [[
 })
 export class AreaContainerComponent implements OnInit {
 
-  public restaurants$: Observable<Restaurant[]>;
-  public postcode$: Observable<string>;
+  restaurants$: Observable<Restaurant[]>;
+  postcode$: Observable<string>;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<fromReducers.State>
   ) {
-    this.postcode$ = route.params.map(p => String(p.postcode));
+    this.postcode$ = store.select('postcode').map(p => p && p.title);
+    // route.params.map(p => String(p.postcode));
     this.restaurants$ = Observable.from(mockRestaurants);
+    this.store.subscribe(console.log);
   }
 
   ngOnInit() {

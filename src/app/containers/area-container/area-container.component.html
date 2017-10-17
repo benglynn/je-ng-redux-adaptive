@@ -1,9 +1,8 @@
 <nav>
   <a [routerLink]="['/']">Home</a> &gt;
-  {{ (postcode$ | async) | uppercase }}
+  {{ postcode$|async }}
 </nav>
-<h1>{{ (restaurants$|async).length }} restaurants in
-  {{ (postcode$ | async) | uppercase }}</h1>
+<h1>{{ (restaurants$|async).length }} restaurants in {{ postcode$ | async }}</h1>
 <ul>
     <li *ngFor="let restaurant of restaurants$ | async">
       <a [routerLink]="['/' + (postcode$ | async) + '/'+restaurant.name]">
