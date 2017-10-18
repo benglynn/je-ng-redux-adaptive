@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './reducers';
+import { reducers, initialState } from './reducers';
 
 import { appRoutes, restaurantMatcher } from './routes';
 import { AppComponent } from './app.component';
@@ -23,7 +23,7 @@ import { AreaContainerComponent } from './containers/area-container/area-contain
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers, { initialState: initialState })
   ],
   providers: [],
   bootstrap: [AppComponent]
