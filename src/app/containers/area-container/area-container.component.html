@@ -2,7 +2,7 @@
   <a [routerLink]="['/']">Home</a> &gt;
   {{ (postcode$|async) | uppercase }}
 </nav>
-<h1>{{ (restaurants$|async).length }} restaurants in
+<h1>{{ (restaurants$|async)?.length }} restaurants in
   {{ (postcode$|async) | uppercase }}</h1>
 <ul>
     <li *ngFor="let restaurant of restaurants$ | async">

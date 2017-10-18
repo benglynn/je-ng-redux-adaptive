@@ -6,13 +6,14 @@ import * as fromPostcode from '../../reducers/postcode';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
+import 'rxjs/add/operator/mergemap';
+import { Restaurant } from '../../models/restaurant';
+import { RestaurantService } from '../../services/restaurant.service';
 
-class Restaurant {
-  constructor(public title: string, public name: string) {}
-}
 const mockRestaurants = [[
-  new Restaurant('Test restaurant', 'test-restaurant'),
-  new Restaurant('Another restaurant', 'another-restaurant')
+  {title: 'Test restaurant', name: 'test-restaurant'},
+  {title: 'Test restaurant 2', name: 'test-restaurant-2'},
+  {title: 'Test restaurant 3', name: 'test-restaurant-3'}
 ]];
 
 @Component({
@@ -23,14 +24,17 @@ const mockRestaurants = [[
 export class AreaContainerComponent implements OnInit {
 
   restaurants$: Observable<Restaurant[]>;
+  newRestaurants$: Observable<Restaurant[]>;
   postcode$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<fromReducers.State>
+    private store: Store<fromReducers.State>,
+    private restaurantService: RestaurantService
   ) {
     this.postcode$ = store.select('postcode');
-    this.restaurants$ = Observable.from(mockRestaurants);
+    this.restaurants$ = this.postcode$
+      .mergeMap(postcode => this.restaurantService.getRestaurants(postcode));
 
     route.params.map(p => String(p.postcode)).withLatestFrom(
       this.store.select('postcode'),

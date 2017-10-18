@@ -1,16 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
-
 import { StoreModule } from '@ngrx/store';
 import { reducers, initialState } from './reducers';
-
 import { appRoutes, restaurantMatcher } from './routes';
 import { AppComponent } from './app.component';
 import { HomeContainerComponent } from './containers/home-container/home-container.component';
 import { RestaurantContainerComponent } from './containers/restaurant-container/restaurant-container.component';
 import { ErrorContainerComponent } from './containers/error-container/error-container.component';
 import { AreaContainerComponent } from './containers/area-container/area-container.component';
+import { RestaurantService } from './services/restaurant.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { AreaContainerComponent } from './containers/area-container/area-contain
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
     StoreModule.forRoot(reducers, { initialState: initialState })
   ],
-  providers: [],
+  providers: [RestaurantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
