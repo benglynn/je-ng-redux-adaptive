@@ -28,21 +28,20 @@ export class Remove implements Action {
 export type Actions = Update | Remove;
 
 
-export function reducer (
-  state = initialState,
-  action: Actions
-): State {
+export function reducer (state = initialState, action: Actions): State {
   switch (action.type) {
+
     case UPDATE: {
       return action.payload;
     }
+
     case REMOVE: {
       return initialState;
     }
+
     default: {
       return state;
     }
-
   }
 }
 
