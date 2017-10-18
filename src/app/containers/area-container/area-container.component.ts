@@ -40,13 +40,13 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
       this.store.select('postcode'),
       (paramPostcode, statePostcode) => {
         if (statePostcode === null || statePostcode !== paramPostcode) {
-          store.dispatch(new fromPostcode.Update(paramPostcode));
+          this.store.dispatch(new fromPostcode.Update(paramPostcode));
         }
       }
     ).subscribe();
 
     this.postcode$.subscribe(postcode => {
-      this.restaurantService.getRestaurants(postcode);
+      this.store.dispatch(new fromRestaurants.LoadRestaurants(postcode));
     });
   }
 

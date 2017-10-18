@@ -13,17 +13,14 @@ export class RestaurantService {
     private store: Store<fromReducers.State>
   ) {}
 
-  getRestaurants(postcode: string) {
-    this.store.dispatch(
-      new fromRestaurants.UpdateStatus(fromRestaurants.Status.Loading));
-    Observable.from([[
+  getRestaurants(postcode: string): Observable<Restaurant[]> {
+    this.store.dispatch(new fromRestaurants.UpdateStatus(
+      fromRestaurants.Status.Loading));
+    return Observable.from([[
       {name: 'test-restaurant', title: 'A Test Restaurant'},
       {name: 'another-restaurant', title: 'Another Restaurnat'},
       {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'}
     ]])
-    .delay(500)
-    .subscribe(restaurants => {
-      this.store.dispatch(new fromRestaurants.UpdateRestaurants(restaurants));
-    });
+    .delay(500);
   }
 }

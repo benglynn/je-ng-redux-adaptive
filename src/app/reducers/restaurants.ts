@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Restaurant } from '../models/restaurant';
+import { Postcode } from './postcode';
 
 export enum Status { Loading, Okay, Error }
 
@@ -10,9 +11,15 @@ export interface State {
 
 export const initialState: State = { status: null, data: null };
 
-const UPDATE_RESTAURANTS = '[Restaurant] update restaurants';
-const REMOVE_RESTAURANTS = '[Restaurant] remove restaurants';
-const UPDATE_STATUS = '[Restaurant] update status';
+export const LOAD_RESTAURANTS = '[Restaurant] load restaurants';
+export const UPDATE_RESTAURANTS = '[Restaurant] update restaurants';
+export const REMOVE_RESTAURANTS = '[Restaurant] remove restaurants';
+export const UPDATE_STATUS = '[Restaurant] update status';
+
+export class LoadRestaurants implements Action {
+  readonly type = LOAD_RESTAURANTS;
+  constructor(public payload: Postcode) {}
+}
 
 export class UpdateRestaurants implements Action {
   readonly type = UPDATE_RESTAURANTS;

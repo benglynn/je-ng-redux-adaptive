@@ -10,6 +10,8 @@ import { RestaurantContainerComponent } from './containers/restaurant-container/
 import { ErrorContainerComponent } from './containers/error-container/error-container.component';
 import { AreaContainerComponent } from './containers/area-container/area-container.component';
 import { RestaurantService } from './services/restaurant.service';
+import { EffectsModule } from '@ngrx/effects';
+import { RestaurantEffects } from './effects/restaurants';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { RestaurantService } from './services/restaurant.service';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
-    StoreModule.forRoot(reducers, { initialState: initialState })
+    StoreModule.forRoot(reducers, { initialState: initialState }),
+    EffectsModule.forRoot([RestaurantEffects])
   ],
   providers: [RestaurantService],
   bootstrap: [AppComponent]

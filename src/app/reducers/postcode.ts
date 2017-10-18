@@ -6,6 +6,7 @@ export const postcodePattern =
 
 // State
 
+export type Postcode = string;
 export type State = string | null;
 export const initialState: State = null;
 
