@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Restaurant } from '../models/restaurant';
 
-enum Status { Loading, Okay, Error }
+export enum Status { Loading, Okay, Error }
 
 export interface State {
   status: null | Status;
