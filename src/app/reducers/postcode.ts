@@ -1,12 +1,18 @@
 import { Action } from '@ngrx/store';
 
+
+export const postcodePattern =
+  /^\s*([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})\s*$/i;
+
+// State
+
+export type State = string | null;
+export const initialState: State = null;
+
+// Actiona
+
 const UPDATE = '[Postcode] update';
 const REMOVE = '[Postcode] remove';
-
-export interface State {
-  name: string | null;
-  title: string | null;
-}
 
 export class Update implements Action {
   readonly type = UPDATE;
@@ -17,9 +23,10 @@ export class Remove implements Action {
   readonly type = REMOVE;
 }
 
+// Reducer
+
 export type Actions = Update | Remove;
 
-export const initialState: State = { name: null, title: null };
 
 export function reducer (
   state = initialState,
@@ -31,6 +38,9 @@ export function reducer (
     }
     case REMOVE: {
       return initialState;
+    }
+    default: {
+      return state;
     }
 
   }

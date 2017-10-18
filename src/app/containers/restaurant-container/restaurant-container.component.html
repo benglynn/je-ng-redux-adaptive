@@ -1,6 +1,7 @@
 <nav>
   <a [routerLink]="['/']">Home</a> &gt;
-  <a [routerLink]="['/' + (postcode$ | async)]">{{ (postcode$ | async) | uppercase }}</a> &gt;
+  <a [routerLink]="['/' + (postcode$ | async)]">
+    {{ (postcode$ | async) | uppercase }}</a> &gt;
   {{ name$ | async }}
 </nav>
 <h1>{{ name$ | async }} in {{ postcode$ | async }}</h1>

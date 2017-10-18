@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withlatestfrom';
+import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-home-container',
@@ -19,9 +20,6 @@ import 'rxjs/add/operator/withlatestfrom';
   styleUrls: ['./home-container.component.css']
 })
 export class HomeContainerComponent implements OnInit {
-
-  readonly postcodePattern =
-    /^\s*([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})\s*$/i;
 
   inputKeyUp$: Subject<Event>;
   buttonClick$: Subject<Event>;
@@ -36,31 +34,33 @@ export class HomeContainerComponent implements OnInit {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
     this.postcode$ = store.select('postcode');
-
-    this.input$ = this.inputKeyUp$.map(event =>
-        (event.target as HTMLInputElement).value);
-
-    this.isValidPostcode$ = this.input$
-      .map(value => value.match(this.postcodePattern) !== null)
-      .startWith(false);
-
-    this.inputKeyUp$
-      .filter((e => (e as KeyboardEvent).keyCode === 13))
-      .merge(this.buttonClick$)
-      .withLatestFrom(this.input$, (event, str) => {
-        return str.match(this.postcodePattern);
-      })
-      .subscribe(match => {
-        if (match !== null) {
-          const title = (`${match[1]} ${match[2]}`).toUpperCase();
-          const name = (`${match[1]}${match[2]}`).toLowerCase();
-          this.store.dispatch(new fromPostcode.Update({name: name, title: title}));
-          this.router.navigateByUrl(`/${name}`);
-        }
-      });
   }
 
   ngOnInit() {
+    this.postcode$.take(1).subscribe(initialPostcode => {
+
+      this.input$ = this.inputKeyUp$.map(event =>
+        (event.target as HTMLInputElement).value)
+        .startWith(initialPostcode === null ? '' : initialPostcode);
+
+        this.isValidPostcode$ = this.input$
+        .map(value => value.match(fromPostcode.postcodePattern) !== null);
+
+        const returnKeyCode = 13;
+        this.inputKeyUp$
+          .filter((e => (e as KeyboardEvent).keyCode === returnKeyCode))
+          .merge(this.buttonClick$)
+          .withLatestFrom(this.input$, (event, str) => {
+            return str.match(fromPostcode.postcodePattern);
+          })
+          .subscribe(match => {
+            if (match !== null) {
+              const name = (`${match[1]}${match[2]}`).toLowerCase();
+              this.store.dispatch(new fromPostcode.Update(name));
+              this.router.navigateByUrl(`/${name}`);
+            }
+          });
+    });
   }
 
 }
