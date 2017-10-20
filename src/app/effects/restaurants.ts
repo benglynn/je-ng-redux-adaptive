@@ -2,32 +2,47 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/mergemap';
 import 'rxjs/add/operator/zip';
 import * as fromRestaurants from '../reducers/restaurants';
 import { RestaurantService } from '../services/restaurant.service';
 
+export type EffectCoreFn = (Action) => Observable<Action>;
+
+export interface EffectCore {
+  name: string;
+  fn: EffectCoreFn;
+}
+
+@Injectable()
+export class EffectCores {
+  store$ = new ReplaySubject<EffectCore>();
+  register(name: string, fn: EffectCoreFn) {
+    this.store$.next({name: name, fn: fn});
+  }
+}
+
 @Injectable()
 export class RestaurantEffects {
 
-  effectCore$ = Observable.from([
-    function loadRestauants(action: fromRestaurants.LoadRestaurants): Observable<Action> {
-      return this.restaurantService.getRestaurants(action.payload)
-        .map(data => new fromRestaurants.UpdateRestaurants(data));
-    }]);
-
   @Effect() loadRestauants$: Observable<Action> = this.actions$
     .ofType<fromRestaurants.LoadRestaurants>(fromRestaurants.LOAD_RESTAURANTS)
-      .zip(this.effectCore$.filter(fn => fn.name === 'loadRestauants'))
-      .map(values => {
-        const [action, fn] = values;
-        return fn.call(this, action);
-      })
-      .mergeMap(input => input);
+    .zip(this.effectCores.store$.filter(
+      effectCore => effectCore.name === 'loadRestaurants'))
+    .map(([action, effectCore]) => effectCore.fn.call(this, action))
+    .mergeMap(input => input);
+
+  loadRestauantsCore(action: fromRestaurants.LoadRestaurants) {
+    return this.restaurantService.getRestaurants(action.payload)
+      .map(data => new fromRestaurants.UpdateRestaurants(data));
+  }
 
   constructor(
     private actions$: Actions,
-    private restaurantService: RestaurantService
-  ) {}
+    private restaurantService: RestaurantService,
+    private effectCores: EffectCores
+  ) {
+    this.effectCores.register('loadRestaurants', this.loadRestauantsCore);
+  }
 }
