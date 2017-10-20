@@ -1,27 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Actions, Effect } from '@ngrx/effects';
+import { EffectCores } from '.';
 import 'rxjs/add/operator/mergemap';
 import 'rxjs/add/operator/zip';
 import * as fromRestaurants from '../reducers/restaurants';
 import { RestaurantService } from '../services/restaurant.service';
-
-export type EffectCoreFn = (Action) => Observable<Action>;
-
-export interface EffectCore {
-  name: string;
-  fn: EffectCoreFn;
-}
-
-@Injectable()
-export class EffectCores {
-  store$ = new ReplaySubject<EffectCore>();
-  register(name: string, fn: EffectCoreFn) {
-    this.store$.next({name: name, fn: fn});
-  }
-}
 
 @Injectable()
 export class RestaurantEffects {

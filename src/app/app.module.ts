@@ -11,7 +11,8 @@ import { ErrorContainerComponent } from './containers/error-container/error-cont
 import { AreaContainerComponent } from './containers/area-container/area-container.component';
 import { RestaurantService } from './services/restaurant.service';
 import { EffectsModule } from '@ngrx/effects';
-import { EffectCores, RestaurantEffects } from './effects/restaurants';
+import { EffectCores } from './effects';
+import { RestaurantEffects } from './effects/restaurants';
 
 @NgModule({
   declarations: [
