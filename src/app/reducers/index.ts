@@ -1,7 +1,7 @@
 import * as fromPostcode from './postcode';
 import * as fromRestaurants from './restaurants';
 import * as fromConfiguration from './configuration';
-import { ActionReducerMap } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 export interface State {
   postcode: fromPostcode.State;
@@ -14,6 +14,17 @@ export const initialState: State = {
   restaurants: fromRestaurants.initialState,
   configuration: fromConfiguration.initialState
 };
+
+export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function(state, action) {
+    console.log('state', state);
+    console.log('action', action);
+
+    return reducer(state, action);
+  };
+}
+
+export const metaReducers: MetaReducer<any>[] = []; // [debug];
 
 export const reducers: ActionReducerMap<State> = {
   postcode: fromPostcode.reducer,
