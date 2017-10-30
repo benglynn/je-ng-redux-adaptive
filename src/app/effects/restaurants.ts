@@ -7,8 +7,8 @@ import { Actions, Effect } from '@ngrx/effects';
 import { EffectCores } from '.';
 import 'rxjs/add/operator/mergemap';
 import 'rxjs/add/operator/combinelatest';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/zip';
+import 'rxjs/add/operator/pluck';
+import 'rxjs/add/operator/switch';
 import * as fromReducers from '../reducers';
 import * as fromConfiguration from '../reducers/configuration';
 import * as fromRestaurants from '../reducers/restaurants';
@@ -17,16 +17,17 @@ import { RestaurantService } from '../services/restaurant.service';
 @Injectable()
 export class RestaurantEffects {
 
-  private configuration: fromConfiguration.State;
-
   @Effect() loadRestauants$: Observable<Action> = this.actions$
-    .ofType<fromRestaurants.LoadRestaurants>(fromRestaurants.LOAD_RESTAURANTS)
-     .combineLatest(
-      this.effectCores.store$.filter(effectCore =>
-        effectCore.name === this.configuration.loadRestaurantsEffect),
-      (action, effectCore) => effectCore.fn.call(this, action)
-    )
-    .mergeMap(result => result);
+  .ofType<fromRestaurants.LoadRestaurants>(fromRestaurants.LOAD_RESTAURANTS)
+  .combineLatest(
+    this.store.select('configuration')
+    .pluck('loadRestaurantsEffect')
+    .map(name => this.effectCores.store$
+      .filter(effectCore => effectCore.name === name))
+      .switch(),
+    (action, effectCore) => effectCore.fn.call(this, action)
+  )
+  .mergeMap(result => result);
 
   loadRestauantsCore$(action: fromRestaurants.LoadRestaurants) {
     return this.restaurantService.getRestaurants(action.payload)
@@ -39,9 +40,6 @@ export class RestaurantEffects {
     private effectCores: EffectCores,
     private store: Store<fromReducers.State>
   ) {
-
-    store.select('configuration').subscribe(
-      configuration => this.configuration = configuration);
 
     this.effectCores.register('loadRestaurants', this.loadRestauantsCore$);
 
