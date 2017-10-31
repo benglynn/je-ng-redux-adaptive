@@ -1,6 +1,6 @@
 # Consumer app web prototype
 
-A prototype of the Just Eat web app that follows the [common adaptive architecture](https://goo.gl/coMJHq).
+A prototype of the Just Eat web. Read the [overview](./docs/overview.md).
 
 ## Develop & test locally
 
