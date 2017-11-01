@@ -69,9 +69,9 @@ An important slice of state is `configuration` which contains a default map of e
 
 ```ts
 export const initialConfiguration: ConfigurationState = {
-  restaurants: {
+  postcode: {
     reducers: {
-      updateRestaurants: 'updateRestaurants',
+      updatePostcode: 'updatePostcode',
       // ...
     },
     // ... effects and views to come

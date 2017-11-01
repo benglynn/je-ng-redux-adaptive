@@ -34,13 +34,13 @@ export class HomeContainerComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<fromReducers.State>,
-    private storex: StoreX<any>
+    private storex: StoreX
   ) {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
     this.postcode$ = store.select('postcode');
 
-    this.subscriptionx = this.storex.state$.subscribe(console.log);
+    this.subscriptionx = this.storex.state$.subscribe();
   }
 
   ngOnInit() {
