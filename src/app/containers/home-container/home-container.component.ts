@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
+import { StoreX } from '../../store/module';
 import * as fromReducers from '../../reducers';
 import * as fromPostcode from '../../reducers/postcode';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
@@ -27,16 +29,22 @@ export class HomeContainerComponent implements OnInit {
   isValidPostcode$: Observable<boolean>;
   postcode$: Observable<fromPostcode.State>;
 
+  subscriptionx: Subscription;
+
   constructor(
     private router: Router,
-    private store: Store<fromReducers.State>
+    private store: Store<fromReducers.State>,
+    private storex: StoreX<any>
   ) {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
     this.postcode$ = store.select('postcode');
+
+    this.subscriptionx = this.storex.state$.subscribe(console.log);
   }
 
   ngOnInit() {
+
     this.postcode$.take(1).subscribe(initialPostcode => {
 
       this.input$ = this.inputKeyUp$.map(event =>

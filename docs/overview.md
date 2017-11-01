@@ -2,57 +2,70 @@ The web app is the first implementation of a [common adaptive architecture][], r
 
 ## Compile time
 
-State is made up of named slices, for example `restaurants`. Each slice may have associated actions, reducers, effects, container views and views. 
+### State slices
+
+State is made up of named slices, for example here's a simple slice `postcode` which is either nothing or a string. Each slice defines an interface for its state and value for its initial state.
+
+```ts
+export const POSTCODE = 'POSTCODE'; // slice name
+export type PostcodeState = string|null; // possible state
+export const initialState: State = null; // initial state
+```
 
 ### Actions
 
-Here's the definition of a couple of actions:
+Actions are simple classes which always have a type and sometimes have a payload:
 
 ```ts
-export class LoadRestaurants implements Action {
-  readonly type = LOAD_RESTAURANTS;
-  constructor(public payload: Postcode) {}
+interface Action {
+  type: string;
+  payload?: any;
 }
+```
 
-export class UpdateRestaurants implements Action {
-  readonly type = UPDATE_RESTAURANTS;
-  constructor(public payload: Restaurant[]) {}
-}
-export class UpdateRestaurants implements Action {
-  readonly type = UPDATE_RESTAURANTS;
-  constructor(public payload: Restaurant[]) {}
+Here's a simple action encapsulating the intent to update the postcode. 
+
+```ts
+export const UPDATE_POSTCODE = 'UPDATE_POSTCODE';
+
+class UpdatePostcode implements Action {
+  readonly type = UPDATE_POSTCODE;
+  constructor(public payload: PostcodeState) {};
 }
 ```
 
 ### Reducers
 
-Some actions have associated reducers, these are defined and registered like this:
+Reducers take an action and a slice of state and either return that same slice, or a new slice to replace it. 
 
 ```ts
-updateRestaurants(state<RestaurantState>, action: UpdateRestaurants) {
-  return { status: Status.Okay, data: action.payload};
-}
-this.reducerRegistry.register('updateRestaurants', this.updateRestaurants);
+type Reducer<T> = (action: Action, state: T) => T
 ```
+
+Here's a reducer that updates the `postcode` slice of state in response to an `UPDATE_POSTCODE` action:
+
+```ts
+updatePostcode(action: Action, state: PostcodeState) => action.payload;
+```
+
+Reducers must be registered with a plain text name. 
+
+```ts
+this.reducerRegistry.register(updatePostcode, 'updatePostcode');
+```
+
+> A registered reducer won't actually do anything yet, you could register 100 and none of them would be active. To be part of the app, a reducer's registration name must be referenced in the active configuration, as explained below. This applies to effects, views, and container views as well as reducers.
 
 ### Effects
+...
 
-Some actions have associated side effects which result in a new action or actions. These effects are registered like this:
-
-```ts
-loadRestaurants(action: LoadRestaurants): Observable<Action> {
-  return this.restaurantService.getRestaurants(action.payload)
-      .map(data => new this.restaurantService.UpdateRestaurants(data));
-}
-this.effectRegistry.register('loadRestaurants',this.loadRestaurants);
-```
 
 ### Container views and views
-Todo...
+...
 
 ### Configuration
 
-An important slice of state is `configuration` which contains a default map of actions to reducers and to effects, here's a chunk:
+An important slice of state is `configuration` which contains a default map of each slices actions to reducers.
 
 ```ts
 export const initialConfiguration: ConfigurationState = {
@@ -61,31 +74,28 @@ export const initialConfiguration: ConfigurationState = {
       updateRestaurants: 'updateRestaurants',
       // ...
     },
-    effects: {
-      loadRestaurants: 'loadRestaurants'
-    }
+    // ... effects and views to come
   }
 };
 ```
 
-Notice that the plain text names correspond with the name of the registered reducer or effect. 
+Everything in the state is serialisable so the identifiers are plain text, but they correspond to the name they were registered with.
 
 ### Adaptations
 
-Adaptations have their own slice of state and may define and register actions, reducers, effects, container views and views of their own. It's up to the app to decide that an adaptation is to be enabled, if it is, configuration will be reduced with a reducer that the adaptation registers like this:
+Adaptations have their own slice of state and may define and register actions, reducers, effects, container views and views of their own. 
 
+Each adaptation registers as configuration reducer that will be used to update the configuration state if that adaptation is activated.
 ```ts
-updateConfiguration(state<ConfigurationState>, action: updateConfiguration) {
-  return {
+updateConfiguration(state: ConfigurationState, action: Action): ConfigurationState {
     // change the default configuration to point to my components
-  };
-}
-this.adaptationRegistry.register('personalisedSearch' this.updateConfiguration);
+};
+this.adaptationRegistry.register('personalisedSearch', this.updateConfiguration);
 ```
 
 ## Bootstrap
 
-When the app comes to life, regardless of the entry point, the user sees a default loading screen. The app loads adaptation config (from a gitignored `adaptations.json` in the root or from the innovation web service) which looks like this:
+When the app comes to life, regardless of the entry point, the user sees a default loading screen. The app loads adaptation config (from a gitignored `/adaptations.json` or from a web service) which looks like this:
 
 ```json
 {
@@ -101,7 +111,7 @@ In this way an adaptation is able to adapt any of the component parts of the app
 
 The flow of state around the application is exactly the same as redux: state flows into subscribers, actions are dispatched and result in slices of state being reduced or in side effects and the dispatching of new actions. 
 
-What's different is the way in which reducers or events that are interested in a certain action are found, in both cases the configuration is deferred to and the reducer or effect is retrieved from the registry.
+What's different is the way in which reducers or events that are interested in a certain action are found, in both cases the configuration is deferred to and the reducer or effect is retrieved from a registry.
 
 
 [common adaptive architecture]: https://goo.gl/coMJHq

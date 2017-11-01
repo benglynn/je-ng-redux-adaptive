@@ -14,6 +14,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { EffectCores } from './effects';
 import { RestaurantEffects } from './effects/restaurants';
 
+// StoreX
+import { StoreModule as StoreModuleX } from './store/module';
+import * as fromPostcode from './postcode';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +31,12 @@ import { RestaurantEffects } from './effects/restaurants';
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
     StoreModule.forRoot(reducers, {
       initialState: initialState, metaReducers: metaReducers }),
-    EffectsModule.forRoot([RestaurantEffects])
+    EffectsModule.forRoot([RestaurantEffects]),
+    StoreModuleX.forRoot({
+      postcode: fromPostcode.initialState
+    })
   ],
   providers: [EffectCores, RestaurantService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
