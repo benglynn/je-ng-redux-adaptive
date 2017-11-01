@@ -40,7 +40,7 @@ export class HomeContainerComponent implements OnInit {
     this.buttonClick$ = new Subject<Event>();
     this.postcode$ = store.select('postcode');
 
-    this.subscriptionx = this.storex.state$.subscribe();
+    this.subscriptionx = this.storex.state$.subscribe(console.log);
   }
 
   ngOnInit() {

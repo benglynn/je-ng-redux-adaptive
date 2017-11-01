@@ -65,7 +65,7 @@ this.reducerRegistry.register(updatePostcode, 'updatePostcode');
 
 ### Configuration
 
-An important slice of state is `configuration` which contains a default map of each slices actions to reducers.
+An important slice of state is `configuration` which contains a default map of each slice's actions to reducers.
 
 ```ts
 export const initialConfiguration: ConfigurationState = {

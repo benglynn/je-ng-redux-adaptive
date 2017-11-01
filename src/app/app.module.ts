@@ -35,7 +35,6 @@ import * as fromConfiguration from './configuration';
     EffectsModule.forRoot([RestaurantEffects]),
     StoreModuleX.forRoot({
       postcode: fromPostcode.initialState,
-      dummy: {},
       configuration: fromConfiguration.initialState,
     })
   ],

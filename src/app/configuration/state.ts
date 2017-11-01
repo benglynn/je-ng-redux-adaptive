@@ -4,7 +4,7 @@ export interface State {
       UPDATE_POSTCODE: string;
       REMOVE_POSTCODE: string;
     },
-    dummy: {};
+    configuration: {};
   }
 }
 
@@ -14,6 +14,6 @@ export const initialState: State = {
       UPDATE_POSTCODE: 'updatePostcode',
       REMOVE_POSTCODE: 'removePostcode'
     },
-    dummy: {}
+    configuration: {}
   }
 }

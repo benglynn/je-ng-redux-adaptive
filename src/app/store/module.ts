@@ -34,17 +34,24 @@ export class StoreX {
     this.actionSubscription = this.action$
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
-        Object.keys(state)
-          .filter(sliceName => sliceName != 'configuration')
-          .map(sliceName => {
+        const sliceNames = Object.keys(state);
+        const nextSlices = sliceNames
+          .map(function(sliceName): any {
             const sliceReducers = state.configuration.reducers[sliceName];
-            Object.keys(sliceReducers)
+            return Object.keys(sliceReducers)
               .filter(sliceActionType => sliceActionType === action.type)
               .map(sliceActionType => {
-                console.log('reduce state:', state[sliceName]);
-                console.log('with reducer:', sliceReducers[sliceActionType])
-              })
+                return state[sliceName] + 'x';
+                // console.log('reduce state:', state[sliceName]);
+                // console.log('with reducer:', sliceReducers[sliceActionType])
+              })[0]
           });
+          const nextState = nextSlices.reduce((acc, curr, i) => {
+            const sliceName = sliceNames[i];
+            const nextSlice = {[sliceName]: curr || state[sliceName]};
+            return Object.assign(acc, nextSlice);
+          }, {});
+          this.state$.next(nextState); // TODO: only when it changes!
       });
   }
 }
