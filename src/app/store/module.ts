@@ -27,32 +27,48 @@ export class StoreX {
   private actionSubscription: Subscription;
   private reducerRegistry: {[name: string]: ReducerX<any>};
 
+  dispatch(action: ActionX) {
+    this.action$.next(action);
+  }
+
+  private reduce(action: ActionX, state: AppState) {
+    const reducerRegistry = this.reducerRegistry; // really? Sort out scope.
+    const sliceNames = Object.keys(state);
+    const nextSlices = sliceNames
+      .map(function(sliceName): any {
+        const stateSlice = state[sliceName];
+        const sliceReducers = state.configuration.reducers[sliceName];
+        return Object.keys(sliceReducers)
+          .filter(sliceActionType => sliceActionType === action.type)
+          .map(sliceActionType => {
+            const reducerName = sliceReducers[sliceActionType];
+            const reducer = reducerRegistry[reducerName];
+            return reducer ? reducer(action, stateSlice) : stateSlice;
+          })[0]
+      });
+      const nextState = nextSlices.reduce((acc, curr, i) => {
+        const sliceName = sliceNames[i];
+        const nextSlice = {[sliceName]: curr || state[sliceName]};
+        return Object.assign(acc, nextSlice);
+      }, {});
+      this.state$.next(nextState); // TODO: only when it changes!
+  }
+
   constructor( @Inject(INITIAL_STATE_X) private initialState: AppState) {
     this.state$ = new BehaviorSubject(this.initialState);
-    this.action$ = new BehaviorSubject({ type: 'UPDATE_POSTCODE'});
+    this.action$ = new BehaviorSubject({ type: 'INITIAL_ACTION'});
 
-    this.actionSubscription = this.action$
+    // this.dispatch({ type: 'UPDATE_POSTCODE', payload: 'CC34AH'});
+
+    this.reducerRegistry = {
+      'updatePostcode': (action: ActionX, state: fromPostcode.State) => {
+        return action.payload;
+      }
+    }
+
+    this.actionSubscription = this.action$ // TODO: manage destruction
       .withLatestFrom(this.state$)
-      .subscribe(([action, state]) => {
-        const sliceNames = Object.keys(state);
-        const nextSlices = sliceNames
-          .map(function(sliceName): any {
-            const sliceReducers = state.configuration.reducers[sliceName];
-            return Object.keys(sliceReducers)
-              .filter(sliceActionType => sliceActionType === action.type)
-              .map(sliceActionType => {
-                return state[sliceName] + 'x';
-                // console.log('reduce state:', state[sliceName]);
-                // console.log('with reducer:', sliceReducers[sliceActionType])
-              })[0]
-          });
-          const nextState = nextSlices.reduce((acc, curr, i) => {
-            const sliceName = sliceNames[i];
-            const nextSlice = {[sliceName]: curr || state[sliceName]};
-            return Object.assign(acc, nextSlice);
-          }, {});
-          this.state$.next(nextState); // TODO: only when it changes!
-      });
+      .subscribe(([action, state]) => this.reduce(action, state));
   }
 }
 

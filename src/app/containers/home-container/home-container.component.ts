@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -21,7 +21,7 @@ import 'rxjs/add/operator/take';
   templateUrl: './home-container.component.html',
   styleUrls: ['./home-container.component.css']
 })
-export class HomeContainerComponent implements OnInit {
+export class HomeContainerComponent implements OnInit, OnDestroy {
 
   inputKeyUp$: Subject<Event>;
   buttonClick$: Subject<Event>;
@@ -65,10 +65,15 @@ export class HomeContainerComponent implements OnInit {
             if (match !== null) {
               const name = (`${match[1]}${match[2]}`).toLowerCase();
               this.store.dispatch(new fromPostcode.Update(name));
+              /*!!!*/ this.storex.dispatch({ type: 'UPDATE_POSTCODE', payload: name});
               this.router.navigateByUrl(`/${name}`);
             }
           });
     });
   }
+
+ngOnDestroy() {
+  this.subscriptionx.unsubscribe();
+}
 
 }
