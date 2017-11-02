@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { StoreX } from '../../store/store';
 import * as fromReducers from '../../reducers';
 import * as fromPostcode from '../../reducers/postcode';
+import { UpdatePostcode } from '../../postcode/actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
@@ -10,12 +12,6 @@ import 'rxjs/add/operator/mergemap';
 import * as fromRestaurants from '../../reducers/restaurants';
 import { Restaurant } from '../../models/restaurant';
 import { RestaurantService } from '../../services/restaurant.service';
-
-const mockRestaurants = [[
-  {title: 'Test restaurant', name: 'test-restaurant'},
-  {title: 'Test restaurant 2', name: 'test-restaurant-2'},
-  {title: 'Test restaurant 3', name: 'test-restaurant-3'}
-]];
 
 @Component({
   selector: 'app-area-container',
@@ -31,7 +27,8 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private store: Store<fromReducers.State>,
-    private restaurantService: RestaurantService
+    private restaurantService: RestaurantService,
+    private storex: StoreX
   ) {
     this.postcode$ = store.select('postcode');
     this.restaurants$ = store.select('restaurants');
@@ -41,6 +38,7 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
       (paramPostcode, statePostcode) => {
         if (statePostcode === null || statePostcode !== paramPostcode) {
           this.store.dispatch(new fromPostcode.Update(paramPostcode));
+          this.storex.dispatch(new UpdatePostcode(paramPostcode));
         }
       }
     ).subscribe();
