@@ -15,7 +15,7 @@ import { EffectCores } from './effects';
 import { RestaurantEffects } from './effects/restaurants';
 
 // StoreX
-import { StoreModule as StoreModuleX } from './store/module';
+  import { StoreModule as StoreModuleX } from './store/module';
 import * as fromPostcode from './postcode';
 import * as fromConfiguration from './configuration';
 
@@ -33,10 +33,7 @@ import * as fromConfiguration from './configuration';
     StoreModule.forRoot(reducers, {
       initialState: initialState, metaReducers: metaReducers }),
     EffectsModule.forRoot([RestaurantEffects]),
-    StoreModuleX.forRoot({
-      postcode: fromPostcode.initialState,
-      configuration: fromConfiguration.initialState,
-    })
+    StoreModuleX
   ],
   providers: [EffectCores, RestaurantService],
   bootstrap: [AppComponent]

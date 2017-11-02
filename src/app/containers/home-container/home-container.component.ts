@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import { StoreX } from '../../store/module';
+import { StoreX } from '../../store/store';
 import * as fromReducers from '../../reducers';
 import * as fromPostcode from '../../reducers/postcode';
 
@@ -65,7 +65,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
             if (match !== null) {
               const name = (`${match[1]}${match[2]}`).toLowerCase();
               this.store.dispatch(new fromPostcode.Update(name));
-              /*!!!*/ this.storex.dispatch({ type: 'UPDATE_POSTCODE', payload: name});
+              this.storex.dispatch({ type: 'UPDATE_POSTCODE', payload: name});
               this.router.navigateByUrl(`/${name}`);
             }
           });
