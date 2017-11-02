@@ -2,28 +2,25 @@ import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppStateX } from './state';
+import { IAppStateX, IActionX, IReducerX, IReducersX } from './types';
 import { INITIAL_STATE } from './tokens';
-import { ActionX } from './action';
 import { Registry } from './registry';
 
 import * as fromPostcode from '../postcode';
 
-export type ReducerX<T> = (action: ActionX, state: T) => T
-type ReducersX = { [name: string]: ReducerX<any> };
-
 @Injectable()
 export class StoreX {
   state$: BehaviorSubject<IAppStateX>;
-  action$: BehaviorSubject<ActionX>;
+  action$: BehaviorSubject<IActionX>;
   private actionSubscription: Subscription;
 
-  dispatch(action: ActionX) {
+  dispatch(action: IActionX) {
     this.action$.next(action);
   }
 
-  private nextSlices(state: IAppStateX, action: ActionX, reducers: ReducersX
+  private nextSlices(state: IAppStateX, action: IActionX, reducers: IReducersX
     ): any[] {
+    // TODO: rename with pure names (e.g. functionHash rather than reducers)
     // TODO: break this apart, look to memoize reducer search
     return Object.keys(state).map((sliceName): any => {
       const stateSlice = state[sliceName];
@@ -50,7 +47,7 @@ export class StoreX {
       }, {});
   }
 
-  private reduce(action: ActionX, state: IAppStateX) {
+  private reduce(action: IActionX, state: IAppStateX) {
     // TODO: is there benefit in folding config into slices?
     const sliceNames = Object.keys(state);
     const nextSlices = this.nextSlices(state, action, this.registry.reducers);

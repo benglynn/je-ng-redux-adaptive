@@ -1,5 +1,5 @@
-import * as fromPostcode from '../postcode';
-import * as fromConfiguration from '../configuration';
+import * as fromPostcode from '../../postcode';
+import * as fromConfiguration from '../../configuration';
 
 export const initialStateX = {
   postcode: fromPostcode.initialState,

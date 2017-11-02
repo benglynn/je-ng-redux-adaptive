@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as fromPostcode from '../postcode';
-import { ActionX } from './action';
+import { IActionX, IReducersX } from './types';
 
 @Injectable()
 export class Registry {
-  get reducers() {
+
+  get reducers(): IReducersX {
     return {
-      'updatePostcode': (action: ActionX, state: fromPostcode.State) => {
+      'updatePostcode': (action: IActionX, state: fromPostcode.State) => {
         return action.payload;
       }
     }
