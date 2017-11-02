@@ -15,12 +15,4 @@ export class Registry {
     // TODO: manage collisions
     this._reducers = Object.assign(this._reducers, {[name]: reducer});
   }
-
-  constructor() {
-    this.registerReducer('updatePostcode',
-      (action: IActionX, state: fromPostcode.State) => {
-        return action.payload;
-      }
-    )
-  }
 }
