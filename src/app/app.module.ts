@@ -17,6 +17,7 @@ import { RestaurantEffects } from './effects/restaurants';
 // StoreX
   import { StoreModule as StoreModuleX } from './store/module';
   import { PostcodeModule } from './postcode/module';
+  import { RestaurantsModule } from './restaurants/module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RestaurantEffects } from './effects/restaurants';
       initialState: initialState, metaReducers: metaReducers }),
     EffectsModule.forRoot([RestaurantEffects]),
     StoreModuleX,
-    PostcodeModule
+    PostcodeModule,
+    RestaurantsModule
   ],
   providers: [EffectCores, RestaurantService],
   bootstrap: [AppComponent]

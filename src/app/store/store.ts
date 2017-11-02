@@ -22,6 +22,7 @@ export class StoreX {
     ): any[] {
     // TODO: rename with pure names (e.g. functionHash rather than reducers)
     // TODO: break this apart, look to memoize reducer search
+    // TODO: tolerate missing configuration for slice! (one of many tests)
     return Object.keys(state).map((sliceName): any => {
       const stateSlice = state[sliceName];
       const sliceReducers = state.configuration.reducers[sliceName];
@@ -65,7 +66,9 @@ export class StoreX {
     this.actionSubscription = this.action$ // TODO: manage destruction
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
+        console.group('dispatched action');
         console.log(action);
+        console.groupEnd();
         this.reduce(action, state);
       });
   }

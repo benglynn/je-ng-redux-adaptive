@@ -14,5 +14,8 @@ export class Registry {
   registerReducer<T>(name: string, reducer: IReducerX<T>) {
     // TODO: manage collisions
     this._reducers = Object.assign(this._reducers, {[name]: reducer});
+    console.group('updated reducers');
+    console.log(this._reducers);
+    console.groupEnd();
   }
 }

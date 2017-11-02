@@ -1,4 +1,4 @@
-import { IReducerX, IReducersX } from '../store/types';
+import { IReducersX } from '../store/types';
 import { UpdatePostcode } from './actions';
 import { State } from './state';
 
