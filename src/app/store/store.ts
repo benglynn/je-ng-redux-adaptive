@@ -20,22 +20,22 @@ export class StoreX {
 
   private nextSlices(state: IAppStateX, action: IActionX, reducers: IReducersX
     ): any[] {
-    // TODO: rename with pure names (e.g. functionHash rather than reducers)
-    // TODO: break this apart, look to memoize reducer search
-    // TODO: tolerate missing configuration for slice! (one of many tests)
+    // TODO: memoize lookup
     return Object.keys(state).map((sliceName): any => {
       const stateSlice = state[sliceName];
       const sliceReducers = state.configuration.reducers[sliceName];
-      return Object.keys(sliceReducers)
-        .filter(sliceActionType => sliceActionType === action.type)
-        .map(sliceActionType => {
-          const reducerName = sliceReducers[sliceActionType];
-          const reducer = reducers[reducerName];
-          if(reducer === undefined) {
-            throw new Error(`no reducer named '${reducerName}'`);
-          }
-          return reducer(action, stateSlice);
-        })[0]
+      if (sliceReducers === undefined) {
+        return undefined;
+      }
+      const reducerName = sliceReducers[action.type];
+      if (reducerName === undefined) {
+        return undefined;
+      }
+      const reducerFunction = reducers[reducerName];
+      if (reducerFunction === undefined) {
+        throw new Error(`expected reducer named '${reducerName}'`);
+      }
+      return reducerFunction(action, stateSlice);
     });
   }
 
