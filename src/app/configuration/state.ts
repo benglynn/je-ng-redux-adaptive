@@ -1,19 +1,18 @@
+type StringHash = {[name: string]: string}
+type StringHashes = {[name: string]: StringHash};
+
 export interface State {
-  reducers: {
-    postcode: {
-      UPDATE_POSTCODE: string;
-    },
-    restaurants: {},
-    configuration: {};
-  }
+  reducers: StringHashes,
+  effects: StringHash,
 }
 
 export const initialState: State = {
   reducers: {
     postcode: {
-      UPDATE_POSTCODE: 'updatePostcode'
-    },
-    restaurants: {},
-    configuration: {}
+      'UPDATE_POSTCODE': 'updatePostcode'
+    }
+  },
+  effects: {
+    'LOAD_RESTAURANTS': 'loadRestaurants'
   }
 }

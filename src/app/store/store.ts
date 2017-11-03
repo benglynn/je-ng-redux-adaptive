@@ -1,10 +1,11 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, Injector } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppStateX, IActionX, IReducerX, IReducersX } from './types';
+import { IAppStateX, IActionX, IReducerX, IReducersX, IEffectsX } from './types';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
+import * as fromUtils from './utils';
 
 import * as fromPostcode from '../postcode';
 
@@ -18,47 +19,37 @@ export class StoreX {
     this.action$.next(action);
   }
 
-  private nextSlices(state: IAppStateX, action: IActionX, reducers: IReducersX
-    ): any[] {
-    // TODO: memoize lookup
-    return Object.keys(state).map((sliceName): any => {
-      const stateSlice = state[sliceName];
-      const sliceReducers = state.configuration.reducers[sliceName];
-      if (sliceReducers === undefined) {
-        return undefined;
-      }
-      const reducerName = sliceReducers[action.type];
-      if (reducerName === undefined) {
-        return undefined;
-      }
-      const reducerFunction = reducers[reducerName];
-      if (reducerFunction === undefined) {
-        throw new Error(`expected reducer named '${reducerName}'`);
-      }
-      return reducerFunction(action, stateSlice);
-    });
-  }
-
-  private toMergedObject(names: string[], oldObject: Object, newValues: any[]) {
-    return newValues.reduce(
-      (accumulator: Object, current: Object|undefined, index: number) => {
-        const name = names[index];
-        const slice = {[name]: current || oldObject[name]};
-        return Object.assign(accumulator, slice);
-      }, {});
-  }
-
   private reduce(action: IActionX, state: IAppStateX) {
     // TODO: is there benefit in folding config into slices?
     const sliceNames = Object.keys(state);
-    const nextSlices = this.nextSlices(state, action, this.registry.reducers);
-    const nextState = this.toMergedObject(sliceNames, state, nextSlices);
+    const nextSlices = fromUtils.nextSlices(state, action, this.registry.reducers);
+    const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);
     this.state$.next(nextState); // TODO: implement change detection
+  }
+
+  private effect(
+    action: IActionX,
+    state: IAppStateX,
+    effectFunctions: IEffectsX,
+    injector: Injector
+  ) {
+    const effectNames = state.configuration.effects;
+    Object.keys(effectNames)
+      .filter(actionName => actionName === action.type)
+      .map(actionName => {
+        const effectName = effectNames[actionName];
+        const effectFunction = effectFunctions[effectName];
+        if (effectFunction === undefined) {
+          throw new Error(`expected effect named '${effectName}'`);
+        }
+        effectFunction(action, injector);
+    });
   }
 
   constructor(
     @Inject(INITIAL_STATE) private initialState: IAppStateX,
-    private registry: Registry
+    private registry: Registry,
+    private injector: Injector
   ) {
     this.state$ = new BehaviorSubject(initialState);
     this.action$ = new BehaviorSubject({ type: 'INITIAL_ACTION'});
@@ -70,6 +61,7 @@ export class StoreX {
         console.log(action);
         console.groupEnd();
         this.reduce(action, state);
+        this.effect(action, state, this.registry.effects, this.injector);
       });
   }
 }

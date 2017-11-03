@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../postcode';
-import { IActionX, IReducerX, IReducersX } from './types';
+import { IActionX, IReducerX, IReducersX, IEffectsX } from './types';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Injectable()
 export class Registry {
@@ -9,6 +10,15 @@ export class Registry {
 
   get reducers(): IReducersX {
     return this._reducers
+  }
+
+  effects: IEffectsX = {
+    'loadRestaurants': (action: IActionX, injector: Injector) => {
+      const restaurantsService = injector.get(RestaurantService);
+      console.group('effect');
+      console.log(action);
+      console.groupEnd();
+    }
   }
 
   registerReducer<T>(name: string, reducer: IReducerX<T>) {
