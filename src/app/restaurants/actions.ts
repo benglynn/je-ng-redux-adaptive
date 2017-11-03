@@ -3,10 +3,10 @@ import { Restaurant } from '../restaurant';
 import { State as Postcode } from '../postcode';
 import { State, Status } from './state';
 
-export const LOAD_RESTAURANTS = '[Restaurant] load restaurants';
-export const UPDATE_RESTAURANTS = '[Restaurant] update restaurants';
-export const REMOVE_RESTAURANTS = '[Restaurant] remove restaurants';
-export const UPDATE_STATUS = '[Restaurant] update status';
+export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';
+export const UPDATE_RESTAURANTS = 'UPDATE_RESTAURANTS';
+export const REMOVE_RESTAURANTS = 'REMOVE_RESTAURANTS';
+export const UPDATE_RESTAURANT_STATUS = 'UPDATE_RESTAURANT_STATUS';
 
 export class LoadRestaurants implements IActionX {
   readonly type = LOAD_RESTAURANTS;
@@ -23,6 +23,6 @@ export class RemoveRestaurants implements IActionX {
 }
 
 export class UpdateStatus implements IActionX {
-  readonly type = UPDATE_STATUS;
+  readonly type = UPDATE_RESTAURANT_STATUS;
   constructor(public payload: Status) {}
 }

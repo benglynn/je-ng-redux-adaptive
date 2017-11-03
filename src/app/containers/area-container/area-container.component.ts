@@ -5,6 +5,7 @@ import { StoreX } from '../../store/store';
 import * as fromReducers from '../../reducers';
 import * as fromPostcode from '../../reducers/postcode';
 import { UpdatePostcode } from '../../postcode/actions';
+import { LoadRestaurants } from '../../restaurants/actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
@@ -45,6 +46,7 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
 
     this.postcode$.subscribe(postcode => {
       this.store.dispatch(new fromRestaurants.LoadRestaurants(postcode));
+      this.storex.dispatch(new LoadRestaurants(postcode));
     });
   }
 
