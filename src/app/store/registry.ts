@@ -1,24 +1,20 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../postcode';
-import { IActionX, IReducerX, IReducersX, IEffectsX } from './types';
+import { IActionX, IReducerX, IReducersX, IEffectX, IEffectsX } from './types';
 import { RestaurantService } from '../services/restaurant.service';
 
 @Injectable()
 export class Registry {
 
   private _reducers: IReducersX = {}; // TODO: behaviorSubject.concat() better?
+  private _effects: IEffectsX = {}; // dito
 
   get reducers(): IReducersX {
-    return this._reducers
+    return this._reducers;
   }
 
-  effects: IEffectsX = {
-    'loadRestaurants': (action: IActionX, injector: Injector) => {
-      const restaurantsService = injector.get(RestaurantService);
-      console.group('effect');
-      console.log(action);
-      console.groupEnd();
-    }
+  get effects(): IEffectsX {
+    return this._effects;
   }
 
   registerReducer<T>(name: string, reducer: IReducerX<T>) {
@@ -35,5 +31,18 @@ export class Registry {
     console.group('updated reducers');
     console.log(this._reducers);
     console.groupEnd();
+  }
+
+  registerEffect(name: string, effect: IEffectX) {
+    if (this._effects[name] !== undefined) {
+      throw new Error(`effect named '${name}' already registered`);
+    }
+    this._effects = Object.assign(this._effects, {[name]: effect});
+  }
+
+  registerEffects(effects: IEffectsX) {
+    Object.keys(effects).map(name =>
+      this.registerEffect(name, effects[name])
+    );
   }
 }
