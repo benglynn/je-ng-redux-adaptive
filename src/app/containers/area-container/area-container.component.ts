@@ -5,7 +5,7 @@ import { StoreX } from '../../store/store';
 import * as fromReducers from '../../reducers';
 import * as fromPostcode from '../../reducers/postcode';
 import { UpdatePostcode } from '../../postcode/actions';
-import { LoadRestaurants } from '../../restaurants/actions';
+import { LoadRestaurants, RemoveRestaurants } from '../../restaurants/actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
@@ -52,6 +52,7 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch(new fromRestaurants.RemoveRestaurants());
+    this.storex.dispatch(new RemoveRestaurants());
   }
 
   ngOnInit() {

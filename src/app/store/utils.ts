@@ -3,6 +3,7 @@ import { IAppStateX, IActionX, IReducersX } from './types';
 export function nextSlices(state: IAppStateX, action: IActionX, reducers: IReducersX
 ): any[] {
 // TODO: memoize lookup
+// TODO: abstract from this and effect lookup (which becomes per slice too)
 return Object.keys(state).map((sliceName): any => {
   const stateSlice = state[sliceName];
   const sliceReducers = state.configuration.reducers[sliceName];

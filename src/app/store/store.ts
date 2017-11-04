@@ -24,6 +24,9 @@ export class StoreX {
     const sliceNames = Object.keys(state);
     const nextSlices = fromUtils.nextSlices(state, action, this.registry.reducers);
     const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);
+    console.group('next state');
+    console.log(nextState);
+    console.groupEnd();
     this.state$.next(nextState); // TODO: implement change detection
   }
 

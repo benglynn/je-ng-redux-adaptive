@@ -10,6 +10,10 @@ export const initialState: State = {
   reducers: {
     postcode: {
       'UPDATE_POSTCODE': 'updatePostcode'
+    },
+    restaurants: {
+      'UPDATE_RESTAURANTS': 'updateRestaurants',
+      'REMOVE_RESTAURANTS': 'removeRestaurants'
     }
   },
   effects: {
