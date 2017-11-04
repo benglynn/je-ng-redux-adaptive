@@ -1,16 +1,16 @@
 <nav>
   <a [routerLink]="['/']">Home</a> &gt;
-  {{ (postcode$|async) | uppercase }}
+  {{ (postcodeX$|async) | uppercase }}
 </nav>
-<ng-container [ngSwitch]="(restaurants$|async).status">
-    <p *ngSwitchCase="restaurantStatus.Loading">Loading</p>
-    <p *ngSwitchCase="restaurantStatus.Error">Error</p>
-    <div *ngSwitchCase="restaurantStatus.Okay">
-      <h1>{{ (restaurants$|async).data.length }} restaurants in
-        {{ (postcode$|async) | uppercase }}</h1>
+<ng-container [ngSwitch]="(restaurantsX$|async).status">
+    <p *ngSwitchCase="restaurantsStatus.Loading">Loading</p>
+    <p *ngSwitchCase="restaurantsStatus.Error">Error</p>
+    <div *ngSwitchCase="restaurantsStatus.Okay">
+      <h1>{{ (restaurantsX$|async).data.length }} restaurants in
+        {{ (postcodeX$|async) | uppercase }}</h1>
       <ul>
-        <li *ngFor="let restaurant of (restaurants$|async).data">
-            <a [routerLink]="['/' + (postcode$|async) + '/'+restaurant.name]">
+        <li *ngFor="let restaurant of (restaurantsX$|async).data">
+            <a [routerLink]="['/' + (postcodeX$|async) + '/'+restaurant.name]">
               {{ restaurant.title }}</a>
         </li>
       </ul>

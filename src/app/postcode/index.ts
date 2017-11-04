@@ -1,1 +1,1 @@
-export { State, initialState } from './state';
+export { State, initialState, pattern } from './state';

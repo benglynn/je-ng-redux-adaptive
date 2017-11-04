@@ -1,6 +1,7 @@
 import { Injectable, Inject, Injector } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppStateX, IActionX, IReducerX, IReducersX, IEffectsX } from './types';
 import { INITIAL_STATE } from './tokens';
@@ -17,6 +18,12 @@ export class StoreX {
 
   dispatch(action: IActionX) {
     this.action$.next(action);
+  }
+
+  select<T extends keyof IAppStateX>(slice: T) {
+    return this.state$
+      .pluck(slice)
+      .distinctUntilChanged() as Observable<IAppStateX[T]>;
   }
 
   private reduce(action: IActionX, state: IAppStateX) {
