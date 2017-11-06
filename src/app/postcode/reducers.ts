@@ -8,5 +8,5 @@ export function updatePostcode(action: UpdatePostcode, state: State) {
 
 export const reducers: IReducers = {
   'updatePostcode': updatePostcode
-}
+};
 

@@ -7,7 +7,7 @@ import { HomeContainerComponent } from './containers/home-container/home-contain
 import { RestaurantContainerComponent } from './containers/restaurant-container/restaurant-container.component';
 import { ErrorContainerComponent } from './containers/error-container/error-container.component';
 import { AreaContainerComponent } from './containers/area-container/area-container.component';
-import { RestaurantService } from './services/restaurant.service';
+import { RestaurantsService } from './restaurants';
 import { StoreModule as StoreModuleX } from './store/module';
 import { PostcodeModule } from './postcode/module';
 import { RestaurantsModule } from './restaurants/module';
@@ -27,7 +27,7 @@ import { RestaurantsModule } from './restaurants/module';
     PostcodeModule,
     RestaurantsModule
   ],
-  providers: [RestaurantService],
+  providers: [RestaurantsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

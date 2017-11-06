@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../postcode';
 import { IAction, IReducer, IReducers, IEffect, IEffects } from './types';
-import { RestaurantService } from '../services/restaurant.service';
+import { RestaurantsService } from '../restaurants';
 
 @Injectable()
 export class Registry {

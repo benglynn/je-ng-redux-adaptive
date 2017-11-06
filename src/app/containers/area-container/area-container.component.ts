@@ -8,10 +8,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/mergemap';
-import { Restaurant } from '../../models/restaurant';
 import { State as RestaurantState, Status as RestaurantsStatus } from '../../restaurants';
 import { State as PostcodeState } from '../../postcode';
-import { RestaurantService } from '../../services/restaurant.service';
+import { Restaurant } from '../../restaurant';
+import { RestaurantsService } from '../../restaurants';
 
 @Component({
   selector: 'app-area-container',
@@ -26,7 +26,7 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private restaurantService: RestaurantService,
+    private restaurantService: RestaurantsService,
     private storex: Store
   ) {
     this.postcodeX$ = storex.select('postcode');
