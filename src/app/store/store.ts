@@ -27,9 +27,12 @@ export class Store {
       .distinctUntilChanged() as Observable<IAppState[T]>;
   }
 
-  private reduce(action: IAction, state: IAppState) {
+  private reduce(
+    action: IAction,
+    state: IAppState,
+    reducers: IReducers) {
     const sliceNames = Object.keys(state);
-    const nextSlices = fromUtils.nextSlices(state, action, this.registry.reducers);
+    const nextSlices = fromUtils.nextSlices(state, action, reducers);
     const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);
     console.log('state', nextState);
     this.state$.next(nextState); // TODO: implement change detection
@@ -41,17 +44,21 @@ export class Store {
     effectFunctions: IEffects,
     injector: Injector
   ) {
-    const effectNames = state.configuration.effects;
-    Object.keys(effectNames)
-      .filter(actionName => actionName === action.type)
-      .map(actionName => {
-        const effectName = effectNames[actionName];
-        const effectFunction = effectFunctions[effectName];
-        if (effectFunction === undefined) {
-          throw new Error(`expected effect named '${effectName}'`);
-        }
-        effectFunction(action, injector);
-    });
+    const slices = state.configuration.effects;
+    Object.keys(slices)
+      .forEach(sliceName => {
+        const effectNameHash = state.configuration.effects[sliceName];
+        Object.keys(effectNameHash)
+          .filter(actionName => actionName === action.type)
+          .map(actionName => {
+            const effectFunctionName = effectNameHash[actionName];
+            const effectFunction = effectFunctions[effectFunctionName];
+            if (effectFunction === undefined) {
+              throw new Error(`expected effect named '${effectFunctionName}'`);
+            }
+            effectFunction(action, injector);
+        });
+      });
   }
 
   constructor(
@@ -66,7 +73,7 @@ export class Store {
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
         console.log(action.type, action.payload);
-        this.reduce(action, state);
+        this.reduce(action, state, this.registry.reducers);
         this.effect(action, state, this.registry.effects, this.injector);
       });
   }

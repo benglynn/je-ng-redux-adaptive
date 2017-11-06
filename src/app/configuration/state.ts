@@ -8,7 +8,7 @@ interface StringHashes {
 
 export interface State {
   reducers: StringHashes;
-  effects: StringHash;
+  effects: StringHashes;
 }
 
 export const initialState: State = {
@@ -23,6 +23,8 @@ export const initialState: State = {
     }
   },
   effects: {
-    'LOAD_RESTAURANTS': 'loadRestaurants'
+    'restaurants': {
+      'LOAD_RESTAURANTS': 'loadRestaurants'
+    }
   }
 };
