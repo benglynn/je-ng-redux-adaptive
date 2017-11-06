@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '../../store/store';
-import { UpdatePostcode } from '../../postcode/actions';
-import { State as PostcodeXState, pattern as postcodePattern } from '../../postcode';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,6 +9,12 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/take';
+import { Store } from '../../store/store';
+import {
+  State as PostcodeXState,
+  pattern as postcodePattern,
+  UpdatePostcode
+} from '../../postcode';
 
 @Component({
   selector: 'app-home-container',

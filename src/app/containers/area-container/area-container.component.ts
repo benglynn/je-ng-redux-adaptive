@@ -1,17 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '../../store/store';
 import { Subscription } from 'rxjs/Subscription';
-import { UpdatePostcode } from '../../postcode/actions';
-import { LoadRestaurants, RemoveRestaurants } from '../../restaurants/actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/mergemap';
-import { State as RestaurantState, Status as RestaurantsStatus } from '../../restaurants';
-import { State as PostcodeState } from '../../postcode';
+import { Store } from '../../store/store';
+import {
+  State as RestaurantState,
+  Status as RestaurantsStatus,
+  RestaurantsService,
+  LoadRestaurants,
+  RemoveRestaurants
+} from '../../restaurants';
+import { State as PostcodeState, UpdatePostcode } from '../../postcode';
 import { Restaurant } from '../../restaurant';
-import { RestaurantsService } from '../../restaurants';
 
 @Component({
   selector: 'app-area-container',
