@@ -19,7 +19,7 @@ export const initialState: State = {
     restaurants: {
       'UPDATE_RESTAURANTS': 'updateRestaurants',
       'REMOVE_RESTAURANTS': 'removeRestaurants',
-      'UPDATE_RESTAURANT_STATUS': 'updateRestaurantStatus'
+      'UPDATE_RESTAURANTS_STATUS': 'UpdateRestaurantsStatus'
     }
   },
   effects: {

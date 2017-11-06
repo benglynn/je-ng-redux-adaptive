@@ -1,5 +1,8 @@
 import { IReducers } from '../store/types';
-import { UpdateRestaurants, RemoveRestaurants, UpdateRestaurantStatus } from './actions';
+import {
+  UpdateRestaurants,
+  RemoveRestaurants,
+  UpdateRestaurantsStatus as UpdateRestaurantsStatusAction } from './actions';
 import { State, Status } from './state';
 
 export function updateRestaurants(action: UpdateRestaurants, state: State) {
@@ -10,13 +13,13 @@ export function removeRestaurants(action: RemoveRestaurants) {
   return { status: null, data: null };
 }
 
-export function updateRestaurantStatus(action: UpdateRestaurantStatus, state: State) {
+export function UpdateRestaurantsStatus(action: UpdateRestaurantsStatusAction, state: State) {
   return Object.assign({}, state, {status: action.payload});
 }
 
 export const reducers: IReducers = {
   'updateRestaurants': updateRestaurants,
   'removeRestaurants': removeRestaurants,
-  'updateRestaurantStatus': updateRestaurantStatus
+  'UpdateRestaurantsStatus': UpdateRestaurantsStatus
 };
 
