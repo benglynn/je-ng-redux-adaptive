@@ -15,8 +15,7 @@ import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-home-container',
-  templateUrl: './home-container.component.html',
-  styleUrls: ['./home-container.component.css']
+  templateUrl: './home-container.component.html'
 })
 export class HomeContainerComponent implements OnInit, OnDestroy {
 

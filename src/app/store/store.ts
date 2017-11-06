@@ -28,7 +28,6 @@ export class StoreX {
   }
 
   private reduce(action: IActionX, state: IAppStateX) {
-    // TODO: is there benefit in folding config into slices?
     const sliceNames = Object.keys(state);
     const nextSlices = fromUtils.nextSlices(state, action, this.registry.reducers);
     const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);

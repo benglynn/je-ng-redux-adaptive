@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-restaurant-container',
-  templateUrl: './restaurant-container.component.html',
-  styleUrls: ['./restaurant-container.component.css']
+  templateUrl: './restaurant-container.component.html'
 })
 export class RestaurantContainerComponent implements OnInit {
 

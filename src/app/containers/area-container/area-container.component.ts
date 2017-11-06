@@ -16,7 +16,6 @@ import { RestaurantService } from '../../services/restaurant.service';
 @Component({
   selector: 'app-area-container',
   templateUrl: './area-container.component.html',
-  styleUrls: ['./area-container.component.css']
 })
 export class AreaContainerComponent implements OnInit, OnDestroy {
 

@@ -1,5 +1,6 @@
 import {Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
 import { Restaurant } from '../models/restaurant';
 import { Status as RestaurantsStatus } from '../restaurants/state';
