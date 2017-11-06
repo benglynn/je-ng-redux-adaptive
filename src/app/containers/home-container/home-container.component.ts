@@ -1,14 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-
-// import { Store } from '@ngrx/store';
 import { StoreX } from '../../store/store';
 import { UpdatePostcode } from '../../postcode/actions';
-
-// import * as fromReducers from '../../reducers';
-// import * as fromPostcode from '../../reducers/postcode';
 import { State as PostcodeXState, pattern as postcodePattern } from '../../postcode';
-
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
@@ -30,7 +24,6 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   buttonClick$: Subject<Event>;
   input$: Observable<string>;
   isValidPostcode$: Observable<boolean>;
-  // postcode$: Observable<fromPostcode.State>;
   postcodeX$: Observable<PostcodeXState>;
 
 
@@ -39,12 +32,10 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    // private store: Store<fromReducers.State>,
     private storex: StoreX
   ) {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
-    // this.postcode$ = store.select('postcode');
     this.postcodeX$ = storex.select('postcode');
   }
 
@@ -69,7 +60,6 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
       .subscribe(match => {
         if (match !== null) {
           const name = (`${match[1]}${match[2]}`).toLowerCase();
-          // this.store.dispatch(new fromPostcode.Update(name));
           this.storex.dispatch(new UpdatePostcode(name));
           this.router.navigateByUrl(`/${name}`); // TODO: ACTION!!!!
         }

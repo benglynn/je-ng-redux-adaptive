@@ -1,6 +1,7 @@
 import { Injectable, Inject, Injector } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppStateX, IActionX, IReducerX, IReducersX, IEffectsX } from './types';
@@ -31,9 +32,7 @@ export class StoreX {
     const sliceNames = Object.keys(state);
     const nextSlices = fromUtils.nextSlices(state, action, this.registry.reducers);
     const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);
-    console.group('next state');
-    console.log(nextState);
-    console.groupEnd();
+    console.log('state', nextState);
     this.state$.next(nextState); // TODO: implement change detection
   }
 
@@ -67,9 +66,7 @@ export class StoreX {
     this.actionSubscription = this.action$ // TODO: manage destruction
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
-        console.group('dispatched action');
-        console.log(action);
-        console.groupEnd();
+        console.log(action.type, action.payload);
         this.reduce(action, state);
         this.effect(action, state, this.registry.effects, this.injector);
       });

@@ -22,7 +22,7 @@ export class RemoveRestaurants implements IActionX {
   readonly type = REMOVE_RESTAURANTS;
 }
 
-export class UpdateStatus implements IActionX {
+export class UpdateRestaurantStatus implements IActionX {
   readonly type = UPDATE_RESTAURANT_STATUS;
   constructor(public payload: Status) {}
 }
