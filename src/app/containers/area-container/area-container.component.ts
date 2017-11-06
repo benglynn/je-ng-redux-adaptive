@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StoreX } from '../../store/store';
+import { Store } from '../../store/store';
 import { Subscription } from 'rxjs/Subscription';
 import { UpdatePostcode } from '../../postcode/actions';
 import { LoadRestaurants, RemoveRestaurants } from '../../restaurants/actions';
@@ -27,7 +27,7 @@ export class AreaContainerComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private restaurantService: RestaurantService,
-    private storex: StoreX
+    private storex: Store
   ) {
     this.postcodeX$ = storex.select('postcode');
     this.restaurantsX$ = storex.select('restaurants');

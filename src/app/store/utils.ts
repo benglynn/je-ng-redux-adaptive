@@ -1,6 +1,6 @@
-import { IAppStateX, IActionX, IReducersX } from './types';
+import { IAppState, IAction, IReducers } from './types';
 
-export function nextSlices(state: IAppStateX, action: IActionX, reducers: IReducersX
+export function nextSlices(state: IAppState, action: IAction, reducers: IReducers
 ): any[] {
   // TODO: memoize lookup
   return Object.keys(state).map((sliceName): any => {

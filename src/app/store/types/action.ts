@@ -1,1 +1,4 @@
-export type IActionX = { type: string; payload?: any };
+export interface IAction {
+  type: string;
+  payload?: any;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { StoreX } from '../../store/store';
+import { Store } from '../../store/store';
 import { UpdatePostcode } from '../../postcode/actions';
 import { State as PostcodeXState, pattern as postcodePattern } from '../../postcode';
 import { Observable } from 'rxjs/Observable';
@@ -31,7 +31,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private storex: StoreX
+    private storex: Store
   ) {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();

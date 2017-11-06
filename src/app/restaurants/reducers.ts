@@ -1,4 +1,4 @@
-import { IReducersX } from '../store/types';
+import { IReducers } from '../store/types';
 import { UpdateRestaurants, RemoveRestaurants, UpdateRestaurantStatus } from './actions';
 import { State, Status } from './state';
 
@@ -14,7 +14,7 @@ export function updateRestaurantStatus(action: UpdateRestaurantStatus, state: St
   return Object.assign({}, state, {status: action.payload});
 }
 
-export const reducers: IReducersX = {
+export const reducers: IReducers = {
   'updateRestaurants': updateRestaurants,
   'removeRestaurants': removeRestaurants,
   'updateRestaurantStatus': updateRestaurantStatus

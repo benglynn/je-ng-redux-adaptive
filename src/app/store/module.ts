@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { StoreX } from './store';
+import { Store } from './store';
 import { INITIAL_STATE } from './tokens';
-import { initialStateX } from './types';
+import { initialState } from './types';
 import { Registry } from './registry';
 
 @NgModule({
   providers: [
-    { provide: INITIAL_STATE, useValue: initialStateX },
+    { provide: INITIAL_STATE, useValue: initialState },
     Registry,
-    StoreX
+    Store
   ]
 })
 export class StoreModule {}

@@ -1,8 +1,8 @@
-import { IActionX } from '.';
+import { IAction } from '.';
 import { Injector } from '@angular/core';
 
-export type IEffectX = (action: IActionX, injector: Injector) => void
+export type IEffect = (action: IAction, injector: Injector) => void;
 
-export type IEffectsX = {
-  [name: string]: IEffectX
+export interface IEffects {
+  [name: string]: IEffect;
 }

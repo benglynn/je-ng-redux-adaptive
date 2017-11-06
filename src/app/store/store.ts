@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppStateX, IActionX, IReducerX, IReducersX, IEffectsX } from './types';
+import { IAppState, IAction, IReducer, IReducers, IEffects } from './types';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
 import * as fromUtils from './utils';
@@ -12,22 +12,22 @@ import * as fromUtils from './utils';
 import * as fromPostcode from '../postcode';
 
 @Injectable()
-export class StoreX {
-  state$: BehaviorSubject<IAppStateX>;
-  action$: BehaviorSubject<IActionX>;
+export class Store {
+  state$: BehaviorSubject<IAppState>;
+  action$: BehaviorSubject<IAction>;
   private actionSubscription: Subscription;
 
-  dispatch(action: IActionX) {
+  dispatch(action: IAction) {
     this.action$.next(action);
   }
 
-  select<T extends keyof IAppStateX>(slice: T) {
+  select<T extends keyof IAppState>(slice: T) {
     return this.state$
       .pluck(slice)
-      .distinctUntilChanged() as Observable<IAppStateX[T]>;
+      .distinctUntilChanged() as Observable<IAppState[T]>;
   }
 
-  private reduce(action: IActionX, state: IAppStateX) {
+  private reduce(action: IAction, state: IAppState) {
     const sliceNames = Object.keys(state);
     const nextSlices = fromUtils.nextSlices(state, action, this.registry.reducers);
     const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);
@@ -36,9 +36,9 @@ export class StoreX {
   }
 
   private effect(
-    action: IActionX,
-    state: IAppStateX,
-    effectFunctions: IEffectsX,
+    action: IAction,
+    state: IAppState,
+    effectFunctions: IEffects,
     injector: Injector
   ) {
     const effectNames = state.configuration.effects;
@@ -55,7 +55,7 @@ export class StoreX {
   }
 
   constructor(
-    @Inject(INITIAL_STATE) private initialState: IAppStateX,
+    @Inject(INITIAL_STATE) private initialState: IAppState,
     private registry: Registry,
     private injector: Injector
   ) {

@@ -1,30 +1,30 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../postcode';
-import { IActionX, IReducerX, IReducersX, IEffectX, IEffectsX } from './types';
+import { IAction, IReducer, IReducers, IEffect, IEffects } from './types';
 import { RestaurantService } from '../services/restaurant.service';
 
 @Injectable()
 export class Registry {
 
-  private _reducers: IReducersX = {}; // TODO: behaviorSubject.concat() better?
-  private _effects: IEffectsX = {}; // dito
+  private _reducers: IReducers = {}; // TODO: behaviorSubject.concat() better?
+  private _effects: IEffects = {}; // dito
 
-  get reducers(): IReducersX {
+  get reducers(): IReducers {
     return this._reducers;
   }
 
-  get effects(): IEffectsX {
+  get effects(): IEffects {
     return this._effects;
   }
 
-  registerReducer<T>(name: string, reducer: IReducerX<T>) {
+  registerReducer<T>(name: string, reducer: IReducer<T>) {
     if (this._reducers[name] !== undefined) {
       throw new Error(`reducer named '${name}' already registered`);
     }
     this._reducers = Object.assign(this._reducers, {[name]: reducer});
   }
 
-  registerReducers(reducers: IReducersX) {
+  registerReducers(reducers: IReducers) {
     Object.keys(reducers).map(name =>
       this.registerReducer(name, reducers[name])
     );
@@ -33,14 +33,14 @@ export class Registry {
     console.groupEnd();
   }
 
-  registerEffect(name: string, effect: IEffectX) {
+  registerEffect(name: string, effect: IEffect) {
     if (this._effects[name] !== undefined) {
       throw new Error(`effect named '${name}' already registered`);
     }
     this._effects = Object.assign(this._effects, {[name]: effect});
   }
 
-  registerEffects(effects: IEffectsX) {
+  registerEffects(effects: IEffects) {
     Object.keys(effects).map(name =>
       this.registerEffect(name, effects[name])
     );

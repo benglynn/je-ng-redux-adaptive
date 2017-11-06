@@ -1,3 +1,3 @@
-import { IActionX } from '.';
+import { IAction } from '.';
 
-export type IReducerX<T> = (action: IActionX, state: T) => T
+export type IReducer<T> = (action: IAction, state: T) => T;

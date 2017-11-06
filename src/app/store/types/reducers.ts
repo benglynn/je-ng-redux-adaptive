@@ -1,3 +1,5 @@
-import { IReducerX } from '.';
+import { IReducer } from '.';
 
-export type IReducersX = { [name: string]: IReducerX<any> };
+export interface IReducers {
+  [name: string]: IReducer<any>;
+}
