@@ -9,7 +9,7 @@ import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
 import * as fromUtils from './utils';
 
-import * as fromPostcode from '../postcode';
+import * as fromPostcode from '../area';
 
 @Injectable()
 export class Store {

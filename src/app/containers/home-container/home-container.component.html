@@ -6,7 +6,7 @@
       (keyup)="inputKeyUp$.next($event)"
       placeholder="Enter postcode"
       type="text"
-      [value]="(postcodeX$|async) | uppercase">
+      [value]="(area$|async) | uppercase">
     <button
       (click)="buttonClick$.next($event)"
       [disabled]="!(isValidPostcode$|async)">Find restaurants</button>

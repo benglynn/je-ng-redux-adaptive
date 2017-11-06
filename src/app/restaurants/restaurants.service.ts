@@ -8,7 +8,7 @@ import { Status as RestaurantsStatus } from '../restaurants/state';
 @Injectable()
 export class RestaurantsService {
 
-  getRestaurants(postcode: string): Observable<Restaurant[]> {
+  getRestaurants(area: string): Observable<Restaurant[]> {
     return Observable.from([[
       {name: 'test-restaurant', title: 'A Test Restaurant'},
       {name: 'another-restaurant', title: 'Another Restaurnat'},

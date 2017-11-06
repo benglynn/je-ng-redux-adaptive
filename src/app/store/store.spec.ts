@@ -5,7 +5,7 @@ describe('next slices', () => {
 
   const state: IAppState = {
     configuration: {reducers: {}, effects: {}},
-    postcode: null,
+    area: null,
     restaurants: {status: null, data: null}
   };
   const dummyAction: IAction = {type: 'DUMMY_ACTION'};

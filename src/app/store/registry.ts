@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import * as fromPostcode from '../postcode';
+import * as fromPostcode from '../area';
 import { IAction, IReducer, IReducers, IEffect, IEffects } from './types';
 import { RestaurantsService } from '../restaurants';
 

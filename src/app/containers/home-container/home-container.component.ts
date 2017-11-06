@@ -10,11 +10,7 @@ import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/take';
 import { Store } from '../../store/store';
-import {
-  State as PostcodeXState,
-  pattern as postcodePattern,
-  UpdatePostcode
-} from '../../postcode';
+import {AreaState, areaPattern, UpdateAreaAction} from '../../area';
 
 @Component({
   selector: 'app-home-container',
@@ -26,49 +22,49 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   buttonClick$: Subject<Event>;
   input$: Observable<string>;
   isValidPostcode$: Observable<boolean>;
-  postcodeX$: Observable<PostcodeXState>;
+  area$: Observable<AreaState>;
 
 
-  subscriptionx: Subscription;
-  subscriptionsx: Subscription[] = [];
+  subscription: Subscription;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
-    private storex: Store
+    private store: Store
   ) {
     this.inputKeyUp$ = new Subject<Event>();
     this.buttonClick$ = new Subject<Event>();
-    this.postcodeX$ = storex.select('postcode');
+    this.area$ = store.select('area');
   }
 
   ngOnInit() {
 
-    const postcodeSub = this.postcodeX$.subscribe(initialPostcode => {
+    const areaSub = this.area$.subscribe(initialPostcode => {
       this.input$ = this.inputKeyUp$.map(event =>
         (event.target as HTMLInputElement).value)
         .startWith(initialPostcode === null ? '' : initialPostcode);
         this.isValidPostcode$ = this.input$
-        .map(value => value.match(postcodePattern) !== null);
+        .map(value => value.match(areaPattern) !== null);
     });
-    this.subscriptionsx.push(postcodeSub);
+    this.subscriptions.push(areaSub);
 
     const returnKeyCode = 13;
     this.inputKeyUp$
       .filter((e => (e as KeyboardEvent).keyCode === returnKeyCode))
       .merge(this.buttonClick$)
       .withLatestFrom(this.input$, (event, str) => {
-        return str.match(postcodePattern);
+        return str.match(areaPattern);
       })
       .subscribe(match => {
         if (match !== null) {
           const name = (`${match[1]}${match[2]}`).toLowerCase();
-          this.storex.dispatch(new UpdatePostcode(name));
+          this.store.dispatch(new UpdateAreaAction(name));
           this.router.navigateByUrl(`/${name}`); // TODO: ACTION!!!!
         }
       });
   }
 
   ngOnDestroy() {
-    this.subscriptionsx.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

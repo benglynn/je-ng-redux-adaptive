@@ -1,9 +1,9 @@
-import * as fromPostcode from '../../postcode';
+import * as fromPostcode from '../../area';
 import * as fromRestaurants from '../../restaurants';
 import * as fromConfiguration from '../../configuration';
 
 export interface IAppState {
-  postcode: fromPostcode.State;
+  area: fromPostcode.AreaState;
   restaurants: fromRestaurants.State;
   configuration: fromConfiguration.State;
 }

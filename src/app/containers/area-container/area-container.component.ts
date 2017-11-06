@@ -13,7 +13,7 @@ import {
   LoadRestaurants,
   RemoveRestaurants
 } from '../../restaurants';
-import { State as PostcodeState, UpdatePostcode } from '../../postcode';
+import { AreaState as PostcodeState, UpdateAreaAction } from '../../area';
 import { Restaurant } from '../../restaurant';
 
 @Component({
@@ -22,38 +22,39 @@ import { Restaurant } from '../../restaurant';
 })
 export class AreaContainerComponent implements OnInit, OnDestroy {
 
-  restaurantsX$: Observable<RestaurantState>;
-  postcodeX$: Observable<PostcodeState>;
+  restaurants$: Observable<RestaurantState>;
+  area$: Observable<PostcodeState>;
   restaurantsStatus = RestaurantsStatus;
   subscriptions: Subscription[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private restaurantService: RestaurantsService,
-    private storex: Store
+    private store: Store
   ) {
-    this.postcodeX$ = storex.select('postcode');
-    this.restaurantsX$ = storex.select('restaurants');
+    this.area$ = this.store.select('area');
+    this.restaurants$ = this.store.select('restaurants');
+
 
     const paramCheckSubscription = route.params
-      .map(p => String(p.postcode)).withLatestFrom(
-        this.storex.select('postcode'),
+      .map(p => String(p.area)).withLatestFrom(
+        this.store.select('area'),
         (paramPostcode, statePostcode) => {
           if (statePostcode === null || statePostcode !== paramPostcode) {
-            this.storex.dispatch(new UpdatePostcode(paramPostcode));
+            this.store.dispatch(new UpdateAreaAction(paramPostcode));
           }
         }
       ).subscribe();
     this.subscriptions.push(paramCheckSubscription);
 
-    const loadRestaurantsSubscription = this.postcodeX$.subscribe(postcode => {
-      this.storex.dispatch(new LoadRestaurants(postcode));
+    const loadRestaurantsSubscription = this.area$.subscribe(area => {
+      this.store.dispatch(new LoadRestaurants(area));
     });
     this.subscriptions.push(loadRestaurantsSubscription);
   }
 
   ngOnDestroy() {
-    this.storex.dispatch(new RemoveRestaurants());
+    this.store.dispatch(new RemoveRestaurants());
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 

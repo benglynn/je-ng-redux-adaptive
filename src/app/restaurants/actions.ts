@@ -1,6 +1,6 @@
 import { IAction } from '../store/types';
 import { Restaurant } from '../restaurant';
-import { State as Postcode } from '../postcode';
+import { AreaState as Postcode } from '../area';
 import { State, Status } from './state';
 
 export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';

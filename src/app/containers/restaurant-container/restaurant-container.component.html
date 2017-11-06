@@ -1,9 +1,9 @@
 <nav>
   <a [routerLink]="['/']">Home</a> &gt;
-  <a [routerLink]="['/' + (postcode$ | async)]">
-    {{ (postcode$ | async) | uppercase }}</a> &gt;
+  <a [routerLink]="['/' + (area$ | async)]">
+    {{ (area$ | async) | uppercase }}</a> &gt;
   {{ name$ | async }}
 </nav>
-<h1>{{ name$ | async }} in {{ postcode$ | async }}</h1>
+<h1>{{ name$ | async }} in {{ area$ | async }}</h1>
 <h2>Menu</h2>
 <p>Lots of nice things to eat...</p>

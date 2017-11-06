@@ -6,7 +6,7 @@ import { AreaContainerComponent } from './containers/area-container/area-contain
 
 export const appRoutes: Routes = [
   { path: '', component: HomeContainerComponent },
-  { path: ':postcode', component: AreaContainerComponent },
-  { path: ':postcode/:restaurant', component: RestaurantContainerComponent },
+  { path: ':area', component: AreaContainerComponent },
+  { path: ':area/:restaurant', component: RestaurantContainerComponent },
   { path: '**', component: ErrorContainerComponent }
 ];

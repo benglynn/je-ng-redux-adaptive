@@ -9,7 +9,7 @@ import { ErrorContainerComponent } from './containers/error-container/error-cont
 import { AreaContainerComponent } from './containers/area-container/area-container.component';
 import { RestaurantsService } from './restaurants';
 import { StoreModule as StoreModuleX } from './store/module';
-import { PostcodeModule } from './postcode/module';
+import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { RestaurantsModule } from './restaurants/module';
     BrowserModule,
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
     StoreModuleX,
-    PostcodeModule,
+    AreaModule,
     RestaurantsModule
   ],
   providers: [RestaurantsService],

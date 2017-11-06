@@ -13,8 +13,8 @@ export interface State {
 
 export const initialState: State = {
   reducers: {
-    postcode: {
-      'UPDATE_POSTCODE': 'updatePostcode'
+    area: {
+      'UPDATE_AREA': 'updateArea'
     },
     restaurants: {
       'UPDATE_RESTAURANTS': 'updateRestaurants',
