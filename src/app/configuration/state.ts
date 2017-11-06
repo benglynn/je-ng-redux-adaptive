@@ -1,9 +1,14 @@
-type StringHash = {[name: string]: string}
-type StringHashes = {[name: string]: StringHash};
+interface StringHash {
+  [name: string]: string;
+}
+
+interface StringHashes {
+  [name: string]: StringHash;
+}
 
 export interface State {
-  reducers: StringHashes,
-  effects: StringHash,
+  reducers: StringHashes;
+  effects: StringHash;
 }
 
 export const initialState: State = {
@@ -20,4 +25,4 @@ export const initialState: State = {
   effects: {
     'LOAD_RESTAURANTS': 'loadRestaurants'
   }
-}
+};
