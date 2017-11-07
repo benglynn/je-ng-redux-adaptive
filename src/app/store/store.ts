@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppState, IAction, IReducer, IReducers, IEffects } from './types';
+import { IAppState } from '../state';
+import { IAction, IReducer, IReducers, IEffects } from './types';
 import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
@@ -14,7 +15,7 @@ import * as fromPostcode from '../area';
 
 @Injectable()
 export class Store {
-  state$: BehaviorSubject<IAppState>;
+  state$: BehaviorSubject<IAppState>; // Todo: generic as not in module?
   action$: BehaviorSubject<IAction>;
   private actionSubscription: Subscription;
 

@@ -6,7 +6,7 @@ export interface IConfigurationState {
   restaurants: ISliceConfiguration;
 }
 
-export const initialState: IConfigurationState = {
+export const initialConfigurationState: IConfigurationState = {
   area: initialAreaConfiguration,
   restaurants: initialRestaurantsConfiguration
 };

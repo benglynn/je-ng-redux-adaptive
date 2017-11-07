@@ -1,1 +1,5 @@
-export { IConfigurationState, initialState, ISliceConfiguration } from './state';
+export {
+  IConfigurationState,
+  ISliceConfiguration,
+  initialConfigurationState
+} from './state';
