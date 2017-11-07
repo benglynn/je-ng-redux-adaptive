@@ -7,14 +7,14 @@ import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/mergemap';
 import { Store } from '../../store/store';
 import {
-  State as RestaurantState,
+  IRestaurantsState as RestaurantState,
   Status as RestaurantsStatus,
   RestaurantsService,
   LoadRestaurants,
   RemoveRestaurants
 } from '../../restaurants';
-import { AreaState as PostcodeState, UpdateAreaAction } from '../../area';
-import { Restaurant } from '../../restaurant';
+import { IAreaState as PostcodeState, UpdateAreaAction } from '../../area';
+import { IRestaurant } from '../../restaurant';
 
 @Component({
   selector: 'app-area-container',

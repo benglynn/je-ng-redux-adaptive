@@ -2,13 +2,13 @@ import {Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
-import { Restaurant } from '../restaurant';
+import { IRestaurant } from '../restaurant';
 import { Status as RestaurantsStatus } from '../restaurants/state';
 
 @Injectable()
 export class RestaurantsService {
 
-  getRestaurants(area: string): Observable<Restaurant[]> {
+  getRestaurants(area: string): Observable<IRestaurant[]> {
     return Observable.from([[
       {name: 'test-restaurant', title: 'A Test Restaurant'},
       {name: 'another-restaurant', title: 'Another Restaurnat'},

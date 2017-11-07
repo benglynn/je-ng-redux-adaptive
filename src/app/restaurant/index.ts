@@ -1,1 +1,1 @@
-export { Restaurant } from './state';
+export { IRestaurant } from './state';

@@ -1,1 +1,1 @@
-export { State, initialState, SliceConfiguration } from './state';
+export { IConfigurationState, initialState, ISliceConfiguration } from './state';

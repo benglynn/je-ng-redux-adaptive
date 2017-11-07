@@ -5,7 +5,7 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState, IAction, IReducer, IReducers, IEffects } from './types';
-import { SliceConfiguration } from '../configuration';
+import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
 import * as fromUtils from './utils';
@@ -34,7 +34,7 @@ export class Store {
     reducers: IReducers) {
       const newSlices = Object.keys(state)
         .map(sliceName => {
-          const sliceConf: SliceConfiguration|undefined = state
+          const sliceConf: ISliceConfiguration|undefined = state
             .configuration[sliceName];
           if (sliceConf === undefined) { return null; }
           const reducersConf = sliceConf.reducers;

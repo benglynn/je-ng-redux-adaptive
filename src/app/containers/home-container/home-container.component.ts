@@ -10,7 +10,7 @@ import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/take';
 import { Store } from '../../store/store';
-import {AreaState, areaPattern, UpdateAreaAction} from '../../area';
+import {IAreaState, areaPattern, UpdateAreaAction} from '../../area';
 
 @Component({
   selector: 'app-home-container',
@@ -22,7 +22,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   buttonClick$: Subject<Event>;
   input$: Observable<string>;
   isValidPostcode$: Observable<boolean>;
-  area$: Observable<AreaState>;
+  area$: Observable<IAreaState>;
 
 
   subscription: Subscription;

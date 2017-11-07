@@ -1,37 +1,28 @@
-interface StringHash {
+import { initialAreaConfiguration } from '../area';
+import { initialRestaurantsConfiguration } from '../restaurants';
+
+
+interface IStringHash {
   [name: string]: string;
 }
 
-interface StringHashes {
-  [name: string]: StringHash;
+interface IStringHashes {
+  [name: string]: IStringHash;
 }
 
-export interface SliceConfiguration {
-  reducers?: StringHash;
-  effects?: StringHash;
-  containerViews?: StringHash;
-  views?: StringHash;
+export interface ISliceConfiguration {
+  reducers?: IStringHash;
+  effects?: IStringHash;
+  containerViews?: IStringHash;
+  views?: IStringHash;
 }
 
-export interface State {
-  area: SliceConfiguration;
-  restaurants: SliceConfiguration;
+export interface IConfigurationState {
+  area: ISliceConfiguration;
+  restaurants: ISliceConfiguration;
 }
 
-export const initialState: State = {
-  area: {
-    reducers: {
-      'UPDATE_AREA': 'updateArea'
-    }
-  },
-  restaurants: {
-    reducers: {
-      'UPDATE_RESTAURANTS': 'updateRestaurants',
-      'REMOVE_RESTAURANTS': 'removeRestaurants',
-      'UPDATE_RESTAURANTS_STATUS': 'UpdateRestaurantsStatus'
-    },
-    effects: {
-      'LOAD_RESTAURANTS': 'loadRestaurants'
-    }
-  }
+export const initialState: IConfigurationState = {
+  area: initialAreaConfiguration,
+  restaurants: initialRestaurantsConfiguration
 };

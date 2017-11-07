@@ -1,8 +1,8 @@
 import { IReducers } from '../store/types';
 import { UpdateAreaAction } from './actions';
-import { AreaState } from './state';
+import { IAreaState } from './state';
 
-export function updateAreaReducer(action: UpdateAreaAction, state: AreaState) {
+export function updateAreaReducer(action: UpdateAreaAction, state: IAreaState) {
   return action.payload;
 }
 

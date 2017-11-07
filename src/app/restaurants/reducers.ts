@@ -3,9 +3,9 @@ import {
   UpdateRestaurants,
   RemoveRestaurants,
   UpdateRestaurantsStatus as UpdateRestaurantsStatusAction } from './actions';
-import { State, Status } from './state';
+import { IRestaurantsState, Status } from './state';
 
-export function updateRestaurants(action: UpdateRestaurants, state: State) {
+export function updateRestaurants(action: UpdateRestaurants, state: IRestaurantsState) {
   return { status: Status.Okay, data: action.payload};
 }
 
@@ -13,7 +13,7 @@ export function removeRestaurants(action: RemoveRestaurants) {
   return { status: null, data: null };
 }
 
-export function UpdateRestaurantsStatus(action: UpdateRestaurantsStatusAction, state: State) {
+export function UpdateRestaurantsStatus(action: UpdateRestaurantsStatusAction, state: IRestaurantsState) {
   return Object.assign({}, state, {status: action.payload});
 }
 

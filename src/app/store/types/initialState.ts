@@ -5,6 +5,6 @@ import * as fromConfiguration from '../../configuration';
 
 export const initialState: IAppState = {
   area: fromPostcode.initialAreaState,
-  restaurants: fromRestaurants.initialState,
+  restaurants: fromRestaurants.initialRestaurantState,
   configuration: fromConfiguration.initialState
 };

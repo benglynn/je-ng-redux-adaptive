@@ -1,7 +1,7 @@
 import { IAction } from '../store/types';
-import { Restaurant } from '../restaurant';
-import { AreaState as Postcode } from '../area';
-import { State, Status } from './state';
+import { IRestaurant } from '../restaurant';
+import { IAreaState as Postcode } from '../area';
+import { IRestaurantsState, Status } from './state';
 
 export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';
 export const UPDATE_RESTAURANTS = 'UPDATE_RESTAURANTS';
@@ -15,7 +15,7 @@ export class LoadRestaurants implements IAction {
 
 export class UpdateRestaurants implements IAction {
   readonly type = UPDATE_RESTAURANTS;
-  constructor(public payload: Restaurant[]) {}
+  constructor(public payload: IRestaurant[]) {}
 }
 
 export class RemoveRestaurants implements IAction {
