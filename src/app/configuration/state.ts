@@ -6,24 +6,31 @@ interface StringHashes {
   [name: string]: StringHash;
 }
 
+export interface SliceConfiguration {
+  reducers?: StringHash;
+  effects?: StringHash;
+  containerViews?: StringHash;
+  views?: StringHash;
+}
+
 export interface State {
-  reducers: StringHashes;
-  effects: StringHashes;
+  area: SliceConfiguration;
+  restaurants: SliceConfiguration;
 }
 
 export const initialState: State = {
-  reducers: {
-    area: {
+  area: {
+    reducers: {
       'UPDATE_AREA': 'updateArea'
-    },
-    restaurants: {
+    }
+  },
+  restaurants: {
+    reducers: {
       'UPDATE_RESTAURANTS': 'updateRestaurants',
       'REMOVE_RESTAURANTS': 'removeRestaurants',
       'UPDATE_RESTAURANTS_STATUS': 'UpdateRestaurantsStatus'
-    }
-  },
-  effects: {
-    'restaurants': {
+    },
+    effects: {
       'LOAD_RESTAURANTS': 'loadRestaurants'
     }
   }

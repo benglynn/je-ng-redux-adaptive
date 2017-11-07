@@ -5,6 +5,7 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState, IAction, IReducer, IReducers, IEffects } from './types';
+import { SliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
 import * as fromUtils from './utils';
@@ -31,11 +32,27 @@ export class Store {
     action: IAction,
     state: IAppState,
     reducers: IReducers) {
-    const sliceNames = Object.keys(state);
-    const nextSlices = fromUtils.nextSlices(state, action, reducers);
-    const nextState = fromUtils.toMergedObject(sliceNames, state, nextSlices);
-    console.log('state', nextState);
-    this.state$.next(nextState); // TODO: implement change detection
+      const newSlices = Object.keys(state)
+        .map(sliceName => {
+          const sliceConf: SliceConfiguration|undefined = state
+            .configuration[sliceName];
+          if (sliceConf === undefined) { return null; }
+          const reducersConf = sliceConf.reducers;
+          if (reducersConf === undefined) { return null; }
+          const reducerName = reducersConf[action.type];
+          if (reducerName === undefined) { return null; }
+          const reducer: IReducer<any>|undefined = reducers[reducerName];
+          if (reducer === undefined ) {
+            throw new Error(`no reducer '${reducerName}'`);
+          }
+          return reducer(action, state[sliceName]);
+      });
+      const isUnchanged = newSlices.reduce((acc, nextSlice) => {
+        return acc === true && nextSlice === null;
+      }, true);
+      if (isUnchanged === false) {
+        this.state$.next(fromUtils.toMergedObject(state, newSlices));
+      }
   }
 
   private effect(
@@ -44,21 +61,21 @@ export class Store {
     effectFunctions: IEffects,
     injector: Injector
   ) {
-    const slices = state.configuration.effects;
-    Object.keys(slices)
-      .forEach(sliceName => {
-        const effectNameHash = state.configuration.effects[sliceName];
-        Object.keys(effectNameHash)
-          .filter(actionName => actionName === action.type)
-          .map(actionName => {
-            const effectFunctionName = effectNameHash[actionName];
-            const effectFunction = effectFunctions[effectFunctionName];
-            if (effectFunction === undefined) {
-              throw new Error(`expected effect named '${effectFunctionName}'`);
-            }
-            effectFunction(action, injector);
+    Object.keys(state.configuration)
+    .filter(sliceName => state.configuration[sliceName].effects !== undefined)
+    .forEach(sliceName => {
+      const sliceEffects = state.configuration[sliceName].effects;
+      Object.keys(sliceEffects)
+        .filter(actionName => actionName === action.type)
+        .forEach(actionName => {
+          const functionName = sliceEffects[actionName];
+          const effectFunction = effectFunctions[functionName];
+          if (effectFunction === undefined) {
+            throw new Error(`expected effect named '${functionName}'`);
+          }
+          effectFunction(action, injector);
         });
-      });
+    });
   }
 
   constructor(

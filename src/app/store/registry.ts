@@ -28,9 +28,6 @@ export class Registry {
     Object.keys(reducers).map(name =>
       this.registerReducer(name, reducers[name])
     );
-    console.group('updated reducers');
-    console.log(this._reducers);
-    console.groupEnd();
   }
 
   registerEffect(name: string, effect: IEffect) {

@@ -1,7 +1,7 @@
 import { nextSlices } from './utils';
 import { IAppState, IAction, IReducers } from './types';
 
-describe('next slices', () => {
+describe('nextState', () => {
 
   const state: IAppState = {
     configuration: {reducers: {}, effects: {}},
