@@ -63,6 +63,74 @@ this.reducerRegistry.register(updatePostcode, 'updatePostcode');
 ### Container views and views
 ...
 
+Views are ... more on registering a view... more on seams in views.
+
+Container views are addressible views (a page or a screen) ... more on lifecycle and store subscription... more on composed of views ... more on registering a view controller and view.
+
+Define routes with `match` pattern and *either* a `containerView` *or* a `resolver`. 
+
+A `containerView` is the name of a registered container view that should always be used with this route.
+
+```ts
+core: {
+  route: '',
+  containerViews: {
+    homeContainerView: 'homeContainerView',
+    error404: 'error404ContainerView'
+  },
+  routes: {
+    homePage: { match: '', containerView: 'homeContainerView' }
+  }
+}
+
+A `resolver` is the name of a registered resolver to call in order to get the name of the container view to use for this route.
+
+```ts
+area: {
+  containerViews: {
+    areaContainerView: 'areaContainerView',
+  },
+  routes: {
+    area: {
+      match: '^[A-Z]{1,2}[0-9][0-9A-Z]?)[0-9][A-Z]{2}$/i',
+      resolver: 'areaRouteResolver'
+    }
+  }
+}
+```
+
+The resolver is passed the path and returns an observable that completes with a container view name. The area resolver asynchrounously gets area data before resolving with the area container view, or with an appropriate error container view.
+
+* Route matches (or falls through)
+* Update `route` in state
+* Universal resolver kicks in and is passed a route name
+* Resolver looks to state to find either container view name or route resolver name
+* Resolver actions what it finds, observable resolves, view loads, passed name of view to load
+* View loads named view, passing it state
+
+* Route matches with urlMatcher, passes regex
+* Universal resolver for route, passed a name of a route
+* Looks to that route in state and finds name of a view
+* Resolves with that name
+* Universal container view loads named view, passing in state observable
+
+```ts
+export areaRouteResolver(path, injector): Observable<string> {
+  const restaurantService = injector.get(RestaurantsService);
+  const store = injector.get(Store);
+  restaurantService.get(path)
+    .map(data => {
+      if(data !== null) {
+        store.dispatch(new UpdateRestaurants(data));
+        return 'areaContainerView';
+      } 
+      return 'error404ContainerView';
+      // TODO: handle errors better than this, but you get the point
+    })
+}
+this.registry.registerResolver('areaRouteResolver', areaRouteResolver);
+```
+
 ### Configuration
 
 An important slice of state is `configuration` which contains a default map of each slice's actions to reducers.

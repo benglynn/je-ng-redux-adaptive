@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Registry } from '../store/registry';
 import { reducers } from './reducers';
-import { AreaContainerComponent } from './area-container/area-container.component';
+import { AreaContainerComponent
+} from './area-container/area-container.component';
 
 @NgModule({
   imports: [
