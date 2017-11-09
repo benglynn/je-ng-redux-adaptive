@@ -1,8 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { IAreaState } from '../../area/state';
+import { Store } from '../../store/store';
 
 @Component({
-  template: `<h2>Page not found!</h2>`
+  templateUrl: './error404.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Error404Component {}
+export class Error404Component {
+
+  area$: Observable<IAreaState>;
+
+  constructor( private store: Store ) {
+    this.area$ = store.select('area');
+  }
+}
 
 

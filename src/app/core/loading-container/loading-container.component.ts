@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, AfterViewInit, ViewChild,
-  ChangeDetectorRef } from '@angular/core';
+  ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadedComponent } from './loaded.component';
 import { LoadedComponentDirective } from './loaded-component.directive';
@@ -7,7 +7,8 @@ import { Store } from '../../store/store';
 
 @Component({
   selector: 'app-loading-component',
-  templateUrl: './loading-container.component.html'
+  templateUrl: './loading-container.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingContainerComponent implements AfterViewInit {
 
