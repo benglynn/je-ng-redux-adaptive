@@ -1,1 +1,12 @@
-<h1>Area component {{ area$|async }}</h1>
+<nav>
+  <a [routerLink]="['/']">Home</a> &gt;
+  {{ (area$|async) | uppercase }}
+</nav>
+<h1>{{ (restaurants$|async).data.length }} restaurants in
+  {{ (area$|async) | uppercase }}</h1>
+<ul>
+  <li *ngFor="let restaurant of (restaurants$|async).data">
+      <a [routerLink]="['/' + (area$|async) + '/'+restaurant.name]">
+        {{ restaurant.title }}</a>
+  </li>
+</ul>

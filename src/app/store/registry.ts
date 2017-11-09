@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../area';
-import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews } from './types';
+import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews,
+  IResolver, IResolvers } from './types';
 import { RestaurantsService } from '../restaurants';
 
 @Injectable()
@@ -9,6 +10,7 @@ export class Registry {
   private _reducers: IReducers = {}; // TODO: behaviorSubject.concat() better?
   private _effects: IEffects = {}; // ditto
   private _views: IViews = {}; // ditto
+  private _resolvers: IResolvers = {};
 
   get reducers(): IReducers {
     return this._reducers;
@@ -20,6 +22,11 @@ export class Registry {
 
   get views(): IViews {
     return this._views;
+  }
+
+  get resolvers(): IResolvers {
+    console.log('get resolvers:', this._resolvers);
+    return this._resolvers;
   }
 
   registerReducer<T>(name: string, reducer: IReducer<T>) {
@@ -59,6 +66,18 @@ export class Registry {
     Object.keys(views).map(name =>
       this.registerView(name, views[name])
     );
+  }
+
+  registerResolver(name: string, resolver: IResolver) {
+    if (this._resolvers[name] !== undefined) {
+      throw new Error(`resolver named '${name}' already registered`);
+    }
+    this._resolvers = Object.assign(this._resolvers, {[name]: resolver});
+  }
+
+  registerResolvers(resolvers: IResolvers) {
+    Object.keys(resolvers).map(name =>
+      this.registerResolver(name, resolvers[name]));
   }
 
 }

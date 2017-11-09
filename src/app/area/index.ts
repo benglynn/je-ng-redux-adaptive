@@ -4,4 +4,4 @@ export {
   areaPattern,
   initialAreaConfiguration
 } from './state';
-export { UpdateAreaAction } from './actions';
+export { UpdateAreaAction, VisitAreaAction } from './actions';

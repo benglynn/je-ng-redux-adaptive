@@ -1,11 +1,14 @@
-import { Injectable, ComponentRef } from '@angular/core';
+import { Injector, Injectable, ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/switch';
+import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router
 } from '@angular/router';
 import { IRouteConfig, IRoutesConfig } from '../configuration/state';
 import { Registry } from '../store/registry';
+import { IView } from '../store/types';
 
 
 import { HomeComponent } from './views/home.component';
@@ -15,16 +18,17 @@ import { Error404Component } from './views/error404.component';
 @Injectable()
 export class RouteResolver implements Resolve<string> {
 
-  viewRegistry: { [name: string]: any };
+  viewRegistry: { [name: string]: IView };
 
   constructor(
+    private injector: Injector,
     private router: Router,
     private store: Store,
     private registry: Registry) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<any> {
+    state: RouterStateSnapshot): Observable<IView> {
       return this.store.select('configuration') // TODO: select allows multiple levels
 
         .map(configuration => {
@@ -44,15 +48,22 @@ export class RouteResolver implements Resolve<string> {
                 `rootViewName nor resolverName`);
           }
           if (routeConfig.resolverName !== undefined) {
-            throw new Error('route resolver not implemented');
+            const resolverName = routeConfig.resolverName;
+            const resolver = this.registry.resolvers[resolverName];
+            if (resolver === undefined) {
+              throw new Error(`no registered resolver for '${resolverName}`);
+            }
+            return resolver(url, this.injector);
           } else {
             const componentName = routeConfig.rootViewName as string;
             const component = this.registry.views[componentName];
             if (component === undefined) {
               throw new Error(`no registered view for '${componentName}'`);
             }
-            return component;
+            return Observable.of(component);
           }
-        }).take(1);
+        })
+        .switch()
+        .take(1);
   }
 }

@@ -5,4 +5,5 @@ export {
   initialRestaurantsConfiguration
 } from './state';
 export { RestaurantsService } from './restaurants.service';
-export { LoadRestaurants, RemoveRestaurants } from './actions';
+export { LoadRestaurants, RemoveRestaurants, UpdateRestaurants,
+  UpdateRestaurantsStatus } from './actions';

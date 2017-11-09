@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/startwith';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
-import { areaPattern, UpdateAreaAction } from '../../area';
+import 'rxjs/add/operator/withlatestfrom';
+import 'rxjs/add/operator/map';
+import { areaPattern, UpdateAreaAction, VisitAreaAction } from '../../area';
 import { Store } from '../../store/store';
 
 @Component({
@@ -44,7 +46,7 @@ export class PostcodeSearchComponent implements OnInit, OnDestroy {
         .subscribe(match => {
           if (match !== null) {
             const name = (`${match[1]}${match[2]}`).toLowerCase();
-            this.store.dispatch(new UpdateAreaAction(name));
+            this.store.dispatch(new VisitAreaAction(name));
           }
         });
 
