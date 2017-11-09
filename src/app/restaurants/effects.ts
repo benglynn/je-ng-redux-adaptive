@@ -17,4 +17,4 @@ export function loadRestaurants (action: IAction, injector: Injector) {
 
 export const effects = {
   'loadRestaurants': loadRestaurants
-}
+};

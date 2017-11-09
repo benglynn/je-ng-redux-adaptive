@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/withlatestfrom';
-import 'rxjs/add/operator/mergemap';
+import 'rxjs/add/operator/map';
 import { Store } from '../../store/store';
 import {
   IRestaurantsState as RestaurantState,

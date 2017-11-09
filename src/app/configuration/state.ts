@@ -12,7 +12,7 @@ export const initialConfigurationState: IConfigurationState = {
   restaurants: initialRestaurantsConfiguration,
   routes: {
     'home': {
-      urlPattern: '^a/b/c$',
+      urlPattern: '^$',
       rootViewName: 'homeView'
     },
     'error404': {

@@ -1,8 +1,9 @@
-import { Component, ComponentFactoryResolver, AfterViewInit, ViewChild
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, AfterViewInit, ViewChild,
+  ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadedComponent } from './loaded.component';
 import { LoadedComponentDirective } from './loaded-component.directive';
+import { Store } from '../../store/store';
 
 @Component({
   selector: 'app-loading-component',
@@ -14,7 +15,9 @@ export class LoadingContainerComponent implements AfterViewInit {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngAfterViewInit() {
@@ -22,6 +25,7 @@ export class LoadingContainerComponent implements AfterViewInit {
       const rootView = (data as { rootView: any }).rootView;
       const factory = this.componentFactoryResolver.resolveComponentFactory(rootView);
       this.loadedHost.viewContainerRef.createComponent(factory);
+      this.cdr.detectChanges();
     });
   }
 

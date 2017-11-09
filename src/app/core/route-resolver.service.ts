@@ -1,5 +1,6 @@
 import { Injectable, ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
 import { Store } from '../store/store';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router
 } from '@angular/router';

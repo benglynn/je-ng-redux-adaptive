@@ -9,5 +9,8 @@ export const initialAreaState = null;
 export const initialAreaConfiguration: ISliceConfiguration = {
   reducers: {
     'UPDATE_AREA': 'updateArea'
+  },
+  effects: {
+    'UPDATE_AREA': 'updateArea'
   }
 };
