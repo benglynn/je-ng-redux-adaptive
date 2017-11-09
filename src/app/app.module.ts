@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { StoreModule } from './store/module';
 import { CoreModule } from './core/module';
 import { AreaModule } from './area/module';
-import { RestaurantModule } from './restaurant/module';
 import { RestaurantsModule } from './restaurants/module';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { RestaurantsModule } from './restaurants/module';
     StoreModule,
     CoreModule,
     AreaModule,
-    RestaurantModule,
     RestaurantsModule
   ],
   bootstrap: [AppComponent]

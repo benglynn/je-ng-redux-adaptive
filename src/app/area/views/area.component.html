@@ -6,7 +6,6 @@
   {{ (area$|async) | uppercase }}</h1>
 <ul>
   <li *ngFor="let restaurant of (restaurants$|async).data">
-      <a [routerLink]="['/' + (area$|async) + '/'+restaurant.name]">
-        {{ restaurant.title }}</a>
+      <p>{{ restaurant.title }}</p>
   </li>
 </ul>
