@@ -1,13 +1,14 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../area';
-import { IAction, IReducer, IReducers, IEffect, IEffects } from './types';
+import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews } from './types';
 import { RestaurantsService } from '../restaurants';
 
 @Injectable()
 export class Registry {
 
   private _reducers: IReducers = {}; // TODO: behaviorSubject.concat() better?
-  private _effects: IEffects = {}; // dito
+  private _effects: IEffects = {}; // ditto
+  private _views: IViews = {}; // ditto
 
   get reducers(): IReducers {
     return this._reducers;
@@ -15,6 +16,10 @@ export class Registry {
 
   get effects(): IEffects {
     return this._effects;
+  }
+
+  get views(): IViews {
+    return this._views;
   }
 
   registerReducer<T>(name: string, reducer: IReducer<T>) {
@@ -42,4 +47,18 @@ export class Registry {
       this.registerEffect(name, effects[name])
     );
   }
+
+  registerView(name: string, view: IView) {
+    if (this._views[name] !== undefined) {
+      throw new Error(`view named ${name} already registered`);
+    }
+    this._views = Object.assign(this._views, {[name]: view});
+  }
+
+  registerViews(views: IViews) {
+    Object.keys(views).map(name =>
+      this.registerView(name, views[name])
+    );
+  }
+
 }

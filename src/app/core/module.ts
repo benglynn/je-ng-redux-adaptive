@@ -7,6 +7,7 @@ import { RouteResolver } from './route-resolver.service';
 import { HomeComponent } from './views/home.component';
 import { PostcodeSearchComponent } from './views/postcode-search.component';
 import { Error404Component } from './views/error404.component';
+import { Registry } from '../store/registry';
 
 @NgModule({
   imports: [ RouterModule, CommonModule ],
@@ -20,4 +21,11 @@ import { Error404Component } from './views/error404.component';
   entryComponents: [ Error404Component, HomeComponent ],
   providers: [ RouteResolver ]
 })
-export class CoreModule {}
+export class CoreModule {
+  constructor( private registry: Registry ) {
+    this.registry.registerViews({
+      homeView: HomeComponent,
+      error404View: Error404Component
+    });
+  }
+}

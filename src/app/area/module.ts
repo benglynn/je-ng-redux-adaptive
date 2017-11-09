@@ -6,6 +6,7 @@ import { reducers } from './reducers';
 import { effects } from './effects';
 import { AreaContainerComponent
 } from './area-container/area-container.component';
+import { AreaComponent } from './views/area.component';
 
 @NgModule({
   imports: [
@@ -13,12 +14,15 @@ import { AreaContainerComponent
     CommonModule
   ],
   declarations: [
-    AreaContainerComponent
-  ]
+    AreaContainerComponent,
+    AreaComponent
+  ],
+  entryComponents: [ AreaComponent ]
 })
 export class AreaModule {
   constructor(private registry: Registry) {
     registry.registerReducers(reducers);
     registry.registerEffects(effects);
+    registry.registerViews({'areaView': AreaComponent});
   }
 }

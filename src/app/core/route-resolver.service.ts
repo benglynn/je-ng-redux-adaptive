@@ -5,9 +5,11 @@ import { Store } from '../store/store';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router
 } from '@angular/router';
 import { IRouteConfig, IRoutesConfig } from '../configuration/state';
+import { Registry } from '../store/registry';
 
 
 import { HomeComponent } from './views/home.component';
+import { AreaComponent } from '../area/views/area.component';
 import { Error404Component } from './views/error404.component';
 
 @Injectable()
@@ -15,29 +17,27 @@ export class RouteResolver implements Resolve<string> {
 
   viewRegistry: { [name: string]: any };
 
-  constructor(private router: Router, private store: Store) {
-    this.viewRegistry = {
-      homeView: HomeComponent,
-      error404View: Error404Component
-    };
-  }
+  constructor(
+    private router: Router,
+    private store: Store,
+    private registry: Registry) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<any> {
       return this.store.select('configuration') // TODO: select allows multiple levels
-        .map(configuration => {
 
+        .map(configuration => {
           const url = route.url.join('/');
-          const matches = routeConfName => url.match(
-            configuration.routes[routeConfName].urlPattern) !== null;
+          const doesMatch = routeConfName => {
+            const routeConf = configuration.routes[routeConfName];
+            const regex = new RegExp(routeConf.urlPattern, 'i');
+            return url.match(regex) !== null;
+          };
           const routeName = Object.keys(configuration.routes)
-            .find(matches) || 'error404';
-          const routeConfig: IRouteConfig|undefined = configuration
-            .routes[routeName];
-          if (routeConfig === undefined) {
-            throw new Error(`no route config named '${routeName}'`);
-          }
+            .find(doesMatch) || 'error404';
+
+          const routeConfig: IRouteConfig = configuration.routes[routeName];
           if (routeConfig.rootViewName === undefined &&
               routeConfig.resolverName === undefined) {
                 throw new Error(`route '${routeName}' has niether ` +
@@ -47,7 +47,7 @@ export class RouteResolver implements Resolve<string> {
             throw new Error('route resolver not implemented');
           } else {
             const componentName = routeConfig.rootViewName as string;
-            const component = this.viewRegistry[componentName];
+            const component = this.registry.views[componentName];
             if (component === undefined) {
               throw new Error(`no registered view for '${componentName}'`);
             }

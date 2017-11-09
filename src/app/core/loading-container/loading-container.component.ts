@@ -25,6 +25,7 @@ export class LoadingContainerComponent implements AfterViewInit {
     this.route.data.subscribe(data => {
       const rootView = (data as { rootView: any }).rootView;
       const factory = this.componentFactoryResolver.resolveComponentFactory(rootView);
+      this.loadedHost.viewContainerRef.clear();
       this.loadedHost.viewContainerRef.createComponent(factory);
       this.cdr.detectChanges();
     });

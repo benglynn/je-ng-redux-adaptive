@@ -15,6 +15,10 @@ export const initialConfigurationState: IConfigurationState = {
       urlPattern: '^$',
       rootViewName: 'homeView'
     },
+    'area': {
+      urlPattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
+      rootViewName: 'areaView'
+    },
     'error404': {
       urlPattern: '.*',
       rootViewName: 'error404View'
