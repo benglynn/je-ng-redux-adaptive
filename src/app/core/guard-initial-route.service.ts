@@ -27,10 +27,7 @@ export class GuardInitialRoute implements CanActivate {
       .filter((config: ISliceConfiguration) => config.routes !== undefined)
       .reduce((prev, curr: ISliceConfiguration) => prev.concat(curr.routes), [])
       .map((config: IRouteConfig) => {
-        const view = this.registry.views[config.viewName as string];
-        if (view === undefined) {
-          throw new Error(`no registered view '${config.viewName}'`);
-        }
+        const view = this.registry.getView(config.viewName as string);
         const matcher = this.regexMatcher(config.pattern);
         return {
           matcher: matcher,
@@ -39,14 +36,14 @@ export class GuardInitialRoute implements CanActivate {
           canActivate: [ GuardRoute ]
         };
       })
-      .concat({ path: '**', component: this.registry.views['error404View'] }); // TODO: move ALL error checking to registry
+      .concat({ path: '**', component: this.registry.getView('error404View') });
   }
 
   canActivate(_, state: RouterStateSnapshot): Observable<boolean> {
     return this.store.select('configuration')
       .map(configuration => {
         const newRoutes = this.mapStateRoutes(configuration);
-      console.log(newRoutes);
+      console.log('Updating routes', newRoutes);
       this.router.resetConfig(newRoutes);
       this.router.navigateByUrl(state.url, { replaceUrl: true });
       return false;

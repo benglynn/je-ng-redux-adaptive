@@ -23,7 +23,7 @@ export class GuardRoute implements CanActivate {
     if (config.guardName === undefined) {
       return Observable.of(true);
     }
-    const guard = this.registry.guards[config.guardName] as IGuard;
+    const guard = this.registry.getGuard(config.guardName);
     if (guard === undefined) {
       throw new Error(`no registered guard '${config.guardName}'`);
     }
