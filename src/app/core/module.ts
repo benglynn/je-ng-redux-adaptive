@@ -9,7 +9,6 @@ import { GuardRoute } from './guard-route.service';
 import { HomeComponent } from './views/home.component';
 import { PostcodeSearchComponent } from './views/postcode-search.component';
 import { Error404Component } from './views/error404.component';
-import { TestComponent } from './views/test.component';
 import { Registry } from '../store/registry';
 
 @NgModule({
@@ -20,16 +19,14 @@ import { Registry } from '../store/registry';
     HomeComponent,
     Error404Component,
     PostcodeSearchComponent,
-    TestComponent
   ],
-  entryComponents: [ Error404Component, HomeComponent, TestComponent ],
+  entryComponents: [ Error404Component, HomeComponent ],
   providers: [ RouteResolver, GuardInitialRoute, GuardRoute ]
 })
 export class CoreModule {
   constructor( private registry: Registry ) {
     this.registry.registerViews({
       homeView: HomeComponent,
-      testView: TestComponent,
       error404View: Error404Component
     });
   }

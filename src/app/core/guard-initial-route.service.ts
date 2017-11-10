@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, Routes, RouterStateSnapshot,
   UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { TestComponent } from '../core/views/test.component';
 import { Store } from '../store/store';
 import { Registry } from '../store/registry';
 import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../configuration';
