@@ -14,7 +14,7 @@ export const areaRootViewResolver: IResolver =
         const store = injector.get(Store);
         store.dispatch(new UpdateAreaAction(url));
         store.dispatch(new UpdateRestaurants(data));
-        return AreaComponent;
+        return true;
       });
   };
 

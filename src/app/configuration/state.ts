@@ -1,29 +1,33 @@
+import { initialCoreConfiguration } from '../core';
 import { initialAreaConfiguration } from '../area';
 import { initialRestaurantsConfiguration } from '../restaurants';
 
 export interface IConfigurationState {
+  core: ISliceConfiguration;
   area: ISliceConfiguration;
   restaurants: ISliceConfiguration;
-  routes: IRoutesConfig;
+  // routes: IRoutesConfig;
 }
 
 export const initialConfigurationState: IConfigurationState = {
+  core: initialCoreConfiguration,
   area: initialAreaConfiguration,
   restaurants: initialRestaurantsConfiguration,
-  routes: {
-    'home': {
-      urlPattern: '^$',
-      rootViewName: 'homeView'
-    },
-    'area': {
-      urlPattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
-      resolverName: 'areaRootViewResolver'
-    },
-    'error404': {
-      urlPattern: '.*',
-      rootViewName: 'error404View'
-    }
-  }
+
+  // routes: {
+  //   'home': {
+  //     urlPattern: '^$',
+  //     rootViewName: 'homeView'
+  //   },
+  //   'area': {
+  //     urlPattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
+  //     resolverName: 'areaRootViewResolver'
+  //   },
+  //   'error404': {
+  //     urlPattern: '.*',
+  //     rootViewName: 'error404View'
+  //   }
+  // }
 };
 
 interface IStringHash {
@@ -31,18 +35,14 @@ interface IStringHash {
 }
 
 export interface IRouteConfig {
-  urlPattern: string;
-  rootViewName?: string;
+  pattern: string;
+  viewName?: string;
   resolverName?: string;
-}
-
-export interface IRoutesConfig {
-  [name: string]: IRouteConfig;
 }
 
 export interface ISliceConfiguration {
   reducers?: IStringHash;
   effects?: IStringHash;
-  routes?: IRoutesConfig;
+  routes?: IRouteConfig[];
   views?: IStringHash;
 }

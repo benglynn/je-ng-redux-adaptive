@@ -6,7 +6,7 @@ import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router
 } from '@angular/router';
-import { IRouteConfig, IRoutesConfig } from '../configuration/state';
+import { IRouteConfig } from '../configuration/state';
 import { Registry } from '../store/registry';
 import { IView } from '../store/types';
 
@@ -16,7 +16,7 @@ import { AreaComponent } from '../area/views/area.component';
 import { Error404Component } from './views/error404.component';
 
 @Injectable()
-export class RouteResolver implements Resolve<string> {
+export class RouteResolver implements Resolve<boolean> {
 
   viewRegistry: { [name: string]: IView };
 
@@ -28,9 +28,17 @@ export class RouteResolver implements Resolve<string> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<IView> {
-      return this.store.select('configuration') // TODO: select allows multiple levels
+    state: RouterStateSnapshot): Observable<boolean> {
+      const resolverName = (route.data as { resolverName: string|undefined })
+        .resolverName;
+      if (resolverName === undefined) {
+        return Observable.of(true);
+      }
+      const resolver = this.registry.resolvers.resolverName;
+      return Observable.of(true);
 
+      /*
+      return this.store.select('configuration') // TODO: select allows multiple levels
         .map(configuration => {
           const url = route.url.join('/');
           const doesMatch = routeConfName => {
@@ -64,6 +72,6 @@ export class RouteResolver implements Resolve<string> {
           }
         })
         .switch()
-        .take(1);
+        .take(1); */
   }
 }

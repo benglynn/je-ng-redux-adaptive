@@ -1,5 +1,6 @@
 export {
   IConfigurationState,
   ISliceConfiguration,
-  initialConfigurationState
+  initialConfigurationState,
+  IRouteConfig
 } from './state';

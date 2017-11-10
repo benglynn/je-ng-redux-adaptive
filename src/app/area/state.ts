@@ -12,5 +12,13 @@ export const initialAreaConfiguration: ISliceConfiguration = {
   },
   effects: {
     'VISIT_AREA': 'visitArea'
-  }
+  },
+  routes: [
+    { pattern: '^test$', viewName: 'testView' },
+    {
+      pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
+      viewName: 'areaView',
+      resolverName: 'areaRootViewResolver'
+    }
+  ]
 };
