@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Registry } from '../store/registry';
 import { reducers } from './reducers';
 import { effects } from './effects';
-import { resolvers } from './resolvers';
+import { guards } from './guards';
 import { AreaComponent } from './views/area.component';
 
 @NgModule({
@@ -22,6 +22,6 @@ export class AreaModule {
     registry.registerReducers(reducers);
     registry.registerEffects(effects);
     registry.registerViews({'areaView': AreaComponent});
-    registry.registerResolvers(resolvers);
+    registry.registerResolvers(guards);
   }
 }

@@ -1,12 +1,12 @@
 import { Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { IView, IResolver, IResolvers } from '../store/types';
+import { IView, IGuard, IGuards } from '../store/types';
 import { AreaComponent } from './views/area.component';
 import { Store } from '../store/store';
 import { UpdateAreaAction } from '../area/actions';
 import {  RestaurantsService, UpdateRestaurants } from '../restaurants';
 
-export const areaRootViewResolver: IResolver =
+export const areaRouteGuard: IGuard =
   (url: string, injector: Injector): Observable<IView> => {
     const restaurantsService = injector.get(RestaurantsService);
     return restaurantsService.getRestaurants(url)
@@ -18,7 +18,7 @@ export const areaRootViewResolver: IResolver =
       });
   };
 
-export const resolvers: IResolvers = {
-  areaRootViewResolver: areaRootViewResolver
+export const guards: IGuards = {
+  areaRouteGuard: areaRouteGuard
 };
 

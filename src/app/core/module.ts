@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoadingContainerComponent } from './loading-container/loading-container.component';
 import { LoadedComponentDirective } from './loading-container/loaded-component.directive';
-import { RouteResolver } from './route-resolver.service';
 import { GuardInitialRoute } from './guard-initial-route.service';
 import { GuardRoute } from './guard-route.service';
 import { HomeComponent } from './views/home.component';
@@ -21,7 +20,7 @@ import { Registry } from '../store/registry';
     PostcodeSearchComponent,
   ],
   entryComponents: [ Error404Component, HomeComponent ],
-  providers: [ RouteResolver, GuardInitialRoute, GuardRoute ]
+  providers: [ GuardInitialRoute, GuardRoute ]
 })
 export class CoreModule {
   constructor( private registry: Registry ) {

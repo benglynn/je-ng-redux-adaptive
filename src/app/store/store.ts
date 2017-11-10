@@ -33,7 +33,7 @@ export class Store {
     action: IAction,
     state: IAppState,
     reducers: IReducers) {
-      const newSlices = Object.keys(state)
+      const newSlices = Object.keys(state) // TODO: use Object.entries here
         .map(sliceName => {
           const sliceConf: ISliceConfiguration|undefined = state
             .configuration[sliceName];
@@ -62,11 +62,11 @@ export class Store {
     effectFunctions: IEffects,
     injector: Injector
   ) {
-    Object.keys(state.configuration)
+    Object.keys(state.configuration) // TODO: use Object.entries here
     .filter(sliceName => state.configuration[sliceName].effects !== undefined)
     .forEach(sliceName => {
       const sliceEffects = state.configuration[sliceName].effects;
-      Object.keys(sliceEffects)
+      Object.keys(sliceEffects) // TODO: use Object.entries here
         .filter(actionName => actionName === action.type)
         .forEach(actionName => {
           const functionName = sliceEffects[actionName];

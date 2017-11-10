@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../area';
 import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews,
-  IResolver, IResolvers } from './types';
+  IGuard, IGuards } from './types';
 import { RestaurantsService } from '../restaurants';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class Registry {
   private _reducers: IReducers = {}; // TODO: behaviorSubject.concat() better?
   private _effects: IEffects = {}; // ditto
   private _views: IViews = {}; // ditto
-  private _resolvers: IResolvers = {};
+  private _guards: IGuards = {};
 
   get reducers(): IReducers {
     return this._reducers;
@@ -24,9 +24,9 @@ export class Registry {
     return this._views;
   }
 
-  get resolvers(): IResolvers {
-    console.log('get resolvers:', this._resolvers);
-    return this._resolvers;
+  get guards(): IGuards {
+    console.log('get guards:', this._guards);
+    return this._guards;
   }
 
   registerReducer<T>(name: string, reducer: IReducer<T>) {
@@ -68,16 +68,16 @@ export class Registry {
     );
   }
 
-  registerResolver(name: string, resolver: IResolver) {
-    if (this._resolvers[name] !== undefined) {
-      throw new Error(`resolver named '${name}' already registered`);
+  registerResolver(name: string, guard: IGuard) {
+    if (this._guards[name] !== undefined) {
+      throw new Error(`guard named '${name}' already registered`);
     }
-    this._resolvers = Object.assign(this._resolvers, {[name]: resolver});
+    this._guards = Object.assign(this._guards, {[name]: guard});
   }
 
-  registerResolvers(resolvers: IResolvers) {
-    Object.keys(resolvers).map(name =>
-      this.registerResolver(name, resolvers[name]));
+  registerResolvers(guards: IGuards) {
+    Object.keys(guards).map(name =>
+      this.registerResolver(name, guards[name]));
   }
 
 }

@@ -20,8 +20,8 @@ interface IStringHash {
 
 export interface IRouteConfig {
   pattern: string;
-  viewName?: string;
-  resolverName?: string;
+  viewName: string;
+  guardName?: string;
 }
 
 export interface ISliceConfiguration {

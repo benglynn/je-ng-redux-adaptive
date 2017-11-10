@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '../store/store';
 import { Registry } from '../store/registry';
 import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../configuration';
-import { RouteResolver } from './route-resolver.service';
 import { GuardRoute } from './guard-route.service';
 
 @Injectable()
