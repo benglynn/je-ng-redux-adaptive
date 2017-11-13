@@ -15,8 +15,8 @@ import { RestaurantsModule } from './restaurants/module';
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
     StoreModule,
     CoreModule,
-    AreaModule,
-    RestaurantsModule
+    RestaurantsModule,
+    AreaModule
   ],
   bootstrap: [AppComponent]
 })

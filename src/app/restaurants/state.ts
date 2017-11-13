@@ -10,7 +10,21 @@ export interface IRestaurantsState {
 
 export const initialRestaurantState: IRestaurantsState = { status: null, data: null };
 
-export const initialRestaurantsConfiguration: ISliceConfiguration = {
+export interface IRestaurantsSliceConfiguration extends ISliceConfiguration {
+  reducers: {
+    'UPDATE_RESTAURANTS': string;
+    'REMOVE_RESTAURANTS': string;
+    'UPDATE_RESTAURANTS_STATUS': string;
+  };
+  effects: {
+    'LOAD_RESTAURANTS': string;
+  };
+  views: {
+    'resultView': string;
+  };
+}
+
+export const initialRestaurantsConfiguration: IRestaurantsSliceConfiguration = {
   reducers: {
     'UPDATE_RESTAURANTS': 'updateRestaurants',
     'REMOVE_RESTAURANTS': 'removeRestaurants',
@@ -18,5 +32,8 @@ export const initialRestaurantsConfiguration: ISliceConfiguration = {
   },
   effects: {
     'LOAD_RESTAURANTS': 'loadRestaurants'
+  },
+  views: {
+    'resultView': 'resultView'
   }
 };

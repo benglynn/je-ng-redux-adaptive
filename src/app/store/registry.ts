@@ -15,7 +15,7 @@ export class Registry {
   private getItem<T>(registry: {[name: string]: T}, name: string): T {
     const item = registry[name];
     if (item === undefined) {
-      throw new Error(`item '${name} not found in regisry`);
+      throw new Error(`item '${name}' not found in regisry`);
     }
     return item;
   }

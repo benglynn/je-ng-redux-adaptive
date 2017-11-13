@@ -2,6 +2,7 @@ export {
   IRestaurantsState,
   Status,
   initialRestaurantState,
+  IRestaurantsSliceConfiguration,
   initialRestaurantsConfiguration
 } from './state';
 export { RestaurantsService } from './restaurants.service';

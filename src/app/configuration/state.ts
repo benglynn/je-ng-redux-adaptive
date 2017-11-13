@@ -1,11 +1,12 @@
 import { initialCoreConfiguration } from '../core';
 import { initialAreaConfiguration } from '../area';
-import { initialRestaurantsConfiguration } from '../restaurants';
+import { IRestaurantsSliceConfiguration,
+  initialRestaurantsConfiguration } from '../restaurants';
 
 export interface IConfigurationState {
   core: ISliceConfiguration;
   area: ISliceConfiguration;
-  restaurants: ISliceConfiguration;
+  restaurants: IRestaurantsSliceConfiguration;
 }
 
 export const initialConfigurationState: IConfigurationState = {

@@ -6,11 +6,13 @@ import { reducers } from './reducers';
 import { effects } from './effects';
 import { guards } from './guards';
 import { AreaComponent } from './views/area.component';
+import { RestaurantsModule } from '../restaurants/module';
 
 @NgModule({
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    RestaurantsModule
   ],
   declarations: [
     AreaComponent
