@@ -90,7 +90,7 @@ export class Store {
     this.actionSubscription = this.action$ // TODO: manage destruction
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
-        console.log(action.type, action.payload);
+        console.log(action.type, action.payload ? action.payload : '');
         this.reduce(action, state, this.registry.reducers);
         this.effect(action, state, this.registry.effects, this.injector);
       });

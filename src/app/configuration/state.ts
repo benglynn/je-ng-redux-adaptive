@@ -7,12 +7,18 @@ export interface IConfigurationState {
   core: ISliceConfiguration;
   area: ISliceConfiguration;
   restaurants: IRestaurantsSliceConfiguration;
+  configuration: ISliceConfiguration;
 }
 
 export const initialConfigurationState: IConfigurationState = {
   core: initialCoreConfiguration,
   area: initialAreaConfiguration,
   restaurants: initialRestaurantsConfiguration,
+  configuration: {
+    reducers: {
+      'INIT_ADAPTATION_SWAP_RESULT_VIEW': 'initSwapResultView'
+    }
+  }
 };
 
 interface IStringHash {
