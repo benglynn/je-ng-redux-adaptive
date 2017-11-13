@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, ViewChild,
-  AfterViewInit, ComponentFactoryResolver } from '@angular/core';
+  AfterViewInit, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
-import { IRestaurantsState } from '../../restaurants';
+import { IRestaurantsState, RemoveRestaurants } from '../../restaurants';
 import { IConfigurationState } from '../../configuration';
 
 @Component({
@@ -10,7 +10,7 @@ import { IConfigurationState } from '../../configuration';
   templateUrl: './area.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AreaComponent {
+export class AreaComponent implements OnDestroy {
 
   area$: Observable<string>;
   restaurants$: Observable<IRestaurantsState>;
@@ -21,5 +21,9 @@ export class AreaComponent {
     this.restaurants$ = store.select('restaurants');
     this.resultViewName$ = store.select('configuration')
       .map(config => config.restaurants.views.resultView);
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(new RemoveRestaurants());
   }
 }

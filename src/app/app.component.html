@@ -1,3 +1,9 @@
-<button (click)="onTapAdapt()">Adapt</button>
-<hr>
-<router-outlet></router-outlet>
+<div class="app">
+    <router-outlet></router-outlet>
+</div>
+<div class="console">
+    <div class="console__state">{{ (store.state$|async)|json }}</div>
+    <div class="console__controls">
+      <button (click)="onTapAdapt()">Adapt result view</button>
+    </div>
+</div>

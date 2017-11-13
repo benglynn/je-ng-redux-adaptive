@@ -1,0 +1,25 @@
+.app {
+  flex-grow: 0;
+  padding: 20px;
+  width: 600px;
+}
+.console {
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  &__state {
+    padding: 10px;
+    color: white;
+    flex-grow: 2;
+    font-family: monospace;
+    overflow: auto;
+    white-space: pre;
+  }
+
+  &__controls {
+    padding: 10px;
+    flex-grow: 0;
+  }
+}
