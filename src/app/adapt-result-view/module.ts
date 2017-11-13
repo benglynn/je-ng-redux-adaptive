@@ -8,7 +8,7 @@ import { reducers } from './reducers';
   exports: [ NewResultComponent ],
   entryComponents: [ NewResultComponent ]
 })
-export class AdaptationModule {
+export class AdaptResultViewModule {
   constructor( private registry: Registry ) {
     this.registry.registerReducers(reducers);
     this.registry.registerViews({

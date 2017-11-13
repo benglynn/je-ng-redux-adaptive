@@ -10,6 +10,6 @@ export class AppComponent {
   constructor( private store: Store ) {}
 
   onTapAdapt() {
-    this.store.dispatch({type: 'INIT_ADAPTATION_SWAP_RESULT_VIEW'});
+    this.store.dispatch({type: 'INIT_ADAPT_RESULT_VIEW'});
   }
 }

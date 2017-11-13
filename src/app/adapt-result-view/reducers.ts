@@ -2,7 +2,7 @@ import { IReducers } from '../store/types';
 import { IConfigurationState } from '../configuration/state';
 import { IAction } from '../store/types';
 
-export function initSwapResultView(action: IAction, state: IConfigurationState
+export function initAdaptResultView(action: IAction, state: IConfigurationState
 ): IConfigurationState {
   const config = state;
   const newState = Object.assign({}, state);
@@ -12,6 +12,6 @@ export function initSwapResultView(action: IAction, state: IConfigurationState
 }
 
 export const reducers: IReducers = {
-  'initSwapResultView': initSwapResultView
+  'initAdaptResultView': initAdaptResultView
 };
 

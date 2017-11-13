@@ -16,7 +16,7 @@ export const initialConfigurationState: IConfigurationState = {
   restaurants: initialRestaurantsConfiguration,
   configuration: {
     reducers: {
-      'INIT_ADAPTATION_SWAP_RESULT_VIEW': 'initSwapResultView'
+      'INIT_ADAPT_RESULT_VIEW': 'initAdaptResultView'
     }
   }
 };
