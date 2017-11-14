@@ -1,1 +1,1 @@
-export { initialCoreConfiguration} from './state';
+export { ICoreState, initialCoreState, initialCoreConfiguration} from './state';

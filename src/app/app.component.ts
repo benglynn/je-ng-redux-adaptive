@@ -12,7 +12,7 @@ export class AppComponent {
 
   filteredState$: Observable<any>;
   config$: Observable<any>;
-  trace = '';
+  trace: string;
   adaptedView = false;
 
   constructor( public store: Store ) {

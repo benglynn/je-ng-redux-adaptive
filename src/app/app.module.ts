@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, UrlSegment } from '@angular/router';
-import { appRoutes } from './routes';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { StoreModule } from './store/module';
 import { CoreModule } from './core/module';
+import { RoutingModule } from './routing/module';
 import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
 import { AdaptResultViewModule} from './adapt-result-view/module';
@@ -13,7 +13,8 @@ import { AdaptResultViewModule} from './adapt-result-view/module';
   declarations: [ AppComponent ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
+    RouterModule,
+    RoutingModule,
     StoreModule,
     CoreModule,
     RestaurantsModule,
