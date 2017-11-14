@@ -3,15 +3,14 @@ import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { GuardInitialRoute } from './guard-initial-route.service';
 import { GuardRoute } from './guard-route.service';
 import { appRoutes } from './routes';
+import { RouteActionService } from './route-action.service';
 
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, { /*enableTracing: true*/ }),
   ],
-  providers: [ GuardInitialRoute, GuardRoute ]
+  providers: [ GuardInitialRoute, GuardRoute, RouteActionService ]
 })
 export class RoutingModule {
-  constructor() {
-    console.log('routing module loads');
-  }
+  constructor( routActionService: RouteActionService ) {}
 }

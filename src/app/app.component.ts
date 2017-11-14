@@ -23,7 +23,8 @@ export class AppComponent {
         {})
     );
     this.config$ = this.store.select('configuration');
-    this.store.action$.subscribe(action => this.trace += action.type + '\n');
+    this.store.action$.subscribe(action =>
+      this.trace += `${action.type} ${action.payload || ''}\n`);
   }
 
   onTapAdaptView() {
