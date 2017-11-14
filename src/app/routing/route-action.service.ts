@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { NavigationEndAction } from './actions';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { NavigationStartAction, NavigationEndAction } from './actions';
 import { Store } from '../store/store';
 
 
@@ -8,9 +8,14 @@ import { Store } from '../store/store';
 export class RouteActionService {
   constructor( private router: Router, private store: Store ) {
     router.events
-      .filter(event => event instanceof NavigationEnd)
-      .subscribe((event: NavigationEnd) => {
-        this.store.dispatch(new NavigationEndAction(event.urlAfterRedirects));
-      });
+      .filter(event => event instanceof NavigationStart)
+      .subscribe((event: NavigationStart) =>
+        this.store.dispatch(new NavigationStartAction(event.url))
+      );
+    router.events
+    .filter(event => event instanceof NavigationEnd)
+    .subscribe((event: NavigationEnd) =>
+      this.store.dispatch(new NavigationEndAction(event.urlAfterRedirects))
+    );
   }
 }

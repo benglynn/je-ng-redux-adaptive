@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
@@ -8,7 +9,6 @@ import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withlatestfrom';
 import 'rxjs/add/operator/map';
 import { areaPattern, UpdateAreaAction, VisitAreaAction } from '../../area';
-import { Store } from '../../store/store';
 
 @Component({
   selector: 'app-postcode-search',
@@ -25,7 +25,7 @@ export class PostcodeSearchComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   readonly returnKeyCode = 13;
 
-  constructor( private store: Store ) {}
+  constructor( private router: Router ) {}
 
   ngOnInit() {
 
@@ -47,7 +47,7 @@ export class PostcodeSearchComponent implements OnInit, OnDestroy {
         .subscribe(match => {
           if (match !== null) {
             const name = (`${match[1]}${match[2]}`).toLowerCase();
-            this.store.dispatch(new VisitAreaAction(name));
+            this.router.navigateByUrl(`/${name}`);
           }
         });
 

@@ -10,9 +10,6 @@ export const initialAreaConfiguration: ISliceConfiguration = {
   reducers: {
     'UPDATE_AREA': 'updateArea',
   },
-  effects: {
-    'VISIT_AREA': 'visitArea'
-  },
   routes: [
     {
       pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
