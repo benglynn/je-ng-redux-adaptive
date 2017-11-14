@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { LoadingContainerComponent } from './loading-container/loading-container.component';
-import { LoadedComponentDirective } from './loading-container/loaded-component.directive';
 import { GuardInitialRoute } from './guard-initial-route.service';
 import { GuardRoute } from './guard-route.service';
 import { HomeComponent } from './views/home.component';
@@ -13,8 +11,6 @@ import { Registry } from '../store/registry';
 @NgModule({
   imports: [ RouterModule, CommonModule ],
   declarations: [
-    LoadingContainerComponent,
-    LoadedComponentDirective,
     HomeComponent,
     Error404Component,
     PostcodeSearchComponent,
