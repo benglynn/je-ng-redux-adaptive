@@ -8,7 +8,7 @@ export interface IResultView {
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.css'],
+  styleUrls: ['./result.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResultComponent implements IResultView {

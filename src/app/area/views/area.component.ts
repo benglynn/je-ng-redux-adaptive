@@ -8,6 +8,7 @@ import { IConfigurationState } from '../../configuration';
 @Component({
   selector: 'app-area',
   templateUrl: './area.component.html',
+  styleUrls: ['./area.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AreaComponent implements OnDestroy {

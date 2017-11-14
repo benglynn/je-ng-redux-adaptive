@@ -12,7 +12,8 @@ import { Store } from '../../store/store';
 
 @Component({
   selector: 'app-postcode-search',
-  templateUrl: './postcode-search.component.html'
+  templateUrl: './postcode-search.component.html',
+  styleUrls: ['./postcode-search.component.less']
 })
 export class PostcodeSearchComponent implements OnInit, OnDestroy {
 

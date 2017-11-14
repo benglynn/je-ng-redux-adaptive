@@ -1,11 +1,13 @@
-<div>
+<div class="postcode-search">
   <input
+    class="postcode-search__input"
     autocomplete="true"
     (keyup)="inputKeyUp$.next($event)"
     placeholder="Enter postcode"
     type="text"
     [value]="(postcode$|async) | uppercase">
   <button
+    class="postcode-search__button"
     (click)="buttonClick$.next($event)"
     [disabled]="!(isValidPostcode$|async)">Find restaurants</button>
 </div>
