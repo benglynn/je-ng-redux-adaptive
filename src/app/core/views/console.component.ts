@@ -25,7 +25,7 @@ export class ConsoleComponent {
     );
     this.config$ = this.store.select('configuration');
     this.store.action$.subscribe(action =>
-      this.trace += `${action.type} ${action.payload || ''}\n`);
+      this.trace = `${action.type} ${action.payload || ''}\n` + this.trace);
   }
 
   onTapAdaptView() {
