@@ -7,6 +7,7 @@ import { Store } from '../store/store';
 import { Registry } from '../store/registry';
 import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../configuration';
 import { IGuard } from '../store/types';
+import { LoggerService } from '../core/logger.service';
 
 @Injectable()
 export class GuardRoute implements CanActivate {
@@ -15,7 +16,8 @@ export class GuardRoute implements CanActivate {
     private injector: Injector,
     private router: Router,
     private store: Store,
-    private registry: Registry ) {}
+    private registry: Registry,
+    private loggerService: LoggerService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot
   ): Observable<boolean> {
@@ -27,6 +29,7 @@ export class GuardRoute implements CanActivate {
     if (guard === undefined) {
       throw new Error(`no registered guard '${config.guardName}'`);
     }
+    this.loggerService.log(`Guard ${config.guardName}`);
     const url = route.url.join('/');
     return guard(url, this.injector);
   }

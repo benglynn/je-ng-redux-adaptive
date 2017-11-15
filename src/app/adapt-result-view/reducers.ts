@@ -7,7 +7,6 @@ export function initAdaptResultView(action: IAction, state: IConfigurationState
   const config = state;
   const newState = Object.assign({}, state);
   newState.restaurants.views.resultView = 'newResultView';
-  console.log(newState);
   return newState;
 }
 

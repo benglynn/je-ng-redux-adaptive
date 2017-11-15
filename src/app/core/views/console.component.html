@@ -3,15 +3,15 @@
   <div class="console__section console__section--adaptations">
     <button (click)="onTapAdaptView()" [disabled]="adaptedView">Result view</button>
   </div>
-  <h2 class="console__heading">Trace</h2>
+  <h2 class="console__heading">Log</h2>
   <div class="console__section console__section--trace">
       <div class="console__pre">{{ trace }}</div>
   </div>
-  <h2 class="console__heading"
+  <h2 class="console__heading console__heading--interactive"
     (click)="isAppStateVisible = !isAppStateVisible"
     [ngSwitch]="isAppStateVisible">
-    <span *ngSwitchCase="true">App state</span>
-    <span *ngSwitchCase="false">Config state</span>
+    <span *ngSwitchCase="true">App state <span class="dim dim--right">Config state</span></span>
+    <span *ngSwitchCase="false"><span class="dim dim--left">App State</span> Config state</span>
   </h2>
   <div class="console__section console__section--state"
     [class.console__section--collapsed]="!isAppStateVisible">

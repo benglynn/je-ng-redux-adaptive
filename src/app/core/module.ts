@@ -7,6 +7,7 @@ import { PostcodeSearchComponent } from './views/postcode-search.component';
 import { Error404Component } from './views/error404.component';
 import { reducers } from './reducers';
 import { Registry } from '../store/registry';
+import { LoggerService } from './logger.service';
 
 @NgModule({
   imports: [ RouterModule, CommonModule ],
@@ -16,6 +17,7 @@ import { Registry } from '../store/registry';
     PostcodeSearchComponent,
     ConsoleComponent
   ],
+  providers: [ LoggerService ],
   exports: [ ConsoleComponent ],
   entryComponents: [ Error404Component, HomeComponent ],
 })

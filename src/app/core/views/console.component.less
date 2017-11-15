@@ -24,13 +24,30 @@
   &__heading {
     font-family: sans-serif;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
     color: white;
     display: block;
     flex-grow: 0;
     flex-shrink: 0;
     padding: 10px 10px 0 10px;
+
+    &--interactive {
+      cursor: pointer;
+    }
+
+    .dim {
+      opacity: .6;
+
+      &--left {
+        margin-right: 10px;
+      }
+
+      &--right {
+        margin-left: 10px;
+      }
+    }
+
   }
 
   &__pre {

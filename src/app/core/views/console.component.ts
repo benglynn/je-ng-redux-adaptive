@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
+import { LoggerService } from '../logger.service';
 
 @Component({
   selector: 'app-console',
@@ -16,7 +17,7 @@ export class ConsoleComponent {
   adaptedView = false;
   isAppStateVisible = true;
 
-  constructor( public store: Store ) {
+  constructor( public store: Store, private loggerService: LoggerService ) {
     this.filteredState$ = this.store.state$
       .map(state => Object.entries(state)
       .reduce((prev, [name, value], index) =>
@@ -24,8 +25,8 @@ export class ConsoleComponent {
         {})
     );
     this.config$ = this.store.select('configuration');
-    this.store.action$.subscribe(action =>
-      this.trace = `${action.type} ${action.payload || ''}\n` + this.trace);
+    this.loggerService.subscribe(msg =>
+      this.trace = `${msg}\n` + this.trace);
   }
 
   onTapAdaptView() {

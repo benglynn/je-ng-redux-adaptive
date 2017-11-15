@@ -10,6 +10,7 @@ import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
 import * as fromUtils from './utils';
+import { LoggerService } from '../core/logger.service';
 
 import * as fromPostcode from '../area';
 
@@ -32,7 +33,8 @@ export class Store {
   private reduce(
     action: IAction,
     state: IAppState,
-    reducers: IReducers) {
+    reducers: IReducers,
+    logger: LoggerService) {
       const newSlices = Object.keys(state) // TODO: use Object.entries here
         .map(sliceName => {
           const sliceConf: ISliceConfiguration|undefined = state
@@ -46,6 +48,7 @@ export class Store {
           if (reducer === undefined ) {
             throw new Error(`no reducer '${reducerName}'`);
           }
+          logger.log(`Reducer ${reducerName}`);
           return reducer(action, state[sliceName]);
       });
       const isUnchanged = newSlices.reduce((acc, nextSlice) => {
@@ -60,7 +63,8 @@ export class Store {
     action: IAction,
     state: IAppState,
     effectFunctions: IEffects,
-    injector: Injector
+    injector: Injector,
+    logger: LoggerService
   ) {
     Object.keys(state.configuration) // TODO: use Object.entries here
     .filter(sliceName => state.configuration[sliceName].effects !== undefined)
@@ -74,6 +78,7 @@ export class Store {
           if (effectFunction === undefined) {
             throw new Error(`expected effect named '${functionName}'`);
           }
+          logger.log(`Effect ${functionName}`);
           effectFunction(action, injector);
         });
     });
@@ -82,7 +87,8 @@ export class Store {
   constructor(
     @Inject(INITIAL_STATE) private initialState: IAppState,
     private registry: Registry,
-    private injector: Injector
+    private injector: Injector,
+    private loggerService: LoggerService
   ) {
     this.state$ = new BehaviorSubject(initialState);
     this.action$ = new BehaviorSubject({ type: 'APP_LAUNCH'});
@@ -90,9 +96,9 @@ export class Store {
     this.actionSubscription = this.action$ // TODO: manage destruction
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
-        console.log(action.type, action.payload ? action.payload : '');
-        this.reduce(action, state, this.registry.reducers);
-        this.effect(action, state, this.registry.effects, this.injector);
+        this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
+        this.reduce(action, state, this.registry.reducers, this.loggerService);
+        this.effect(action, state, this.registry.effects, this.injector, this.loggerService);
       });
   }
 }
