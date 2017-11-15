@@ -1,0 +1,24 @@
+<div class="console">
+  <h2 class="console__heading">Adaptations</h2>
+  <div class="console__section console__section--adaptations">
+    <button (click)="onTapAdaptView()" [disabled]="adaptedView">Result view</button>
+  </div>
+  <h2 class="console__heading">Trace</h2>
+  <div class="console__section console__section--trace">
+      <div class="console__pre">{{ trace }}</div>
+  </div>
+  <h2 class="console__heading"
+    (click)="isAppStateVisible = !isAppStateVisible"
+    [ngSwitch]="isAppStateVisible">
+    <span *ngSwitchCase="true">App state</span>
+    <span *ngSwitchCase="false">Config state</span>
+  </h2>
+  <div class="console__section console__section--state"
+    [class.console__section--collapsed]="!isAppStateVisible">
+      <div class="console__pre">{{ (filteredState$|async)|json }}</div>
+  </div>
+  <div class="console__section console__section--config"
+    [class.console__section--collapsed]="isAppStateVisible">
+      <div class="console__pre">{{ (config$|async)|json }}</div>
+  </div>
+</div>

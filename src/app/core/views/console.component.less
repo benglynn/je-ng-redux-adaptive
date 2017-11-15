@@ -1,0 +1,41 @@
+.console {
+  background: #333;
+  height: 100vh;
+  flex-direction: column;
+  flex-grow: 1;
+
+  &__section {
+    overflow: auto;
+    padding: 10px;
+
+    &--adaptations {
+      overflow: initial;
+    }
+
+    &--collapsed {
+      display: none;
+    }
+
+    &--trace {
+      height: 200px;
+    }
+  }
+
+  &__heading {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 10px 10px 0 10px;
+  }
+
+  &__pre {
+    color: #ccffcc;
+    font-family: monospace;
+    white-space: pre;
+  }
+}

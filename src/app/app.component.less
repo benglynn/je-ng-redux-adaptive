@@ -1,41 +1,11 @@
 .app {
   background: url('/assets/img/logo.svg') no-repeat center 20px;
-  flex-grow: 0;
   padding: 80px 20px 20px 20px;
   text-align: center;
+  flex-grow: 0;
   width: 600px;
   overflow: auto;
 }
-.console {
-  background: #333;
-  display: flex;
-  flex-direction: column;
+.console-container {
   flex-grow: 1;
-
-  &__section {
-    overflow: auto;
-    padding: 10px;
-
-    &--adaptations {
-      overflow: initial;
-    }
-  }
-
-  &__heading {
-    font-family: sans-serif;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 400;
-    color: white;
-    display: block;
-    flex-grow: 1;
-    flex-shrink: 0;
-    padding: 10px 10px 0 10px;
-  }
-
-  &__pre {
-    color: #ccffcc;
-    font-family: monospace;
-    white-space: pre;
-  }
 }

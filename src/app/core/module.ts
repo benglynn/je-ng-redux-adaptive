@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home.component';
+import { ConsoleComponent } from './views/console.component';
 import { PostcodeSearchComponent } from './views/postcode-search.component';
 import { Error404Component } from './views/error404.component';
 import { reducers } from './reducers';
@@ -13,7 +14,9 @@ import { Registry } from '../store/registry';
     HomeComponent,
     Error404Component,
     PostcodeSearchComponent,
+    ConsoleComponent
   ],
+  exports: [ ConsoleComponent ],
   entryComponents: [ Error404Component, HomeComponent ],
 })
 export class CoreModule {

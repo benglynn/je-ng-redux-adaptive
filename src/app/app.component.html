@@ -1,21 +1,4 @@
 <div class="app">
     <router-outlet></router-outlet>
 </div>
-<div class="console">
-    <h2 class="console__heading">State</h2>
-    <div class="console__section console__section--state">
-        <div class="console__pre">{{ (filteredState$|async)|json }}</div>
-    </div>
-    <h2 class="console__heading">Config</h2>
-    <div class="console__section console__section--config">
-        <div class="console__pre">{{ (config$|async)|json }}</div>
-    </div>
-    <h2 class="console__heading">Trace</h2>
-    <div class="console__section console__section--runtime">
-        <div class="console__pre">{{ trace }}</div>
-    </div>
-    <h2 class="console__heading">Adaptations</h2>
-    <div class="console__section console__section--adaptations">
-      <button (click)="onTapAdaptView()" [disabled]="adaptedView">Result view</button>
-  </div>
-</div>
+<app-console class="console-container"></app-console>
