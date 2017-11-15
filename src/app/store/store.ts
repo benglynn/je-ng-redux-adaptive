@@ -85,7 +85,7 @@ export class Store {
     private injector: Injector
   ) {
     this.state$ = new BehaviorSubject(initialState);
-    this.action$ = new BehaviorSubject({ type: 'INITIAL_ACTION'});
+    this.action$ = new BehaviorSubject({ type: 'APP_LAUNCH'});
 
     this.actionSubscription = this.action$ // TODO: manage destruction
       .withLatestFrom(this.state$)

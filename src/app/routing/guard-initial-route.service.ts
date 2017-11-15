@@ -6,11 +6,15 @@ import { Store } from '../store/store';
 import { Registry } from '../store/registry';
 import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../configuration';
 import { GuardRoute } from './guard-route.service';
+import { RouteActionService } from './route-action.service';
 
 @Injectable()
 export class GuardInitialRoute implements CanActivate {
 
-  constructor( private router: Router, private store: Store,
+  constructor(
+    private routActionService: RouteActionService,
+    private router: Router,
+    private store: Store,
     private registry: Registry ) {}
 
   regexMatcher(pattern) {
@@ -45,6 +49,7 @@ export class GuardInitialRoute implements CanActivate {
         const newRoutes = this.mapStateRoutes(configuration);
       console.log('Updating routes', newRoutes);
       this.router.resetConfig(newRoutes);
+      this.routActionService.subscribe();
       this.router.navigateByUrl(state.url, { replaceUrl: true });
       return false;
     });

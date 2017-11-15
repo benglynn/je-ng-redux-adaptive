@@ -12,5 +12,5 @@ import { RouteActionService } from './route-action.service';
   providers: [ GuardInitialRoute, GuardRoute, RouteActionService ]
 })
 export class RoutingModule {
-  constructor( routActionService: RouteActionService ) {}
+  constructor() {}
 }
