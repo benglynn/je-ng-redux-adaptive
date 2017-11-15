@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../area';
-import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews,
-  IGuard, IGuards } from './types';
+import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews
+} from './types';
 import { RestaurantsService } from '../restaurants';
 
 @Injectable()
@@ -10,7 +10,6 @@ export class Registry {
   reducers: IReducers = {}; // TODO: behaviorSubject.concat() better?
   effects: IEffects = {};
   private views: IViews = {};
-  private guards: IGuards = {};
 
   private getItem<T>(registry: {[name: string]: T}, name: string): T {
     const item = registry[name];
@@ -41,13 +40,6 @@ export class Registry {
     this.views = Object.assign(this.views, {[name]: view});
   }
 
-  private registerResolver(name: string, guard: IGuard) {
-    if (this.guards[name] !== undefined) {
-      throw new Error(`guard named '${name}' already registered`);
-    }
-    this.guards = Object.assign(this.guards, {[name]: guard});
-  }
-
   registerReducers(reducers: IReducers) {
     Object.keys(reducers).map(name =>
       this.registerReducer(name, reducers[name])
@@ -66,11 +58,6 @@ export class Registry {
     );
   }
 
-  registerResolvers(guards: IGuards) {
-    Object.keys(guards).map(name =>
-      this.registerResolver(name, guards[name]));
-  }
-
   getReducer(name: string) {
     return this.getItem(this.reducers, name);
   }
@@ -81,10 +68,6 @@ export class Registry {
 
   getView(name: string) {
     return this.getItem(this.views, name);
-  }
-
-  getGuard(name: string) {
-    return this.getItem(this.guards, name);
   }
 
 }

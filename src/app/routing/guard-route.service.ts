@@ -6,8 +6,8 @@ import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
 import { Registry } from '../store/registry';
 import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../configuration';
-import { IGuard } from '../store/types';
 import { LoggerService } from '../core/logger.service';
+import { NavigationStartAction } from '../routing/actions';
 
 @Injectable()
 export class GuardRoute implements CanActivate {
@@ -22,15 +22,13 @@ export class GuardRoute implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot
   ): Observable<boolean> {
     const config = route.data as IRouteConfig;
-    if (config.guardName === undefined) {
+    if (config.effectName === undefined) {
       return Observable.of(true);
     }
-    const guard = this.registry.getGuard(config.guardName);
-    if (guard === undefined) {
-      throw new Error(`no registered guard '${config.guardName}'`);
-    }
-    this.loggerService.log(`Guard ${config.guardName}`);
-    const url = route.url.join('/');
-    return guard(url, this.injector);
+    const effect = this.registry.getEffect(config.effectName as string);
+    console.log(effect);
+    const action = new NavigationStartAction(route.url.join('/'));
+    this.loggerService.log(`Effect ${config.effectName}`);
+    return effect(action, this.injector);
   }
 }

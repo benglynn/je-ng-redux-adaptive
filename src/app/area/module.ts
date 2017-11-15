@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Registry } from '../store/registry';
 import { reducers } from './reducers';
-import { guards } from './guards';
 import { AreaComponent } from './views/area.component';
 import { RestaurantsModule } from '../restaurants/module';
 
@@ -22,6 +21,5 @@ export class AreaModule {
   constructor(private registry: Registry) {
     registry.registerReducers(reducers);
     registry.registerViews({'areaView': AreaComponent});
-    registry.registerResolvers(guards);
   }
 }

@@ -28,7 +28,7 @@ interface IStringHash {
 export interface IRouteConfig {
   pattern: string;
   viewName: string;
-  guardName?: string;
+  effectName?: string;
 }
 
 export interface ISliceConfiguration {
