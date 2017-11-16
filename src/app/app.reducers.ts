@@ -21,5 +21,4 @@ export const reducers: IReducers = {
 
 export type IReducerName = keyof IReducers;
 
-export const REDUCERS = new InjectionToken<IReducers
->('named reducers');
+export const REDUCERS = new InjectionToken<IReducers>('reducers');

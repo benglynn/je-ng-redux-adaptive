@@ -5,7 +5,7 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../state';
-import { IAction, IReducer, IEffects } from './types';
+import { IAction, IEffect, IReducer } from './types';
 import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
@@ -13,6 +13,7 @@ import * as fromUtils from './utils';
 import { LoggerService } from '../core/logger.service';
 import * as fromPostcode from '../area';
 import { REDUCERS, IReducers } from '../app.reducers';
+import { EFFECTS, IEffects } from '../app.effects';
 
 @Injectable()
 export class Store {
@@ -62,7 +63,7 @@ export class Store {
   private effect(
     action: IAction,
     state: IAppState,
-    effectFunctions: IEffects,
+    effectFunctions: any,
     injector: Injector,
     logger: LoggerService
   ) {
@@ -74,12 +75,12 @@ export class Store {
         .filter(actionName => actionName === action.type)
         .forEach(actionName => {
           const functionName = sliceEffects[actionName];
-          const effectFunction = effectFunctions[functionName];
+          const effectFunction = effectFunctions[functionName] as IEffect<any>|undefined;
           if (effectFunction === undefined) {
             throw new Error(`expected effect named '${functionName}'`);
           }
           logger.log(`Effect ${functionName}`);
-          effectFunction(action, injector);
+          effectFunction(action, this, injector);
         });
     });
   }
@@ -87,6 +88,7 @@ export class Store {
   constructor(
     @Inject(INITIAL_STATE) private initialState: IAppState,
     @Inject(REDUCERS) private reducers: IReducers|IReducers, // TODO: remove union
+    @Inject(EFFECTS) private effects: IEffects|IEffects, // TODO: remove union
     private registry: Registry,
     private injector: Injector,
     private loggerService: LoggerService
@@ -99,7 +101,7 @@ export class Store {
       .subscribe(([action, state]) => {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
         this.reduce(action, state, this.reducers, this.loggerService);
-        this.effect(action, state, this.registry.effects, this.injector, this.loggerService);
+        this.effect(action, state, this.effects, this.injector, this.loggerService);
       });
   }
 }

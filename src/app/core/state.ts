@@ -1,5 +1,6 @@
 import { IRouteConfig } from '../configuration/state';
 import { ICoreReducerName } from './reducers';
+import { ICoreEffectName } from './effects';
 
 export interface ICoreState {
   url: string|null;
@@ -14,6 +15,9 @@ export interface ICoreConfiguration {
   reducers: {
     NAVIGATION_END: ICoreReducerName;
   };
+  effects: {
+    UPDATE_AREA: ICoreEffectName;
+  }
 }
 
 export const initialCoreConfiguration: ICoreConfiguration = {
@@ -22,5 +26,8 @@ export const initialCoreConfiguration: ICoreConfiguration = {
   ],
   reducers: {
     NAVIGATION_END: 'navigationEnd'
+  },
+  effects: {
+    UPDATE_AREA: 'logPostcodeEffect'
   }
 };
