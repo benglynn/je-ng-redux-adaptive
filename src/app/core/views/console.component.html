@@ -1,10 +1,11 @@
 <div class="console">
-  <h2 class="console__heading">Adaptations</h2>
+  <h2 class="console__heading">Actions</h2>
   <div class="console__section console__section--adaptations">
-    <button (click)="onTapAdaptView()" [disabled]="adaptedView">Result view</button>
+      <button (click)="onTapAdaptRoutes()" [disabled]="adaptedRoutes">INIT_ADAPT_ROUTES</button>
+      <button (click)="onTapAdaptView()" [disabled]="adaptedView">INIT_ADAPT_RESULT_VIEW</button>
   </div>
   <h2 class="console__heading">Log</h2>
-  <div class="console__section console__section--trace">
+  <div class="console__section console__section--trace console__section--scroll">
       <div class="console__pre">{{ trace }}</div>
   </div>
   <h2 class="console__heading console__heading--interactive"
@@ -13,11 +14,11 @@
     <span *ngSwitchCase="true">App state <span class="dim dim--right">Config state</span></span>
     <span *ngSwitchCase="false"><span class="dim dim--left">App State</span> Config state</span>
   </h2>
-  <div class="console__section console__section--state"
+  <div class="console__section console__section--state console__section--scroll"
     [class.console__section--collapsed]="!isAppStateVisible">
       <div class="console__pre">{{ (filteredState$|async)|json }}</div>
   </div>
-  <div class="console__section console__section--config"
+  <div class="console__section console__section--config console__section--scroll"
     [class.console__section--collapsed]="isAppStateVisible">
       <div class="console__pre">{{ (config$|async)|json }}</div>
   </div>

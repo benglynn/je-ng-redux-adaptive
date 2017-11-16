@@ -12,7 +12,13 @@ export class RestaurantsService {
     return Observable.from([[
       {name: 'test-restaurant', title: 'A Test Restaurant'},
       {name: 'another-restaurant', title: 'Another Restaurnat'},
-      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'}
+      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'},
+      {name: 'test-restaurant', title: 'A Test Restaurant'},
+      {name: 'another-restaurant', title: 'Another Restaurnat'},
+      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'},
+      {name: 'test-restaurant', title: 'A Test Restaurant'},
+      {name: 'another-restaurant', title: 'Another Restaurnat'},
+      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'},
     ]])
     .delay(500);
   }

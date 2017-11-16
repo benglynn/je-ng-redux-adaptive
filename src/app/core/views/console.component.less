@@ -1,15 +1,25 @@
 .console {
   background: #333;
-  height: 100vh;
+  display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 100vh;
 
   &__section {
-    overflow: auto;
-    padding: 10px;
+    padding: 0 10px;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    &--scroll {
+      overflow: auto;
+    }
+
+    &--state, &--config {
+      flex-shrink: 1;
+    }
 
     &--adaptations {
-      overflow: initial;
+      padding: 10px;
     }
 
     &--collapsed {
@@ -22,15 +32,16 @@
   }
 
   &__heading {
-    font-family: sans-serif;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 400;
+    background-color: #666;
     color: white;
-    display: block;
     flex-grow: 0;
     flex-shrink: 0;
-    padding: 10px 10px 0 10px;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
 
     &--interactive {
       cursor: pointer;
@@ -54,5 +65,6 @@
     color: #ccffcc;
     font-family: monospace;
     white-space: pre;
+    padding-top: 10px;
   }
 }

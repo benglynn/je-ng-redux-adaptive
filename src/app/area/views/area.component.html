@@ -1,10 +1,12 @@
-<nav class="breadcrumb">
-  <a class="breadcrumb__item" [routerLink]="['/']">Home</a> &gt;
-  <span class="breadcrumb__item">{{ (area$|async) | uppercase }}</span>
-</nav>
-<h1 class="heading">{{ (restaurants$|async)?.data?.length }} restaurants in
-  {{ (area$|async) | uppercase }}</h1>
-<app-result-seam
-  *ngFor="let restaurant of (restaurants$|async)?.data"
-  [restaurant]="restaurant"
-  [viewName$]="resultViewName$"></app-result-seam>
+<div class="page page--area">
+  <nav class="breadcrumb">
+    <a class="breadcrumb__item" [routerLink]="['/']">Home</a> &gt;
+    <span class="breadcrumb__item">{{ (area$|async) | uppercase }}</span>
+  </nav>
+  <h1 class="heading">{{ (restaurants$|async)?.data?.length }} restaurants in
+    {{ (area$|async) | uppercase }}</h1>
+  <app-result-seam
+    *ngFor="let restaurant of (restaurants$|async)?.data"
+    [restaurant]="restaurant"
+    [viewName$]="resultViewName$"></app-result-seam>
+  </div>
