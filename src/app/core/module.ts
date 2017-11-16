@@ -5,7 +5,6 @@ import { HomeComponent } from './views/home.component';
 import { ConsoleComponent } from './views/console.component';
 import { PostcodeSearchComponent } from './views/postcode-search.component';
 import { Error404Component } from './views/error404.component';
-import { reducers } from './reducers';
 import { Registry } from '../store/registry';
 import { LoggerService } from './logger.service';
 
@@ -27,6 +26,5 @@ export class CoreModule {
       homeView: HomeComponent,
       error404View: Error404Component
     });
-    this.registry.registerReducers(reducers);
   }
 }

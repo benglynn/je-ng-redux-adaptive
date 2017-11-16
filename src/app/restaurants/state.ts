@@ -1,39 +1,34 @@
 import { IRestaurant } from '../restaurant';
-import { ISliceConfiguration } from '../configuration';
-
-export enum Status { Loading, Okay, Error }
+import { IRestaurantsReducerName } from './reducers';
 
 export interface IRestaurantsState {
-  status: null | Status;
   data: null | IRestaurant[];
 }
 
-export const initialRestaurantState: IRestaurantsState = { status: null, data: null };
+export const initialRestaurantState: IRestaurantsState = { data: null };
 
-export interface IRestaurantsSliceConfiguration extends ISliceConfiguration {
+export interface IRestaurantsConfiguration {
   reducers: {
-    'UPDATE_RESTAURANTS': string;
-    'REMOVE_RESTAURANTS': string;
-    'UPDATE_RESTAURANTS_STATUS': string;
+    UPDATE_RESTAURANTS: IRestaurantsReducerName;
+    REMOVE_RESTAURANTS: IRestaurantsReducerName;
   };
   effects: {
-    'LOAD_RESTAURANTS': string;
+    LOAD_RESTAURANTS: string;
   };
   views: {
-    'resultView': string;
+    resultView: string;
   };
 }
 
-export const initialRestaurantsConfiguration: IRestaurantsSliceConfiguration = {
+export const initialRestaurantsConfiguration: IRestaurantsConfiguration = {
   reducers: {
-    'UPDATE_RESTAURANTS': 'updateRestaurants',
-    'REMOVE_RESTAURANTS': 'removeRestaurants',
-    'UPDATE_RESTAURANTS_STATUS': 'UpdateRestaurantsStatus'
+    UPDATE_RESTAURANTS: 'updateRestaurants',
+    REMOVE_RESTAURANTS: 'removeRestaurants',
   },
   effects: {
-    'LOAD_RESTAURANTS': 'loadRestaurants'
+    LOAD_RESTAURANTS: 'loadRestaurants',
   },
   views: {
-    'resultView': 'resultView'
+    resultView: 'resultView',
   }
 };

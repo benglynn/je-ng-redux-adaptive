@@ -26,7 +26,6 @@ export class GuardRoute implements CanActivate {
       return Observable.of(true);
     }
     const effect = this.registry.getEffect(config.effectName as string);
-    console.log(effect);
     const action = new NavigationStartAction(route.url.join('/'));
     this.loggerService.log(`Effect ${config.effectName}`);
     return effect(action, this.injector);

@@ -1,5 +1,3 @@
-import { IAction, IReducers } from './types';
-
 describe('todo', () => {
 
   it('should pass', () => {

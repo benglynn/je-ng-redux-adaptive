@@ -1,25 +1,31 @@
-import { IReducers } from '../store/types';
-import {
-  UpdateRestaurants,
-  RemoveRestaurants,
-  UpdateRestaurantsStatus as UpdateRestaurantsStatusAction } from './actions';
-import { IRestaurantsState, Status } from './state';
+import { IReducer } from '../store/types';
+import { UpdateRestaurants, RemoveRestaurants } from './actions';
+import { IRestaurantsState } from './state';
 
-export function updateRestaurants(action: UpdateRestaurants, state: IRestaurantsState) {
-  return { status: Status.Okay, data: action.payload};
-}
+type IRestaurantsReducer = IReducer<IRestaurantsState>;
 
-export function removeRestaurants(action: RemoveRestaurants) {
+export const updateRestaurants: IRestaurantsReducer = (
+  action: UpdateRestaurants,
+  state: IRestaurantsState
+) => {
+  return { data: action.payload};
+};
+
+export const removeRestaurants: IRestaurantsReducer = (
+  action: RemoveRestaurants
+) => {
   return { status: null, data: null };
+};
+
+export interface IRestaurantsReducers  {
+  updateRestaurants: IRestaurantsReducer;
+  removeRestaurants: IRestaurantsReducer;
 }
 
-export function UpdateRestaurantsStatus(action: UpdateRestaurantsStatusAction, state: IRestaurantsState) {
-  return Object.assign({}, state, {status: action.payload});
-}
+export type IRestaurantsReducerName = keyof IRestaurantsReducers;
 
-export const reducers: IReducers = {
-  'updateRestaurants': updateRestaurants,
-  'removeRestaurants': removeRestaurants,
-  'UpdateRestaurantsStatus': UpdateRestaurantsStatus
+export const restaurantReducers: IRestaurantsReducers = {
+  updateRestaurants: updateRestaurants,
+  removeRestaurants: removeRestaurants,
 };
 

@@ -1,13 +1,13 @@
 import { Injectable, Injector } from '@angular/core';
 import * as fromPostcode from '../area';
-import { IAction, IReducer, IReducers, IEffect, IEffects, IView, IViews
+import { IAction, IReducer, IEffect, IEffects, IView, IViews
 } from './types';
 import { RestaurantsService } from '../restaurants';
 
 @Injectable()
 export class Registry {
 
-  reducers: IReducers = {}; // TODO: behaviorSubject.concat() better?
+  reducers: any = {}; // TODO: behaviorSubject.concat() better?
   effects: IEffects = {};
   private views: IViews = {};
 
@@ -17,13 +17,6 @@ export class Registry {
       throw new Error(`item '${name}' not found in regisry`);
     }
     return item;
-  }
-
-  private registerReducer<T>(name: string, reducer: IReducer<T>) {
-    if (this.reducers[name] !== undefined) {
-      throw new Error(`reducer named '${name}' already registered`);
-    }
-    this.reducers = Object.assign(this.reducers, {[name]: reducer});
   }
 
   private registerEffect(name: string, effect: IEffect) {
@@ -38,12 +31,6 @@ export class Registry {
       throw new Error(`view named ${name} already registered`);
     }
     this.views = Object.assign(this.views, {[name]: view});
-  }
-
-  registerReducers(reducers: IReducers) {
-    Object.keys(reducers).map(name =>
-      this.registerReducer(name, reducers[name])
-    );
   }
 
   registerEffects(effects: IEffects) {

@@ -1,7 +1,6 @@
 import { IAction } from '../store/types';
 import { IRestaurant } from '../restaurant';
 import { IAreaState as Postcode } from '../area';
-import { IRestaurantsState, Status } from './state';
 
 export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';
 export const UPDATE_RESTAURANTS = 'UPDATE_RESTAURANTS';
@@ -20,9 +19,4 @@ export class UpdateRestaurants implements IAction {
 
 export class RemoveRestaurants implements IAction {
   readonly type = REMOVE_RESTAURANTS;
-}
-
-export class UpdateRestaurantsStatus implements IAction {
-  readonly type = UPDATE_RESTAURANTS_STATUS;
-  constructor(public payload: Status) {}
 }

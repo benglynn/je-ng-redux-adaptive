@@ -1,12 +1,23 @@
-import { IReducers } from '../store/types';
+import { IReducer } from '../store/types';
 import { UpdateAreaAction } from './actions';
 import { IAreaState } from './state';
 
-export function updateAreaReducer(action: UpdateAreaAction, state: IAreaState) {
+type IAreaReducer = IReducer<IAreaState>;
+
+export const updateAreaReducer: IAreaReducer = (
+  action: UpdateAreaAction,
+  state: IAreaState
+): IAreaState => {
   return action.payload;
+};
+
+export interface IAreaReducers {
+  updateArea: IAreaReducer;
 }
 
-export const reducers: IReducers = {
-  'updateArea': updateAreaReducer
+export type IAreaReducerName = keyof IAreaReducers;
+
+export const areaReducers: IAreaReducers = {
+  updateArea: updateAreaReducer
 };
 

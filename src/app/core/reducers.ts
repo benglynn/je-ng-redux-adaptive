@@ -1,13 +1,23 @@
-import { IReducers } from '../store/types';
+import { IReducer } from '../store/types';
 import { NavigationEndAction } from '../routing/actions';
 import { ICoreState } from './state';
 
-export function navigationEnd(action: NavigationEndAction, state: ICoreState
-): ICoreState {
+type ICoreReducer = IReducer<ICoreState>;
+
+const navigationEnd: ICoreReducer = (
+  action: NavigationEndAction,
+  state: ICoreState
+): ICoreState => {
   return {url: action.payload};
+};
+
+export interface ICoreReducers {
+  navigationEnd: ICoreReducer;
 }
 
-export const reducers: IReducers = {
-  'navigationEnd': navigationEnd
+export type ICoreReducerName = keyof ICoreReducers;
+
+export const coreReducers: ICoreReducers = {
+  navigationEnd: navigationEnd
 };
 

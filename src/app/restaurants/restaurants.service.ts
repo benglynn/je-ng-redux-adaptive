@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
 import { IRestaurant } from '../restaurant';
-import { Status as RestaurantsStatus } from '../restaurants/state';
 
 @Injectable()
 export class RestaurantsService {

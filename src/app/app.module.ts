@@ -8,6 +8,7 @@ import { RoutingModule } from './routing/module';
 import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
 import { AdaptResultViewModule} from './adapt-result-view/module';
+import { REDUCERS, reducers } from './app.reducers';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -21,6 +22,7 @@ import { AdaptResultViewModule} from './adapt-result-view/module';
     AreaModule,
     AdaptResultViewModule
   ],
+  providers: [{ provide: REDUCERS, useValue: reducers }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

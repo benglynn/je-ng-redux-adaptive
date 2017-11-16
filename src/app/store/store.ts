@@ -5,14 +5,14 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../state';
-import { IAction, IReducer, IReducers, IEffects } from './types';
+import { IAction, IReducer, IEffects } from './types';
 import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
 import { Registry } from './registry';
 import * as fromUtils from './utils';
 import { LoggerService } from '../core/logger.service';
-
 import * as fromPostcode from '../area';
+import { REDUCERS, IReducers } from '../app.reducers';
 
 @Injectable()
 export class Store {
@@ -86,6 +86,7 @@ export class Store {
 
   constructor(
     @Inject(INITIAL_STATE) private initialState: IAppState,
+    @Inject(REDUCERS) private reducers: IReducers|IReducers, // TODO: remove union
     private registry: Registry,
     private injector: Injector,
     private loggerService: LoggerService
@@ -97,7 +98,7 @@ export class Store {
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
-        this.reduce(action, state, this.registry.reducers, this.loggerService);
+        this.reduce(action, state, this.reducers, this.loggerService);
         this.effect(action, state, this.registry.effects, this.injector, this.loggerService);
       });
   }
