@@ -1,12 +1,14 @@
-import { Input, Component, ChangeDetectionStrategy, ViewChild, AfterViewInit,
-  ComponentFactoryResolver, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Inject, Input, Component, ChangeDetectionStrategy, ViewChild,
+  AfterViewInit, ComponentFactoryResolver, ChangeDetectorRef, OnDestroy
+} from '@angular/core';
 import { IConfigurationState } from '../../configuration';
 import { ResultComponent, IResultView } from '../../restaurants/views/result.component';
 import { ResultSeamDirective } from '../../restaurants/views/result-seam.directive';
 import { IRestaurant } from '../../restaurant';
-import { Registry } from '../../store/registry';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { IView } from '../../store/types';
+import { VIEWS, IViews } from '../../app.views';
 
 @Component({
   selector: 'app-result-seam',
@@ -21,7 +23,7 @@ export class ResultSeamComponent implements AfterViewInit, OnDestroy {
   viewNameSubscription: Subscription;
 
   constructor(
-    private registry: Registry,
+    @Inject(VIEWS) private views: IViews|IViews,
     private cfr: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef
   ) {}
@@ -29,7 +31,7 @@ export class ResultSeamComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.viewNameSubscription = this.viewName$.subscribe(viewName => {
       this.resultDirective.viewContainerRef.clear();
-      const component = this.registry.getView(viewName);
+      const component = this.views[viewName] as IView;
       const factory = this.cfr.resolveComponentFactory(component);
       const componentRef = this.resultDirective.viewContainerRef
         .createComponent(factory);

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Registry } from '../store/registry';
 import { AreaComponent } from './views/area.component';
 import { RestaurantsModule } from '../restaurants/module';
 
@@ -16,8 +15,4 @@ import { RestaurantsModule } from '../restaurants/module';
   ],
   entryComponents: [ AreaComponent ]
 })
-export class AreaModule {
-  constructor(private registry: Registry) {
-    registry.registerViews({'areaView': AreaComponent});
-  }
-}
+export class AreaModule {}

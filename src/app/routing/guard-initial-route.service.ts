@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { CanActivate, Router, Routes, RouterStateSnapshot,
   UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '../store/store';
-import { Registry } from '../store/registry';
 import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../configuration';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
+import { VIEWS, IViews } from '../app.views';
+import { IView } from '../store/types';
 
 @Injectable()
 export class GuardInitialRoute implements CanActivate {
 
   constructor(
+    @Inject(VIEWS) private views: IViews|IViews,
     private routActionService: RouteActionService,
     private router: Router,
-    private store: Store,
-    private registry: Registry ) {}
+    private store: Store
+  ) {}
 
   regexMatcher(pattern) {
     return function(url: UrlSegment[]) {
@@ -31,7 +33,7 @@ export class GuardInitialRoute implements CanActivate {
       .filter((config: ISliceConfiguration) => config.routes !== undefined)
       .reduce((prev, curr: ISliceConfiguration) => prev.concat(curr.routes), [])
       .map((config: IRouteConfig) => {
-        const view = this.registry.getView(config.viewName as string);
+        const view = this.views[config.viewName] as IView;
         const matcher = this.regexMatcher(config.pattern);
         return {
           matcher: matcher,
@@ -40,7 +42,7 @@ export class GuardInitialRoute implements CanActivate {
           canActivate: [ GuardRoute ]
         };
       })
-      .concat({ path: '**', component: this.registry.getView('error404View') });
+      .concat({ path: '**', component: this.views['error404View'] });
   }
 
   canActivate(_, state: RouterStateSnapshot): Observable<boolean> {

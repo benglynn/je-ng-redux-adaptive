@@ -8,7 +8,6 @@ import { IAppState } from '../state';
 import { IAction, IEffect, IReducer } from './types';
 import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
-import { Registry } from './registry';
 import * as fromUtils from './utils';
 import { LoggerService } from '../core/logger.service';
 import * as fromPostcode from '../area';
@@ -89,7 +88,6 @@ export class Store {
     @Inject(INITIAL_STATE) private initialState: IAppState,
     @Inject(REDUCERS) private reducers: IReducers|IReducers, // TODO: remove union
     @Inject(EFFECTS) private effects: IEffects|IEffects, // TODO: remove union
-    private registry: Registry,
     private injector: Injector,
     private loggerService: LoggerService
   ) {
