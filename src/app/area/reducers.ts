@@ -1,4 +1,4 @@
-import { IReducer } from '../store/types';
+import { IReducer } from '../app.reducers';
 import { UpdateAreaAction } from './actions';
 import { IAreaState } from './state';
 

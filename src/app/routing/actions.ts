@@ -1,4 +1,4 @@
-import { IAction } from '../store/types';
+import { IAction } from '../app.reducers';
 
 export const NAVIGATION_START = 'NAVIGATION_START';
 export const NAVIGATION_END = 'NAVIGATION_END';

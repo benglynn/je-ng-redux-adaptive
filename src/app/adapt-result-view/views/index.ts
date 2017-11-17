@@ -1,5 +1,5 @@
 import { NewResultComponent } from './new-result.component';
-import { IView } from '../../store/types';
+import { IView } from '../../app.views';
 
 export interface IAdaptResultsViewViews {
   newResultView: IView;

@@ -1,4 +1,4 @@
-import { IView } from '../../store/types';
+import { IView } from '../../app.views';
 import { ResultComponent } from './result.component';
 
 export interface IRestaurantsViews {

@@ -1,5 +1,5 @@
 import { IConfigurationState } from '../configuration/state';
-import { IAction } from '../store/types';
+import { IAction } from '../app.reducers';
 import { IConfigurationReducer } from '../configuration/reducers';
 
 export const initAdaptResultView: IConfigurationReducer = (

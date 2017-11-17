@@ -6,6 +6,13 @@ import { IAreaReducers, areaReducers } from './area/reducers';
 import { IAdaptResultViewReducers, adaptResultViewReducers
 } from './adapt-result-view/reducers';
 
+export interface IAction {
+  type: string;
+  payload?: any;
+}
+
+export type IReducer<T> = (action: IAction, state: T) => T;
+
 export interface IReducers extends
   IRestaurantsReducers,
   ICoreReducers,

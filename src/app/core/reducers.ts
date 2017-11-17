@@ -1,4 +1,4 @@
-import { IReducer } from '../store/types';
+import { IReducer } from '../app.reducers';
 import { NavigationEndAction } from '../routing/actions';
 import { ICoreState } from './state';
 

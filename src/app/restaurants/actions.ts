@@ -1,4 +1,4 @@
-import { IAction } from '../store/types';
+import { IAction } from '../app.reducers';
 import { IRestaurant } from '../restaurant';
 import { IAreaState as Postcode } from '../area';
 

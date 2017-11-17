@@ -7,7 +7,7 @@ import { ResultSeamDirective } from '../../restaurants/views/result-seam.directi
 import { IRestaurant } from '../../restaurant';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { IView } from '../../store/types';
+import { IView } from '../../app.views';
 import { VIEWS, IViews } from '../../app.views';
 
 @Component({

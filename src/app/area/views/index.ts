@@ -1,5 +1,5 @@
 import { AreaComponent } from './area.component';
-import { IView } from '../../store/types';
+import { IView } from '../../app.views';
 
 export interface IAreaViews {
   areaView: IView;

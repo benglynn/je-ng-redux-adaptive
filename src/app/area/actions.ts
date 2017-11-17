@@ -1,4 +1,4 @@
-import { IAction } from '../store/types';
+import { IAction } from '../app.reducers';
 import { IAreaState } from './state';
 
 export const UPDATE_AREA = 'UPDATE_AREA';

@@ -1,4 +1,4 @@
-import { IReducer } from '../store/types';
+import { IReducer } from '../app.reducers';
 import { UpdateRestaurants, RemoveRestaurants } from './actions';
 import { IRestaurantsState } from './state';
 

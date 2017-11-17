@@ -7,7 +7,7 @@ import { IConfigurationState, ISliceConfiguration, IRouteConfig } from '../confi
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
 import { VIEWS, IViews } from '../app.views';
-import { IView } from '../store/types';
+import { IView } from '../app.views';
 
 @Injectable()
 export class GuardInitialRoute implements CanActivate {

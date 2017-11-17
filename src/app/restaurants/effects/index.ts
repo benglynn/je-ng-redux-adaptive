@@ -1,4 +1,4 @@
-import { IEffect } from '../../store/types';
+import { IEffect } from '../../app.effects';
 import { NavigationStartAction } from '../../routing/actions';
 import { loadRestaurantsEffect } from './load-restaurants.effect';
 
