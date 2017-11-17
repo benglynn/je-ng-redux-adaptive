@@ -9,3 +9,10 @@ export interface IAppState {
   restaurants: fromRestaurants.IRestaurantsState;
   configuration: fromConfiguration.IConfigurationState;
 }
+
+export const initialState: IAppState = {
+  core: fromCore.initialCoreState,
+  area: fromPostcode.initialAreaState,
+  restaurants: fromRestaurants.initialRestaurantState,
+  configuration: fromConfiguration.initialConfigurationState
+};

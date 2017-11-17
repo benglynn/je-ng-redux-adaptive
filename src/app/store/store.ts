@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppState } from '../state';
+import { IAppState } from '../app.state';
 import { IAction, IEffect, IReducer } from './types';
 import { ISliceConfiguration } from '../configuration';
 import { INITIAL_STATE } from './tokens';
@@ -85,7 +85,7 @@ export class Store {
   }
 
   constructor(
-    @Inject(INITIAL_STATE) private initialState: IAppState,
+    @Inject(INITIAL_STATE) private initialState: IAppState|IAppState,
     @Inject(REDUCERS) private reducers: IReducers|IReducers, // TODO: remove union
     @Inject(EFFECTS) private effects: IEffects|IEffects, // TODO: remove union
     private injector: Injector,
