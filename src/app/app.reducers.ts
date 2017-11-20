@@ -26,8 +26,11 @@ export interface IAllConfigurationReducers extends INoReducers,
 IAdaptResultViewConfigReducers {}
 
 export type IAllCoreReducerName = keyof IAllCoreReducers;
+
 export type IAllAreaReducerName = keyof IAllAreaReducers;
+
 export type IAllRestaurantsReducerName = keyof IAllRestaurantsReducers;
+
 export type IAllConfigurationReducerName = keyof IAllConfigurationReducers;
 
 export const allCoreReducers: IAllCoreReducers = {
@@ -49,23 +52,3 @@ export const allConfigurationReducers: IAllConfigurationReducers = {
   ...adaptResultViewConfigReducers,
 };
 
-
-
-/* all (we won't need this ultimately) */
-
-export interface IReducers extends
-  IRestaurantsReducers,
-  ICoreReducers,
-  IAreaReducers,
-  IAdaptResultViewConfigReducers {}
-
-export const reducers: IReducers = {
-  ...restaurantReducers,
-  ...coreReducers,
-  ...areaReducers,
-  ...adaptResultViewConfigReducers,
-};
-
-export type IReducerName = keyof IReducers;
-
-export const REDUCERS = new InjectionToken<IReducers>('reducers');

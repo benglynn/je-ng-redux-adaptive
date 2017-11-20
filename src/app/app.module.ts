@@ -8,7 +8,6 @@ import { RoutingModule } from './routing/module';
 import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
 import { AdaptResultViewModule} from './adapt-result-view/module';
-import { REDUCERS, reducers } from './app.reducers';
 import { EFFECTS, effects } from './app.effects';
 import { VIEWS, views } from './app.views';
 
@@ -25,7 +24,6 @@ import { VIEWS, views } from './app.views';
     AdaptResultViewModule
   ],
   providers: [
-    { provide: REDUCERS, useValue: reducers },
     { provide: EFFECTS, useValue: effects },
     { provide: VIEWS, useValue: views },
   ],
