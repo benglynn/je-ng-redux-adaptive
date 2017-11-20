@@ -9,6 +9,12 @@ export const initAdaptResultView: IConfigurationReducer = (
   const config = state;
   const newState = Object.assign({}, state);
   newState.restaurants.views.resultView = 'newResultView';
+  newState.core.routes = [
+    {
+      'pattern': '^home$',
+      'viewName': 'homeView'
+    }
+  ];
   return newState;
 };
 

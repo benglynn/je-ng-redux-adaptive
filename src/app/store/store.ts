@@ -13,6 +13,7 @@ import { getNextState } from './utils';
 import { LoggerService } from '../core/logger.service';
 import * as fromPostcode from '../area';
 import { EFFECTS, IEffects } from '../app.effects';
+import { UpdateRoutesAction } from '../routing/update-routes';
 
 @Injectable()
 export class Store {
@@ -74,6 +75,7 @@ export class Store {
           this.state$.next(nextState);
           if (changeList.indexOf('configuration') > -1) {
             console.log('update routes');
+            this.action$.next(new UpdateRoutesAction());
           }
         }
 

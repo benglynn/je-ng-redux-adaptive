@@ -1,14 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { NavigationStartAction, NavigationEndAction } from './actions';
 import { Store } from '../store/store';
-
+import { UPDATE_ROUTES } from './update-routes';
+import { VIEWS, IViews } from '../app.views';
+import { mapStateRoutes } from './map-state-routes';
 
 @Injectable()
 export class RouteActionService {
-  constructor( private router: Router, private store: Store ) {}
 
-  subscribe() {
+  constructor(
+    @Inject(VIEWS) private views: IViews|IViews,
+    private router: Router,
+    private store: Store
+  ) {
+    this.store.action$
+      .filter(action => action.type === UPDATE_ROUTES)
+      .withLatestFrom(this.store.select('configuration'))
+      .subscribe(([action, configuration]) => {
+        const newRoutes = mapStateRoutes(configuration, this.views);
+        console.log(newRoutes);
+        this.router.resetConfig(newRoutes);
+      });
+  }
+
+  subscribeToRouterEvents() {
     this.router.events
       .filter(event => event instanceof NavigationStart)
       .subscribe((event: NavigationStart) =>
