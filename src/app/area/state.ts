@@ -1,6 +1,6 @@
-import { ISliceConfiguration } from '../configuration';
-import { IAreaReducerName } from './reducers';
-import { IRouteConfig } from '../configuration/state';
+import { ISliceConfiguration, IRouteConfig } from '../app.configuration';
+import { IAllAreaReducerName } from '../app.reducers';
+import { UPDATE_AREA } from './actions';
 
 export const areaPattern = /^\s*([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})\s*$/i;
 
@@ -10,7 +10,7 @@ export const initialAreaState: IAreaState = null;
 
 export interface IAreaConfiguration {
   reducers: {
-    UPDATE_AREA: IAreaReducerName;
+    UPDATE_AREA: IAllAreaReducerName;
   };
   routes: IRouteConfig[];
 }

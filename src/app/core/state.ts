@@ -1,5 +1,5 @@
-import { IRouteConfig } from '../configuration/state';
-import { ICoreReducerName } from './reducers';
+import { IRouteConfig } from '../app.configuration';
+import { IAllCoreReducerName } from '../app.reducers';
 import { ICoreEffectName } from './effects';
 
 export interface ICoreState {
@@ -13,11 +13,11 @@ export const initialCoreState: ICoreState = {
 export interface ICoreConfiguration {
   routes: [IRouteConfig];
   reducers: {
-    NAVIGATION_END: ICoreReducerName;
+    NAVIGATION_END: IAllCoreReducerName;
   };
   effects: {
     UPDATE_AREA: ICoreEffectName;
-  }
+  };
 }
 
 export const initialCoreConfiguration: ICoreConfiguration = {

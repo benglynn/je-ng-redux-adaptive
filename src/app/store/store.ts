@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppState } from '../app.state';
+import { IAppState, getNextState } from '../app.state';
 import { IAction, IReducer } from '../app.reducers';
 import {  IEffect } from '../app.effects';
-import { ISliceConfiguration } from '../configuration';
+import { ISliceConfiguration } from '../app.configuration';
 import { INITIAL_STATE } from './tokens';
 import * as fromUtils from './utils';
 import { LoggerService } from '../core/logger.service';
@@ -29,35 +29,6 @@ export class Store {
     return this.state$
       .pluck(slice)
       .distinctUntilChanged() as Observable<IAppState[T]>;
-  }
-
-  private reduce(
-    action: IAction,
-    state: IAppState,
-    reducers: IReducers,
-    logger: LoggerService) {
-      const newSlices = Object.keys(state) // TODO: use Object.entries here
-        .map(sliceName => {
-          const sliceConf: ISliceConfiguration|undefined = state
-            .configuration[sliceName];
-          if (sliceConf === undefined) { return null; }
-          const reducersConf = sliceConf.reducers;
-          if (reducersConf === undefined) { return null; }
-          const reducerName = reducersConf[action.type];
-          if (reducerName === undefined) { return null; }
-          const reducer: IReducer<any>|undefined = reducers[reducerName];
-          if (reducer === undefined ) {
-            throw new Error(`no reducer '${reducerName}'`);
-          }
-          logger.log(`Reducer ${reducerName}`);
-          return reducer(action, state[sliceName]);
-      });
-      const isUnchanged = newSlices.reduce((acc, nextSlice) => {
-        return acc === true && nextSlice === null;
-      }, true);
-      if (isUnchanged === false) {
-        this.state$.next(fromUtils.toMergedObject(state, newSlices));
-      }
   }
 
   private effect(
@@ -95,11 +66,19 @@ export class Store {
     this.state$ = new BehaviorSubject(initialState);
     this.action$ = new BehaviorSubject({ type: 'APP_LAUNCH'});
 
-    this.actionSubscription = this.action$ // TODO: manage destruction
+    this.action$
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
-        this.reduce(action, state, this.reducers, this.loggerService);
+
+        const [nextState, changeList] = getNextState(action, state);
+        if (changeList.length > 0) {
+          this.state$.next(nextState);
+          if (changeList.indexOf('configuration') > -1) {
+            console.log('update routes');
+          }
+        }
+
         this.effect(action, state, this.effects, this.injector, this.loggerService);
       });
   }

@@ -7,3 +7,4 @@ export function toMergedObject(oldObject: Object, newValues: any[]) {
     return Object.assign(accumulator, slice);
   }, {});
 }
+

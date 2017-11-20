@@ -1,7 +1,7 @@
 import { Inject, Input, Component, ChangeDetectionStrategy, ViewChild,
   AfterViewInit, ComponentFactoryResolver, ChangeDetectorRef, OnDestroy
 } from '@angular/core';
-import { IConfigurationState } from '../../configuration';
+import { IConfigurationState } from '../../app.configuration';
 import { ResultComponent, IResultView } from '../../restaurants/views/result.component';
 import { ResultSeamDirective } from '../../restaurants/views/result-seam.directive';
 import { IRestaurant } from '../../restaurant';

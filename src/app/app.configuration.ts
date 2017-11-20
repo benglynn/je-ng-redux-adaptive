@@ -1,19 +1,31 @@
-import { initialCoreConfiguration } from '../core';
-import { IAreaConfiguration, initialAreaConfiguration } from '../area/state';
-import { IRestaurantsConfiguration, initialRestaurantsConfiguration
-  } from '../restaurants';
-import { ICoreConfiguration } from '../core/state';
-import { IAdaptResultViewReducerName  } from '../adapt-result-view/reducers';
+import {
+  ICoreConfiguration,
+  initialCoreConfiguration
+} from './core/state';
+import {
+  IAreaConfiguration,
+  initialAreaConfiguration
+} from './area/state';
+import {
+  IRestaurantsConfiguration,
+  initialRestaurantsConfiguration
+  } from './restaurants/state';
+import {
+  IAdaptResultViewConfigReducersConfig,
+  adaptResultViewConfigReducersConfig
+} from './adapt-result-view/reducers';
 
 export interface IConfigurationState {
   core: ICoreConfiguration;
   area: IAreaConfiguration;
   restaurants: IRestaurantsConfiguration;
-  configuration: {
-    reducers: {
-      INIT_ADAPT_RESULT_VIEW: IAdaptResultViewReducerName;
-    }
-  };
+  configuration: IConfigurationConfiguration;
+}
+
+export interface IConfigurationConfiguration {
+  reducers:
+    {} |
+    IAdaptResultViewConfigReducersConfig;
 }
 
 export const initialConfigurationState: IConfigurationState = {
@@ -22,7 +34,7 @@ export const initialConfigurationState: IConfigurationState = {
   restaurants: initialRestaurantsConfiguration,
   configuration: {
     reducers: {
-      INIT_ADAPT_RESULT_VIEW: 'initAdaptResultView'
+      ...adaptResultViewConfigReducersConfig
     }
   }
 };

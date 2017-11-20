@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, ViewChild,
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
 import { IRestaurantsState, RemoveRestaurants } from '../../restaurants';
-import { IConfigurationState } from '../../configuration';
+import { IConfigurationState } from '../../app.configuration';
 
 @Component({
   selector: 'app-area',
