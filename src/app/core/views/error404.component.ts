@@ -5,7 +5,6 @@ import { Store } from '../../store/store';
 
 @Component({
   templateUrl: './error404.component.html',
-  styleUrls: ['./error404.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Error404Component {

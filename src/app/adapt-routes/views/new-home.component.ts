@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-new-home',
   templateUrl: './new-home.component.html',
-  styleUrls: ['../../core/views/home.component.less', './new-home.component.less'],
+  styleUrls: ['./new-home.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewHomeComponent {

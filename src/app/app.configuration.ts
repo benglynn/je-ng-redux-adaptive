@@ -1,6 +1,7 @@
 import { ICoreConfiguration, initialCoreConfiguration } from './core/state';
 import { IAreaConfiguration, initialAreaConfiguration } from './area/state';
 import { IRestaurantsConfiguration, initialRestaurantsConfiguration } from './restaurants/state';
+import { IAdaptRoutesConfiguration, initialAdaptRoutesConfiguration } from './adapt-routes/state';
 import { IAdaptResultViewConfigReducersConfig, adaptResultViewConfigReducersConfig } from './adapt-result-view/reducers';
 import { IAdaptRoutesConfigReducersConfig, adaptRoutesConfigReducersConfig } from './adapt-routes/reducers';
 import { IViewName } from './app.views';
@@ -9,6 +10,7 @@ export interface IConfigurationState {
   core: ICoreConfiguration;
   area: IAreaConfiguration;
   restaurants: IRestaurantsConfiguration;
+  adaptRoutes: IAdaptRoutesConfiguration;
   configuration: IConfigurationConfiguration;
 }
 
@@ -20,12 +22,13 @@ export const initialConfigurationState: IConfigurationState = {
   core: initialCoreConfiguration,
   area: initialAreaConfiguration,
   restaurants: initialRestaurantsConfiguration,
+  adaptRoutes: initialAdaptRoutesConfiguration,
   configuration: {
     reducers: {
       ...adaptResultViewConfigReducersConfig,
       ...adaptRoutesConfigReducersConfig,
     }
-  }
+  },
 };
 
 interface IStringHash {
