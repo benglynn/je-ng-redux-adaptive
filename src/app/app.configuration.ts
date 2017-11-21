@@ -3,6 +3,7 @@ import { IAreaConfiguration, initialAreaConfiguration } from './area/state';
 import { IRestaurantsConfiguration, initialRestaurantsConfiguration } from './restaurants/state';
 import { IAdaptResultViewConfigReducersConfig, adaptResultViewConfigReducersConfig } from './adapt-result-view/reducers';
 import { IAdaptRoutesConfigReducersConfig, adaptRoutesConfigReducersConfig } from './adapt-routes/reducers';
+import { IViewName } from './app.views';
 
 export interface IConfigurationState {
   core: ICoreConfiguration;
@@ -33,13 +34,17 @@ interface IStringHash {
 
 export interface IRouteConfig {
   pattern: string;
-  viewName: string;
+  viewName: IViewName;
   effectName?: string;
+}
+
+export interface IRoutesConfig {
+  [name: string]: IRouteConfig;
 }
 
 export interface ISliceConfiguration {
   reducers?: IStringHash;
   effects?: IStringHash;
-  routes?: IRouteConfig[];
+  routes?: IRoutesConfig;
   views?: IStringHash;
 }

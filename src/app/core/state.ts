@@ -11,7 +11,9 @@ export const initialCoreState: ICoreState = {
 };
 
 export interface ICoreConfiguration {
-  routes: IRouteConfig[];
+  routes: {
+    home: IRouteConfig;
+  };
   reducers: {
     NAVIGATION_END: IAllCoreReducerName;
   };
@@ -21,9 +23,9 @@ export interface ICoreConfiguration {
 }
 
 export const initialCoreConfiguration: ICoreConfiguration = {
-  routes: [
-    { pattern: '^$', viewName: 'homeView' }
-  ],
+  routes: {
+    home: { pattern: '^$', viewName: 'homeView' },
+  },
   reducers: {
     NAVIGATION_END: 'navigationEnd'
   },

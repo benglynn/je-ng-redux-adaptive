@@ -1,5 +1,5 @@
 import { Routes, UrlSegment } from '@angular/router';
-import { IConfigurationState, ISliceConfiguration, IRouteConfig
+import { IConfigurationState, ISliceConfiguration, IRoutesConfig, IRouteConfig
 } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
@@ -19,7 +19,7 @@ export const mapStateRoutes = (
 ): Routes => {
   return Object.values(configuration)
     .filter((config: ISliceConfiguration) => config.routes !== undefined)
-    .reduce((prev, curr: ISliceConfiguration) => prev.concat(curr.routes), [])
+    .reduce((prev, curr: ISliceConfiguration) => prev.concat(Object.values(curr.routes)), [])
     .map((config: IRouteConfig) => {
       const view = views[config.viewName] as IView;
       const matcher = regexMatcher(config.pattern);

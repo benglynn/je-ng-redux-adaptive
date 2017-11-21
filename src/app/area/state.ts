@@ -1,4 +1,4 @@
-import { ISliceConfiguration, IRouteConfig } from '../app.configuration';
+import { IRouteConfig } from '../app.configuration';
 import { IAllAreaReducerName } from '../app.reducers';
 import { UPDATE_AREA } from './actions';
 
@@ -12,16 +12,20 @@ export interface IAreaConfiguration {
   reducers: {
     UPDATE_AREA: IAllAreaReducerName;
   };
-  routes: IRouteConfig[];
+  routes: {
+    area: IRouteConfig;
+  };
 }
 
 export const initialAreaConfiguration: IAreaConfiguration = {
   reducers: {
     UPDATE_AREA: 'updateArea',
   },
-  routes: [{
-    pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
-    viewName: 'areaView',
-    effectName: 'loadRestaurantsEffect'
-  }]
+  routes: {
+    area: {
+      pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
+      viewName: 'areaView',
+      effectName: 'loadRestaurantsEffect'
+    }
+  }
 };

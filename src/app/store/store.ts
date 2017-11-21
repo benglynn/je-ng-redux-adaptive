@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../app.state';
 import { IAction, IReducer } from '../app.reducers';
 import {  IEffect } from '../app.effects';
-import { ISliceConfiguration } from '../app.configuration';
 import { INITIAL_STATE } from './tokens';
 import { getNextState } from './utils';
 import { LoggerService } from '../core/logger.service';

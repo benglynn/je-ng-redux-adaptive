@@ -3,8 +3,7 @@ import { CanActivate, Router, Routes, RouterStateSnapshot,
   UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '../store/store';
-import { IConfigurationState, ISliceConfiguration, IRouteConfig
-} from '../app.configuration';
+import { IConfigurationState, IRouteConfig } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
 import { VIEWS, IViews } from '../app.views';

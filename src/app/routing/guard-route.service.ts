@@ -4,8 +4,7 @@ import { CanActivate, Router, Routes, ActivatedRouteSnapshot,
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
-import { IConfigurationState, ISliceConfiguration, IRouteConfig
-} from '../app.configuration';
+import { IConfigurationState, IRouteConfig } from '../app.configuration';
 import { LoggerService } from '../core/logger.service';
 import { NavigationStartAction } from '../routing/actions';
 import { EFFECTS, IEffects } from '../app.effects';

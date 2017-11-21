@@ -7,12 +7,7 @@ export const initAdaptRoutes: IConfigurationReducer = (
   action: IAction,
   newState: IConfigurationState
 ): IConfigurationState => {
-  const newRouteConfig: IRouteConfig[] = [{ // TODO: named routes!
-      'pattern': '^$',
-      'viewName': 'newHomeView' // TODO: compiler guards names!
-    }
-  ];
-  newState.core.routes = newRouteConfig; // TODO: compiler prevents non routes here
+  newState.core.routes.home.viewName = 'newHomeView';
   return newState;
 };
 

@@ -17,7 +17,6 @@ import {
   IAllRestaurantsReducers, allRestaurantsReducers,
   IAllConfigurationReducers, allConfigurationReducers,
   } from './app.reducers';
-  import { ISliceConfiguration } from './app.configuration';
 
 export interface IAppState {
   core: ICoreState;

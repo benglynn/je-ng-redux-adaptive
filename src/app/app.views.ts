@@ -22,4 +22,6 @@ export const views: IViews = {
   ...adaptRoutesViews,
 };
 
+export type IViewName = keyof IViews;
+
 export const VIEWS = new InjectionToken<IViews>('views');
