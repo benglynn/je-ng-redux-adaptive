@@ -2,5 +2,7 @@
   <h1 class="heading">A special home page</h1>
   <h2 class="subheading">Order takeaway online from over 27,000 restaurants</h2>
   <app-postcode-search [postcode$]="area$"></app-postcode-search>
-  <a [routerLink]="['/new']">Visit a new page!</a>
+  <div class="banner">
+    <a class="banner--link" [routerLink]="['/new']">New page</a>
+    </div>
 </div>
