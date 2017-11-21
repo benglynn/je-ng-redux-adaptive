@@ -5,6 +5,7 @@ import { IAction } from './app.reducers';
 import { IRestaurantsEffects, restaurantsEffects
 } from './restaurants/effects';
 import { ICoreEffects, coreEffects } from './core/effects';
+import { IAdaptServiceEffects, adaptServiceEffects } from './adapt-service/effects';
 
 export type IEffect<T extends IAction> = (
   action: T,
@@ -12,11 +13,17 @@ export type IEffect<T extends IAction> = (
   injector: Injector
 ) => Observable<boolean>;
 
-export interface IEffects extends IRestaurantsEffects, ICoreEffects {}
+export interface IEffects extends
+  IRestaurantsEffects,
+  ICoreEffects,
+  IAdaptServiceEffects {}
+
+export type IEffectName = keyof IEffects;
 
 export const effects: IEffects = {
   ...restaurantsEffects,
   ...coreEffects,
+  ...adaptServiceEffects,
 };
 
 export const EFFECTS = new InjectionToken<IEffects>('effects');

@@ -4,6 +4,7 @@ import { ICoreReducers, coreReducers } from './core/reducers';
 import { IAreaReducers, areaReducers } from './area/reducers';
 import { IAdaptResultViewConfigReducers, adaptResultViewConfigReducers } from './adapt-result-view/reducers';
 import { IAdaptRoutesConfigReducers, adaptRoutesConfigReducers } from './adapt-routes/reducers';
+import { IAdaptServiceConfigReducers, adaptServiceConfigReducers } from './adapt-service/reducers';
 
 type INoReducers = Object;
 
@@ -23,7 +24,8 @@ export interface IAllRestaurantsReducers extends IRestaurantsReducers,
 
 export interface IAllConfigurationReducers extends
   IAdaptResultViewConfigReducers,
-  IAdaptRoutesConfigReducers {}
+  IAdaptRoutesConfigReducers,
+  IAdaptServiceConfigReducers {}
 
 export type IAllCoreReducerName = keyof IAllCoreReducers;
 
@@ -51,5 +53,6 @@ export const allRestaurantsReducers: IAllRestaurantsReducers = {
 export const allConfigurationReducers: IAllConfigurationReducers = {
   ...adaptResultViewConfigReducers,
   ...adaptRoutesConfigReducers,
+  ...adaptServiceConfigReducers,
 };
 

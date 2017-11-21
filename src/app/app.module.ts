@@ -11,6 +11,7 @@ import { EFFECTS, effects } from './app.effects';
 import { VIEWS, views } from './app.views';
 import { AdaptResultViewModule } from './adapt-result-view/module';
 import { AdaptRoutesModule } from './adapt-routes/module';
+import { AdaptServiceModule } from './adapt-service/module';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -24,6 +25,7 @@ import { AdaptRoutesModule } from './adapt-routes/module';
     AreaModule,
     AdaptResultViewModule,
     AdaptRoutesModule,
+    AdaptServiceModule,
   ],
   providers: [
     { provide: EFFECTS, useValue: effects },

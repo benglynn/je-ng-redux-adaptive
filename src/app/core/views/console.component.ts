@@ -16,6 +16,7 @@ export class ConsoleComponent {
   trace = '';
   adaptedView = false;
   adaptedRoutes = false;
+  adaptedService = false;
   isAppStateVisible = true;
 
   constructor( public store: Store, private loggerService: LoggerService ) {
@@ -38,6 +39,11 @@ export class ConsoleComponent {
   onTapAdaptRoutes() {
     this.store.dispatch({type: 'INIT_ADAPT_ROUTES'});
     this.adaptedRoutes = true;
+  }
+
+  onTapAdaptService() {
+    this.store.dispatch({type: 'INIT_ADAPT_SERVICE'});
+    this.adaptedService = true;
   }
 }
 

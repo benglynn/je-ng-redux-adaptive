@@ -1,5 +1,5 @@
 import { Routes, UrlSegment } from '@angular/router';
-import { IConfigurationState, ISliceConfiguration, IRoutesConfig, IRouteConfig
+import { IConfigurationState, ISliceConfiguration, IRoutes, IRouteConfig
 } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';

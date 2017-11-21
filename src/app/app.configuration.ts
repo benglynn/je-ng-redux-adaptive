@@ -4,6 +4,8 @@ import { IRestaurantsConfiguration, initialRestaurantsConfiguration } from './re
 import { IAdaptRoutesConfiguration, initialAdaptRoutesConfiguration } from './adapt-routes/state';
 import { IAdaptResultViewConfigReducersConfig, adaptResultViewConfigReducersConfig } from './adapt-result-view/reducers';
 import { IAdaptRoutesConfigReducersConfig, adaptRoutesConfigReducersConfig } from './adapt-routes/reducers';
+import { IAdaptServiceConfigReducersConfig, adaptServiceConfigReducersConfig } from './adapt-service/reducers';
+import { IEffectName } from './app.effects';
 import { IViewName } from './app.views';
 
 export interface IConfigurationState {
@@ -27,6 +29,7 @@ export const initialConfigurationState: IConfigurationState = {
     reducers: {
       ...adaptResultViewConfigReducersConfig,
       ...adaptRoutesConfigReducersConfig,
+      ...adaptServiceConfigReducersConfig,
     }
   },
 };
@@ -35,19 +38,23 @@ interface IStringHash {
   [name: string]: string;
 }
 
+interface IEffects {
+  [name: string]: IEffectName;
+}
+
 export interface IRouteConfig {
   pattern: string;
   viewName: IViewName;
   effectName?: string;
 }
 
-export interface IRoutesConfig {
+export interface IRoutes {
   [name: string]: IRouteConfig;
 }
 
 export interface ISliceConfiguration {
   reducers?: IStringHash;
-  effects?: IStringHash;
-  routes?: IRoutesConfig;
+  effects?: IEffects;
+  routes?: IRoutes;
   views?: IStringHash;
 }
