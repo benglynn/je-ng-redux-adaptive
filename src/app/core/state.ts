@@ -11,7 +11,7 @@ export const initialCoreState: ICoreState = {
 };
 
 export interface ICoreConfiguration {
-  routes: [IRouteConfig];
+  routes: IRouteConfig[];
   reducers: {
     NAVIGATION_END: IAllCoreReducerName;
   };

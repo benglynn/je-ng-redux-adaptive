@@ -4,17 +4,9 @@ import { IConfigurationReducer } from '../configuration/reducers';
 
 export const initAdaptResultView: IConfigurationReducer = (
   action: IAction,
-  state: IConfigurationState
+  newState: IConfigurationState
 ): IConfigurationState => {
-  const config = state;
-  const newState = Object.assign({}, state);
-  newState.restaurants.views.resultView = 'newResultView';
-  newState.core.routes = [
-    {
-      'pattern': '^home$',
-      'viewName': 'homeView'
-    }
-  ];
+  newState.restaurants.views.resultView = 'newResultView'; // TODO: compiler prevents non view here
   return newState;
 };
 

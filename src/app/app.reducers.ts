@@ -1,10 +1,9 @@
 import { InjectionToken } from '@angular/core';
-import { IRestaurantsReducers, restaurantReducers
-} from './restaurants/reducers';
+import { IRestaurantsReducers, restaurantReducers } from './restaurants/reducers';
 import { ICoreReducers, coreReducers } from './core/reducers';
 import { IAreaReducers, areaReducers } from './area/reducers';
-import { IAdaptResultViewConfigReducers, adaptResultViewConfigReducers
-} from './adapt-result-view/reducers';
+import { IAdaptResultViewConfigReducers, adaptResultViewConfigReducers } from './adapt-result-view/reducers';
+import { IAdaptRoutesConfigReducers, adaptRoutesConfigReducers } from './adapt-routes/reducers';
 
 type INoReducers = Object;
 
@@ -22,8 +21,9 @@ export interface IAllAreaReducers extends IAreaReducers, INoReducers {}
 export interface IAllRestaurantsReducers extends IRestaurantsReducers,
   INoReducers {}
 
-export interface IAllConfigurationReducers extends INoReducers,
-IAdaptResultViewConfigReducers {}
+export interface IAllConfigurationReducers extends
+  IAdaptResultViewConfigReducers,
+  IAdaptRoutesConfigReducers {}
 
 export type IAllCoreReducerName = keyof IAllCoreReducers;
 
@@ -50,5 +50,6 @@ export const allRestaurantsReducers: IAllRestaurantsReducers = {
 
 export const allConfigurationReducers: IAllConfigurationReducers = {
   ...adaptResultViewConfigReducers,
+  ...adaptRoutesConfigReducers,
 };
 

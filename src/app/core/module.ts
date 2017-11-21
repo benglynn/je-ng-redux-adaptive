@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home.component';
 import { ConsoleComponent } from './views/console.component';
-import { PostcodeSearchComponent } from './views/postcode-search.component';
 import { Error404Component } from './views/error404.component';
 import { LoggerService } from './logger.service';
+import { SharedModule } from '../shared/module';
 
 @NgModule({
-  imports: [ RouterModule, CommonModule ],
+  imports: [ RouterModule, CommonModule, SharedModule ],
   declarations: [
     HomeComponent,
     Error404Component,
-    PostcodeSearchComponent,
     ConsoleComponent
   ],
   providers: [ LoggerService ],

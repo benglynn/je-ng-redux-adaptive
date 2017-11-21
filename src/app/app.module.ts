@@ -7,9 +7,10 @@ import { CoreModule } from './core/module';
 import { RoutingModule } from './routing/module';
 import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
-import { AdaptResultViewModule} from './adapt-result-view/module';
 import { EFFECTS, effects } from './app.effects';
 import { VIEWS, views } from './app.views';
+import { AdaptResultViewModule } from './adapt-result-view/module';
+import { AdaptRoutesModule } from './adapt-routes/module';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -21,7 +22,8 @@ import { VIEWS, views } from './app.views';
     CoreModule,
     RestaurantsModule,
     AreaModule,
-    AdaptResultViewModule
+    AdaptResultViewModule,
+    AdaptRoutesModule,
   ],
   providers: [
     { provide: EFFECTS, useValue: effects },
