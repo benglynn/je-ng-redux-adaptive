@@ -74,7 +74,6 @@ export class Store {
         if (changeList.length > 0) {
           this.state$.next(nextState);
           if (changeList.indexOf('configuration') > -1) {
-            console.log('update routes');
             this.action$.next(new UpdateRoutesAction());
           }
         }

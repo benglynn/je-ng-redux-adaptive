@@ -19,7 +19,6 @@ export class RouteActionService {
       .withLatestFrom(this.store.select('configuration'))
       .subscribe(([action, configuration]) => {
         const newRoutes = mapStateRoutes(configuration, this.views);
-        console.log(newRoutes);
         this.router.resetConfig(newRoutes);
       });
   }

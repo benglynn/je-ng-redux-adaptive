@@ -24,5 +24,5 @@ const getNextSlice = (action, state, reducers, configuration): NextSlice => {
     .filter(([actionType, reducerFnName]) => actionType === action.type)
     .map(([actionType, reducerFnName]) => reducers[reducerFnName])[0];
   if (reducer === undefined) { return unchanged; }
-  return { slice: reducer(action, state), isNew: true };
+  return { slice: reducer(action, { ...state }), isNew: true };
 };
