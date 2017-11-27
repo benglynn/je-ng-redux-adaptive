@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/startwith';
+import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/withlatestfrom';
+import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/map';
 import { areaPattern, UpdateAreaAction, VisitAreaAction } from '../../area';
 

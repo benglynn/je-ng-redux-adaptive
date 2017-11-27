@@ -4,6 +4,7 @@ import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
 import { IRestaurantsState, RemoveRestaurants } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
+import { IAreaState } from '../state';
 
 @Component({
   selector: 'app-area',
@@ -13,7 +14,7 @@ import { IConfigurationState } from '../../app.configuration';
 })
 export class AreaComponent implements OnDestroy {
 
-  area$: Observable<string>;
+  area$: Observable<IAreaState>;
   restaurants$: Observable<IRestaurantsState>;
   resultViewName$: Observable<string>;
 
