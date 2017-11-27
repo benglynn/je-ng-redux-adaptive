@@ -1,24 +1,45 @@
+import { HttpClient } from '@angular/common/http';
 import {Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/scan';
 import { IRestaurant } from '../restaurant';
+
+interface PublicApiRestaurant {
+  Name: string;
+  LogoUrl: string;
+}
+
+interface PublicApiRestaurantsResponse {
+  ClosedRestaurants: PublicApiRestaurant[];
+  OpenRestaurants: PublicApiRestaurant[];
+  MetaData: {
+    ResultCount: number;
+  };
+}
 
 @Injectable()
 export class RestaurantsService {
 
+  readonly uri = 'https://public.je-apis.com/restaurants/v3?q=BS14DJ&c=&name=';
+  readonly headers = {
+    'Authorization': 'Basic YnJpc3RvbC11bml2ZXJzaXR5OkBRM3dlUFVWRGRLaGZzdHNURDRHRnZmVGRidEJtQE1M',
+    'Accept': 'application/json, text/plain, */*',
+    'Accept-Language': 'en-US,en;q=0.8',
+    'Accept-Tenant': 'uk',
+    'Content-Type': 'application/json'
+  };
+
+  constructor( private http: HttpClient ) {}
+
   getRestaurants(area: string): Observable<IRestaurant[]> {
-    return Observable.from([[
-      {name: 'test-restaurant', title: 'A Test Restaurant'},
-      {name: 'another-restaurant', title: 'Another Restaurnat'},
-      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'},
-      {name: 'test-restaurant', title: 'A Test Restaurant'},
-      {name: 'another-restaurant', title: 'Another Restaurnat'},
-      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'},
-      {name: 'test-restaurant', title: 'A Test Restaurant'},
-      {name: 'another-restaurant', title: 'Another Restaurnat'},
-      {name: 'yet-another-restaurant', title: 'Yet Another Restaurant'},
-    ]])
-    .delay(500);
+
+    return this.http.get<PublicApiRestaurantsResponse>(this.uri, { headers: this.headers })
+      .map(apiResponse => apiResponse.OpenRestaurants
+      .map(apiRestaurnat => <IRestaurant>{
+        logoUrl: apiRestaurnat.LogoUrl,
+        title: apiRestaurnat.Name,
+      }));
   }
 }

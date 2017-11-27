@@ -16,14 +16,6 @@ export class AppComponent {
 
   constructor( private store: Store ) {
     this.isAdapted = this.store.select('core').pluck('isAdapted');
-
-    this.store.select('core')
-      .pluck('isAdapted')
-      .filter(value => value === true)
-      .take(1)
-      .subscribe(isAdapted => {
-      console.log('is adapted is:', isAdapted);
-    });
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="result">
   <img class="result__image"
-    src="/assets/img/restaurant-logo-placeholder.svg" width="50" height="50">
-  <h3 class="result__heading">{{ restaurant?.title }}</h3>
+    [src]="restaurant.logoUrl || '/assets/img/restaurant-logo-placeholder.svg'" width="50" height="50">
+  <h3 class="result__heading">{{ restaurant.title }}</h3>
 </div>
