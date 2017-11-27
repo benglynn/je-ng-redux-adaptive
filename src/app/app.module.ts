@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { StoreModule } from './store/module';
@@ -19,6 +20,7 @@ import { AdaptServiceModule } from './adapt-service/module';
     BrowserModule,
     RouterModule,
     RoutingModule,
+    HttpClientModule,
     StoreModule,
     CoreModule,
     RestaurantsModule,

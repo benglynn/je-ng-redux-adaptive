@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { CanActivate, Router, Routes, RouterStateSnapshot,
   UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 import { Store } from '../store/store';
 import { IConfigurationState, IRouteConfig } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
@@ -21,13 +22,18 @@ export class GuardInitialRoute implements CanActivate {
   ) {}
 
   canActivate(_, state: RouterStateSnapshot): Observable<boolean> {
-    return this.store.select('configuration')
+    return this.store.select('core')
+      .pluck('isAdapted')
+      .filter(value => value === true)
+      .take(1)
+      .switchMap(ready => this.store.select('configuration'))
       .map(configuration => {
         const newRoutes = mapStateRoutes(configuration, this.views);
-      this.router.resetConfig(newRoutes);
-      this.routActionService.subscribeToRouterEvents();
-      this.router.navigateByUrl(state.url, { replaceUrl: true });
-      return false;
-    });
+        this.router.resetConfig(newRoutes);
+        this.routActionService.subscribeToRouterEvents();
+        this.router.navigateByUrl(state.url, { replaceUrl: true });
+        return false;
+      }
+    );
   }
 }

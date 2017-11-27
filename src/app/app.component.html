@@ -1,4 +1,5 @@
 <div class="app">
+    <div *ngIf="!(isAdapted|async)">LOADING...</div>
     <router-outlet></router-outlet>
 </div>
 <app-console class="console-container"></app-console>
