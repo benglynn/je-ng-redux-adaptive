@@ -8,13 +8,28 @@
   text-decoration: none;
 }
 
+.finish() {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ubuntu() {
+  font-family: "Ubuntu", sans-serif;
+  .finish();
+}
+
+.hind-vadodara {
+  font-family: "Hind Vadodara", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  .finish();
+}
+
 .heading() {
-  font-family: 'Ubuntu', sans-serif;
+  .ubuntu();
   font-weight: 500;
-  font-size: 36px;
+  font-size: 64px;
 }
 .sub-heading() {
-  font-family: 'Ubuntu', sans-serif;
+  .ubuntu();
   font-weight: 400;
   font-size: 28px;
 }

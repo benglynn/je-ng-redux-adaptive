@@ -1,36 +1,66 @@
 @import '../../shared/less/media.less';
 @import '../../shared/less/typography.less';
 
+.top-background(@media-name) {
+  background-image: linear-gradient(rgba(164,145,96,.45),rgba(255,255,255,0)),
+    url('/assets/img/bg_magic_@{media-name}.jpg');
+}
+
 .top {
-  height: 200px;
-  padding-top: 30px;
   background-repeat: no-repeat;
+  background-position: top center;
   background-size: cover;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media @phone {
-    background-image: url('/assets/img/bg_magic_mobile.jpg');
+    .top-background("mobile");
     min-height: 340px;
   }
 
   @media @tablet {
-    background-image: url('/assets/img/bg_magic_tablet.jpg');
+    .top-background("tablet");
     min-height: 500px;
   }
 
   @media @desktop {
-    background-image: url('/assets/img/bg_magic_desktop.jpg');
-    min-height: 500px;
+    .top-background("desktop");
+    min-height: 510px;
+  }
+
+  &__headings {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__postcode-search {
+    text-align: center;
+    padding: 15px 10px 20px 10px;
+    background: rgba(0,0,0,.3);
+    width: 100%;
+  }
+
+  &__postcode-search-label {
+    .hind-vadodara();
+    font-weight: 500;
+    font-size: 22px;
+    color: white;
+    margin-bottom: 15px;
+    display: block;
   }
 }
 
 .head {
-  margin: 0;
+  margin: 0 0 10px 0;
   color: white;
   .heading();
 }
 
 .subhead {
+  margin: 0;
   color: white;
   .sub-heading();
 }

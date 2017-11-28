@@ -22,7 +22,6 @@ export class AppComponent {
     this.core$ = this.store.select('core');
     this.isAdapted$ = this.core$.pluck('isAdapted');
     this.isDebugging$ = this.core$.pluck('isDebugging');
-    this.core$.subscribe(console.log);
   }
 
   tapDebugOpen() {

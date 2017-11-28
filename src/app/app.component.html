@@ -5,5 +5,9 @@
   </div>
   <app-console class="console-container"></app-console>
 </div>
-<button class="debug-button debug-button--open" (click)="tapDebugOpen()" *ngIf="!(isDebugging$|async)">&#x2196;</button>
-<button class="debug-button debug-button--close" (click)="tapDebugClose()" *ngIf="isDebugging$|async">&#x2198;</button>
+<button class="debug-button debug-button--open"
+  (click)="tapDebugOpen()"
+  *ngIf="!(isDebugging$|async)">&#x2196;</button>
+<button class="debug-button debug-button--close"
+  (click)="tapDebugClose()"
+  *ngIf="isDebugging$|async">&#x2198;</button>

@@ -1,6 +1,14 @@
 <app-header></app-header>
 <div class="top">
-  <h1 class="head">Experience the magic of Just Eat</h1>
-  <h2 class="subhead">Order in a takeaway, it's just a few clicks away</h2>
-  <app-postcode-search [postcode$]="area$"></app-postcode-search>
+  <div class="top__headings">
+    <div>
+      <h1 class="head">Experience the magic of Just Eat</h1>
+      <h2 class="subhead">Order in a takeaway, it's just a few clicks away</h2>
+    </div>
+  </div>
+  <div class="top__postcode-search">
+    <label class="top__postcode-search-label" for="postcode-search-input"
+      >Enter your postcode to find local restaurants and takeaways</label>
+    <app-postcode-search [postcode$]="area$"></app-postcode-search>
+  </div>
 </div>
