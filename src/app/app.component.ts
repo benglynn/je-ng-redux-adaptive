@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/take';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ICoreState } from './core/state';
+import { UpdateIsDebuggingAction } from './core/actions';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,22 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 })
 export class AppComponent {
 
-    isAdapted: Observable<boolean>;
+  private core$: Observable<ICoreState>;
+  isDebugging$: Observable<boolean>;
+  isAdapted$: Observable<boolean>;
 
   constructor( private store: Store ) {
-    this.isAdapted = this.store.select('core').pluck('isAdapted');
+    this.core$ = this.store.select('core');
+    this.isAdapted$ = this.core$.pluck('isAdapted');
+    this.isDebugging$ = this.core$.pluck('isDebugging');
+    this.core$.subscribe(console.log);
+  }
+
+  tapDebugOpen() {
+    this.store.dispatch(new UpdateIsDebuggingAction(true));
+  }
+  tapDebugClose() {
+    this.store.dispatch(new UpdateIsDebuggingAction(false));
   }
 
 }

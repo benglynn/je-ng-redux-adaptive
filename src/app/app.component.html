@@ -1,7 +1,9 @@
-<div class="frame frame--debugging">
+<div class="frame" [class.frame--debugging]="isDebugging$|async">
   <div class="app">
-    <div *ngIf="!(isAdapted|async)">LOADING...</div>
+    <div *ngIf="!(isAdapted$|async)">LOADING...</div>
     <router-outlet></router-outlet>
   </div>
   <app-console class="console-container"></app-console>
 </div>
+<button class="debug-button debug-button--open" (click)="tapDebugOpen()" *ngIf="!(isDebugging$|async)">&#x2196;</button>
+<button class="debug-button debug-button--close" (click)="tapDebugClose()" *ngIf="isDebugging$|async">&#x2198;</button>

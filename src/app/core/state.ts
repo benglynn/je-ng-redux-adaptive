@@ -5,11 +5,13 @@ import { ICoreEffectName } from './effects';
 export interface ICoreState {
   url: string|null;
   isAdapted: boolean;
+  isDebugging: boolean;
 }
 
 export const initialCoreState: ICoreState = {
   url: null,
   isAdapted: false,
+  isDebugging: false,
 };
 
 export interface ICoreConfiguration {
@@ -19,6 +21,7 @@ export interface ICoreConfiguration {
   reducers: {
     NAVIGATION_END: IAllCoreReducerName;
     UPDATE_IS_ADAPTED: IAllCoreReducerName;
+    UPDATE_IS_DEBUGGING: IAllCoreReducerName;
   };
   effects: {
     UPDATE_AREA: ICoreEffectName;
@@ -32,6 +35,7 @@ export const initialCoreConfiguration: ICoreConfiguration = {
   reducers: {
     NAVIGATION_END: 'navigationEnd',
     UPDATE_IS_ADAPTED: 'updateIsAdapted',
+    UPDATE_IS_DEBUGGING: 'updateIsDebugging',
   },
   effects: {
     UPDATE_AREA: 'logPostcodeEffect'
