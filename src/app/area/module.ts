@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AreaComponent } from './views/area.component';
 import { RestaurantsModule } from '../restaurants/module';
+import { SharedModule } from '../shared/module';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
-    RestaurantsModule
+    RestaurantsModule,
+    SharedModule,
   ],
   declarations: [
     AreaComponent
