@@ -1,0 +1,22 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+default_expiration: 1m
+
+handlers:
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+
+- url: /(.*\.(js|ico|gif|png|jpg|svg))$
+  static_files: dist/\1
+  upload: dist/.*\.(js|ico|gif|png|jpg|svg)$
+
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html
+
+skip_files:
+- ^node_modules/.*$
+- ^\..*$
