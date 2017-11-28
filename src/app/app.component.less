@@ -1,10 +1,32 @@
-.app {
-  flex-grow: 0;
-  flex-shrink: 0;
-  overflow: auto;
-  width: 500px;
-}
-.console-container {
-  flex-grow: 1;
-  width: calc(100vw - 500px);
+@import "./shared/less/common.less";
+
+.frame {
+  height: 100vh;
+  display: flex;
+
+  .app {
+    overflow: auto;
+    flex-grow: 1;
+  }
+
+  .console-container {
+    display: none;
+  }
+
+  &--debugging {
+    @media @desktop {
+
+      .app {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: @phone-max-width;
+      }
+
+      .console-container {
+        display: block;
+        flex-grow: 1;
+        width: calc(100vw - @phone-max-width);
+      }
+    }
+  }
 }
