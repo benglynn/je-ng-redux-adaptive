@@ -1,26 +1,27 @@
 @import '../less/media.less';
 
+.frame {
+  padding: 0 20px;
+}
+
 .postcode-search {
 
   background: white;
-  display: inline-flex;
+  display: flex;
   padding: 3px;
   border-radius: 2px;
-
-  margin-bottom: 20px;
+  margin: auto;
+  max-width: 500px;
 
   &__input {
     font-family: 'Hind Vadodara', sans-serif;
     font-size: 16px;
     padding: 8px;
-    width: 430px;
+    width: 100%;
     margin: 0;
     outline: none;
     border: none;
 
-    @media @tablet {
-      width: 330px;
-    }
   }
 
   &__button {
@@ -30,10 +31,20 @@
     color: white;
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
-    padding: 12px;
+    padding: 12px 20px;
+    white-space: nowrap;
+
+    @media @phone {
+      text-indent: -99999px;
+      background-image: url(/assets/img/search-icon.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      min-width: 42px;
+      min-height: 42px;
+    }
 
     &:disabled {
-      background: #ddd;
+      background-color: #ddd;
       color: #535353;
     }
   }

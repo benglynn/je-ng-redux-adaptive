@@ -12,15 +12,14 @@
   max-width: 940px;
   margin: auto;
 
-  @media @phone {
-    padding-left: 0;
-    padding-right: 0;
+  @media @phone, @phablet {
+    padding: 1px 0;
   }
 
   &__logo {
     flex-grow: 1;
 
-    @media @phone {
+    @media @phone, @phablet {
       text-align: center;
       margin-left: -24px;
     }
@@ -29,7 +28,7 @@
   &__links {
     display: block;
 
-    @media @phone {
+    @media @phone, @phablet {
       display: none;
     }
   }
@@ -47,7 +46,7 @@
     order: -1;
     display: none;
 
-    @media @phone {
+    @media @phone, @phablet {
       display: block;
     }
   }

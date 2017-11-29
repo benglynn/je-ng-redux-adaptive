@@ -1,14 +1,14 @@
 @import '../../shared/less/media.less';
 @import '../../shared/less/typography.less';
 
-.top-background(@media-name) {
-  background-image: linear-gradient(rgba(164,145,96,.45),rgba(255,255,255,0)),
-    url('/assets/img/bg_magic_@{media-name}.jpg');
-}
-
 .home {
   background: rgb(234, 234, 234);
   min-height: 100vh;
+}
+
+.top-background(@media-name) {
+  background-image: linear-gradient(rgba(164,145,96,.45),rgba(255,255,255,0)),
+    url('/assets/img/bg_magic_@{media-name}.jpg');
 }
 
 .top {
@@ -20,18 +20,31 @@
   align-items: center;
 
   @media @phone {
-    .top-background("mobile");
-    min-height: 340px;
+    min-height: 300px;
+  }
+
+  @media @phablet {
+    min-height: 508px;
   }
 
   @media @tablet {
-    .top-background("tablet");
     min-height: 574px;
   }
 
   @media @desktop {
-    .top-background("desktop");
     min-height: 510px;
+  }
+
+  @media only screen and (max-width: 599px) {
+    .top-background("mobile");
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 979px) {
+    .top-background("tablet");
+  }
+
+  @media only screen and (min-width: 980px) {
+    .top-background("desktop");
   }
 
   &__headings {
@@ -40,11 +53,36 @@
     display: flex;
     align-items: center;
     text-align: center;
+
+    @media @phone {
+      padding-top: 30px;
+    }
+
+    .head {
+      margin: 0 0 10px 0;
+      color: white;
+      .heading();
+
+      @media @phone {
+        font-size: 36px;
+      }
+    }
+
+    .subhead {
+      margin: 0 0 20px 0;
+      color: white;
+      .sub-heading();
+
+      @media @phone {
+        font-size: 18px;
+      }
+    }
+
   }
 
   &__postcode-search {
     text-align: center;
-    padding: 15px 10px 20px 10px;
+    padding: 15px 10px 40px 10px;
     background: rgba(0,0,0,.3);
     width: 100%;
   }
@@ -54,19 +92,11 @@
     color: white;
     margin-bottom: 15px;
     display: block;
+
+    @media @phone {
+      font-size: 14px;
+    }
   }
-}
-
-.head {
-  margin: 0 0 10px 0;
-  color: white;
-  .heading();
-}
-
-.subhead {
-  margin: 0;
-  color: white;
-  .sub-heading();
 }
 
 .middle {
