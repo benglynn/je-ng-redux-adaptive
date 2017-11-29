@@ -1,27 +1,29 @@
-<app-header></app-header>
-<div class="top">
-  <div class="top__headings">
-    <div>
-      <h1 class="head">Experience the magic of Just Eat</h1>
-      <h2 class="subhead">Order in a takeaway, it's just a few clicks away</h2>
+<div class="home">
+  <app-header></app-header>
+  <div class="top">
+    <div class="top__headings">
+      <div>
+        <h1 class="head">Experience the magic of Just Eat</h1>
+        <h2 class="subhead">Order in a takeaway, it's just a few clicks away</h2>
+      </div>
     </div>
-  </div>
-  <div class="top__postcode-search">
-    <label class="top__postcode-search-label" for="postcode-search-input"
-      >Enter your postcode to find local restaurants and takeaways</label>
-    <app-postcode-search [postcode$]="area$"></app-postcode-search>
-  </div>
-</div>
-
-<div class="middle">
-
-  <div class="native-apps">
-    <div class="ad">
-      <h3 class="heading">Find your flavour even faster</h3>
-      <p>For speedy ordering and delivery updates, get the Just Eat app.</p>
-      <img src="/assets/img/app-store-badge.svg" height="30">
-      <img src="/assets/img/google-play-badge.svg" height="30">
+    <div class="top__postcode-search">
+      <label class="top__postcode-search-label" for="postcode-search-input"
+        >Enter your postcode to find local restaurants and takeaways</label>
+      <app-postcode-search [postcode$]="area$"></app-postcode-search>
     </div>
   </div>
 
+  <div class="middle">
+
+    <div class="native-apps">
+      <div class="ad">
+        <h3 class="heading">Find your flavour even faster</h3>
+        <p>For speedy ordering and delivery updates, get the Just Eat app.</p>
+        <img src="/assets/img/app-store-badge.svg" height="30">
+        <img src="/assets/img/google-play-badge.svg" height="30">
+      </div>
+    </div>
+
+  </div>
 </div>

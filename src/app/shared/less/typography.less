@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:300,500|Ubuntu:400,500');
 
-.link--heavy() {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: rgb(38, 106, 189);
-  text-decoration: none;
-}
-
-.finish() {
-  -webkit-font-smoothing: antialiased;
-}
-
 .ubuntu() {
   font-family: "Ubuntu", sans-serif;
   text-rendering: optimizeLegibility;
@@ -22,15 +10,23 @@
   text-rendering: optimizeLegibility;
 }
 
+.link--heavy() {
+  .ubuntu();
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(38, 106, 189);
+  text-decoration: none;
+}
+
 .heading() {
   .ubuntu();
-  .finish();
+  -webkit-font-smoothing: antialiased;
   font-weight: 500;
   font-size: 64px;
 }
 .sub-heading() {
   .ubuntu();
-  .finish();
+  -webkit-font-smoothing: antialiased;
   font-weight: 400;
   font-size: 28px;
 }

@@ -6,6 +6,11 @@
     url('/assets/img/bg_magic_@{media-name}.jpg');
 }
 
+.home {
+  background: rgb(234, 234, 234);
+  min-height: 100vh;
+}
+
 .top {
   background-repeat: no-repeat;
   background-position: top center;
@@ -13,7 +18,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 70px;
 
   @media @phone {
     .top-background("mobile");
@@ -68,10 +72,13 @@
 }
 
 .middle {
+  background-color: white;
   background-image: url(/assets/img/rays.svg);
   background-repeat: no-repeat;
   background-position: bottom center;
-  padding-bottom: 320px;
+  background-size: 100%;
+  padding-top: 70px;
+  padding-bottom: 25vw;
 }
 
 .native-apps {
