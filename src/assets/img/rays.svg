@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="334px" viewBox="0 0 1440 334" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>rays</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rays" fill-rule="nonzero">
+            <polygon id="Shape" fill="#FA0029" points="0.2 218.7 503.7 174.6 0.2 0"></polygon>
+            <polygon id="Shape" fill="#FF5959" points="0.2 207.7 0.2 275.2 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#FF9E16" points="503.7 174.6 1440 259.9 1440 88"></polygon>
+            <polygon id="Shape" fill="#FFD700" points="503.7 174.6 1440 88 1440 22.3"></polygon>
+            <polygon id="Shape" fill="#95D600" points="0.2 320.1 0.2 333.5 218 333.5 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#00AC41" points="0.2 271.2 0.2 320.1 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#7DCAEC" points="968.4 333.5 1377 333.5 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#2F7DE1" points="439.5 333.5 762.9 333.5 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#E2E71F" points="184.8 333.5 148.8 333.5 439.5 333.5 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#2BACE4" points="762.9 333.5 968.4 333.5 503.7 174.6"></polygon>
+            <polygon id="Shape" fill="#FF5000" points="1377 333.5 1440 333.5 1440 252.9 503.7 174.6"></polygon>
+        </g>
+    </g>
+</svg>

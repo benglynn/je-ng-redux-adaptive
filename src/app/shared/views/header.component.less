@@ -4,11 +4,17 @@
 .header {
   align-items: center;
   display: flex;
-  padding: 10px 0;
+  padding: 10px 32px;
+  max-width: 940px;
+  margin: auto;
+
+  @media @phone {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   &__logo {
     flex-grow: 1;
-    margin-left: 80px;
 
     @media @phone {
       text-align: center;
@@ -29,7 +35,7 @@
     margin-right: 20px;
 
     &:last-child {
-      margin-right: 100px;
+      margin-right: 0;
     }
   }
 
