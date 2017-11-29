@@ -1,47 +1,11 @@
-@import "./shared/less/media.less";
-
-.frame {
-  height: 100vh;
-  display: flex;
-
-  .app {
-    overflow: auto;
-    flex-grow: 1;
-  }
-
-  .console-container {
-    display: none;
-  }
-
-  &--debugging {
-    @media @desktop {
-      .app {
-        flex-grow: 0;
-        flex-shrink: 0;
-        width: @phone-max-width;
-      }
-
-      .console-container {
-        display: block;
-        flex-grow: 1;
-        width: calc(100vw - @phone-max-width);
-      }
-    }
-  }
-}
-
 .debug-button {
-  background: #333;
+  background: rgba(0,0,0,.5);
   border: none;
-  bottom: 0;
   color: white;
   cursor: pointer;
   padding: 5px;
   position: fixed;
-  right: 0;
+  left: 0;
+  bottom: 0;
   text-transform: uppercase;
-
-  @media @phone {
-    display: none;
-  }
 }

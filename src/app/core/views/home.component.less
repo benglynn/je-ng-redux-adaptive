@@ -120,20 +120,29 @@
     margin: auto;
     padding-left: 140px;
     width: 300px;
-  }
 
-  .heading {
-    .ubuntu();
-    font-weight: 500;
-    color: #333;
-    font-size: 20px;
-    margin-bottom: 5px;
-  }
+    .heading {
+      .ubuntu();
+      font-weight: 500;
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
 
-  p {
-    .hind-vadodara();
-    font-weight: 300;
-    font-size: 14px;
-    color: #535353;
+    p {
+      .hind-vadodara();
+      font-weight: 300;
+      font-size: 14px;
+      color: #535353;
+    }
+
+    @media @phone, @phablet, @tablet {
+      background-size: 100px;
+      background-position-x: center;
+      padding-left: 0;
+      padding-top: 100px;
+      text-align: center;
+      width: inherit;
+    }
   }
 }
