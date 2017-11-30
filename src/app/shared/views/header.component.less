@@ -1,15 +1,17 @@
-@import '../less/media.less';
-@import '../less/typography.less';
+@import '../../shared/less/base.less';
+@import '../../shared/less/media.less';
+@import '../../shared/less/typography.less';
 
 .frame {
   background: white;
+  padding: 0 36px;
 }
 
 .header {
   align-items: center;
   display: flex;
-  padding: 10px 32px;
-  max-width: 940px;
+  padding: 10px 0;
+  max-width: @max-page-width;
   margin: auto;
 
   @media @phone, @phablet {

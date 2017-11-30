@@ -1,3 +1,4 @@
+@import '../../shared/less/base.less';
 @import '../../shared/less/media.less';
 @import '../../shared/less/typography.less';
 
@@ -118,15 +119,17 @@
     background-size: 130px;
     display: inline-block;
     margin: auto;
-    padding-left: 140px;
-    width: 300px;
+    padding-left: 150px;
+    padding-top: 20px;
+    width: 430px;
+    min-height: 155px;
 
     .heading {
       .ubuntu();
       font-weight: 500;
       color: #333;
       font-size: 20px;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     p {
@@ -134,13 +137,14 @@
       font-weight: 300;
       font-size: 14px;
       color: #535353;
+      margin-bottom: 15px;
     }
 
     @media @phone, @phablet, @tablet {
       background-size: 100px;
       background-position-x: center;
       padding-left: 0;
-      padding-top: 100px;
+      padding-top: 130px;
       text-align: center;
       width: inherit;
     }
