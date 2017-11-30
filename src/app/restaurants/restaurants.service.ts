@@ -22,7 +22,7 @@ interface PublicApiRestaurantsResponse {
 @Injectable()
 export class RestaurantsService {
 
-  readonly uri = 'https://public.je-apis.com/restaurants/v3?q=BS14DJ&c=&name=';
+  readonly uri = 'https://public.je-apis.com/restaurants/v3';
   readonly headers = {
     'Authorization': 'Basic YnJpc3RvbC11bml2ZXJzaXR5OkBRM3dlUFVWRGRLaGZzdHNURDRHRnZmVGRidEJtQE1M',
     'Accept': 'application/json, text/plain, */*',
@@ -34,8 +34,9 @@ export class RestaurantsService {
   constructor( private http: HttpClient ) {}
 
   getRestaurants(area: string): Observable<IRestaurant[]> {
-
-    return this.http.get<PublicApiRestaurantsResponse>(this.uri, { headers: this.headers })
+    const params = { q: area, c: '', name: '' };
+    return this.http.get<PublicApiRestaurantsResponse>(
+      this.uri, { headers: this.headers, params: params })
       .map(apiResponse => apiResponse.OpenRestaurants
       .map(apiRestaurnat => <IRestaurant>{
         logoUrl: apiRestaurnat.LogoUrl,
