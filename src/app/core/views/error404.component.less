@@ -1,0 +1,32 @@
+@import '../../shared/less/base.less';
+@import '../../shared/less/media.less';
+@import '../../shared/less/typography.less';
+
+.error {
+  background: #d50525;
+  padding: 70px 20px;
+  text-align: center;
+
+  .heading {
+    .sub-heading();
+    font-size: 46px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 40px;
+
+    @media @phone, @phablet {
+      font-size: 26px;
+    }
+  }
+
+  .sub-heading {
+    .ubuntu();
+    color: white;
+    font-size: 16px;
+    margin-bottom: 40px;
+
+    @media @phone, @phablet {
+      font-size: 14px;
+    }
+  }
+}
