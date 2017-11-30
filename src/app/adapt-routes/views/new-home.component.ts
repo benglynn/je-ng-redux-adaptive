@@ -6,7 +6,7 @@ import { IAreaState } from '../../area/state';
 @Component({
   selector: 'app-new-home',
   templateUrl: './new-home.component.html',
-  styleUrls: ['./new-home.component.less'],
+  styleUrls: ['../../core/views/home.component.less', './new-home.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewHomeComponent {
