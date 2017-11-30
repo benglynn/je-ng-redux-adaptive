@@ -1,8 +1,6 @@
-html, body {
+html, body, .app-root {
+  display: block;
   margin: 0;
   padding: 0;
-}
-
-.app-root {
-  height: 100vh;
+  min-height: 100vh;
 }

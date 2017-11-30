@@ -30,6 +30,7 @@ export class AdaptationService {
       .mergeMap(action => action)
       .filter(action => action.active)
       .map(action => <IAction>{ type: action.type })
+      // .delay(100000)
       .do(action => this.store.dispatch(action))
       .subscribe(() => {}, () => {}, () => {
         this.store.dispatch(new UpdateIsAdaptedAction(true));

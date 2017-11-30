@@ -1,4 +1,4 @@
-<div *ngIf="!(isAdapted$|async)">LOADING...</div>
+<div *ngIf="!(isUrlResolved|async)" class="loading">Loading site, please wait.</div>
 <router-outlet></router-outlet>
 <div class="console" *ngIf="isDebugging$|async"><app-console></app-console></div>
 <button

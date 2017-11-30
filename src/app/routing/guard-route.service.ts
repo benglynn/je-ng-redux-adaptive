@@ -6,8 +6,9 @@ import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
 import { IConfigurationState, IRouteConfig } from '../app.configuration';
 import { LoggerService } from '../core/logger.service';
+import { UpdateIsUrlResolved } from '../core/actions';
 import { NavigationStartAction } from '../routing/actions';
-import { EFFECTS, IEffects } from '../app.effects';
+import { EFFECTS, IEffect, IEffects } from '../app.effects';
 
 @Injectable()
 export class GuardRoute implements CanActivate {
@@ -23,11 +24,13 @@ export class GuardRoute implements CanActivate {
   ): Observable<boolean> {
     const config = route.data as IRouteConfig;
     if (config.effectName === undefined) {
+      this.store.dispatch(new UpdateIsUrlResolved(true));
       return Observable.of(true);
     }
-    const effect = this.effects[config.effectName];
+    const effect: IEffect<NavigationStartAction> = this.effects[config.effectName];
     const action = new NavigationStartAction(route.url.join('/'));
     this.loggerService.log(`Effect ${config.effectName}`);
-    return effect(action, this.store, this.injector);
+    return effect(action, this.store, this.injector)
+      .do(isResolved => this.store.dispatch(new UpdateIsUrlResolved(isResolved)));
   }
 }

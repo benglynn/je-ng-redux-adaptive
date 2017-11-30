@@ -16,11 +16,11 @@ export class AppComponent {
 
   private core$: Observable<ICoreState>;
   isDebugging$: Observable<boolean>;
-  isAdapted$: Observable<boolean>;
+  isUrlResolved: Observable<boolean>;
 
   constructor( private store: Store ) {
     this.core$ = this.store.select('core');
-    this.isAdapted$ = this.core$.pluck('isAdapted');
+    this.isUrlResolved = this.core$.pluck('isUrlResolved');
     this.isDebugging$ = this.core$.pluck('isDebugging');
   }
 

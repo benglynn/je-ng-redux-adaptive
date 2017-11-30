@@ -30,5 +30,5 @@ export const mapStateRoutes = (
         canActivate: [ GuardRoute ]
       };
     }
-  ).concat({ path: '**', component: views['error404View'] });
+  ).concat({ path: '**', component: views['error404View'], canActivate: [ GuardRoute ] });
 };
