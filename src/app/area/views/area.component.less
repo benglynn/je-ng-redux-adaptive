@@ -41,10 +41,31 @@
   padding: 16px 0;
   border: 1px solid rgb(202, 202, 202);
   border-width: 1px 0px;
+  margin-bottom: 30px;
 
   .heading {
     .banner-heading();
     max-width: @max-page-width;
     margin: auto;
+  }
+}
+
+.results-frame {
+  padding: 0 20px;
+
+  .results {
+    max-width: 600px;
+    border: 1px solid rgb(234, 234, 234);
+    border-radius: 2px;
+    margin: 0 auto 40px auto;
+    padding: 0 18px;
+
+    .result {
+      border-bottom: 1px solid rgb(202, 202, 202);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
 }
