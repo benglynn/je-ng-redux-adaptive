@@ -9,11 +9,13 @@ import { IRestaurant } from '../restaurant';
 interface PublicApiRestaurant {
   Name: string;
   LogoUrl: string;
+  Badges: [String];
+  RatingDetails: { Count: number, StarRating: number };
 }
 
 interface PublicApiRestaurantsResponse {
-  ClosedRestaurants: PublicApiRestaurant[];
-  OpenRestaurants: PublicApiRestaurant[];
+  ClosedRestaurants: [PublicApiRestaurant];
+  OpenRestaurants: [PublicApiRestaurant];
   MetaData: {
     ResultCount: number;
   };
@@ -22,7 +24,9 @@ interface PublicApiRestaurantsResponse {
 @Injectable()
 export class RestaurantsService {
 
+  // http://public.je-apis.com/swagger-ui/#!/restaurants/SearchVersion3_get_1
   readonly uri = 'https://public.je-apis.com/restaurants/v3';
+
   readonly headers = {
     'Authorization': 'Basic YnJpc3RvbC11bml2ZXJzaXR5OkBRM3dlUFVWRGRLaGZzdHNURDRHRnZmVGRidEJtQE1M',
     'Accept': 'application/json, text/plain, */*',
@@ -37,10 +41,13 @@ export class RestaurantsService {
     const params = { q: area, c: '', name: '' };
     return this.http.get<PublicApiRestaurantsResponse>(
       this.uri, { headers: this.headers, params: params })
+      // .do(apiResponse => debugger)
       .map(apiResponse => (apiResponse.OpenRestaurants.concat(apiResponse.ClosedRestaurants)
       .map(apiRestaurnat => <IRestaurant>{
         logoUrl: apiRestaurnat.LogoUrl,
         title: apiRestaurnat.Name,
+        rating: apiRestaurnat.RatingDetails.StarRating,
+        ratings: apiRestaurnat.RatingDetails.Count
       })));
   }
 }

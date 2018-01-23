@@ -9,15 +9,7 @@ export class NewRestaurantsService {
 
   getRestaurants(area: string): Observable<IRestaurant[]> {
     return Observable.from([[
-      {title: 'Your favourite restaurant'},
-      {title: 'You often order here'},
-      {title: 'Others like you like this'},
-      {title: 'A Test Restaurant'},
-      {title: 'Another Restaurnat'},
-      {title: 'Yet Another Restaurant'},
-      {title: 'A Test Restaurant'},
-      {title: 'Another Restaurnat'},
-      {title: 'Yet Another Restaurant'},
+      {title: 'Your favourite restaurant', rating: 5, ratings: 300}
     ]])
     .delay(500);
   }
