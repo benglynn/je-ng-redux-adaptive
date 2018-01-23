@@ -9,6 +9,13 @@
   }
 }
 
+.app {
+  position: relative;
+  @media @console {
+    max-width: @desktop-min-width;
+  }
+}
+
 .loading {
   text-indent: -99999px;
   width: 40px;
@@ -19,16 +26,11 @@
   animation: rotating .75s linear infinite;
   overflow: hidden;
   position: absolute;
-  left: 50vw;
+  left: 50%;
   top: 50vh;
   display: block;
 }
 
-.app {
-  @media @console {
-    max-width: @desktop-min-width;
-  }
-}
 
 .console {
   display: none;
