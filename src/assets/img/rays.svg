@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1440px" height="334px" viewBox="0 0 1440 334" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+<svg width="1438px" height="332px" viewBox="0 0 1438 332" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
     <title>rays</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="rays" fill-rule="nonzero">
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-1.000000, -960.000000)">
+        <g id="rays" transform="translate(0.000000, 960.000000)" fill-rule="nonzero">
             <polygon id="Shape" fill="#FA0029" points="0.2 218.7 503.7 174.6 0.2 0"></polygon>
             <polygon id="Shape" fill="#FF5959" points="0.2 207.7 0.2 275.2 503.7 174.6"></polygon>
             <polygon id="Shape" fill="#FF9E16" points="503.7 174.6 1440 259.9 1440 88"></polygon>
