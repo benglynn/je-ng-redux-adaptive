@@ -41,6 +41,6 @@ export class RestaurantsService {
       .map(apiRestaurnat => <IRestaurant>{
         logoUrl: apiRestaurnat.LogoUrl,
         title: apiRestaurnat.Name,
-      }));
+      })));
   }
 }
