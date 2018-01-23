@@ -1,7 +1,5 @@
 <div *ngIf="!(isUrlResolved|async)" class="loading">Loading site, please wait.</div>
-<router-outlet></router-outlet>
-<div class="console" *ngIf="isDebugging$|async"><app-console></app-console></div>
-<button
-  class="debug-button debug-button--open"
-  (click)="tapDebugOpen()"
-  *ngIf="!(isDebugging$|async)">↓</button>
+<div class="app"><router-outlet></router-outlet></div>
+<div class="console">
+  <app-console></app-console>
+</div>

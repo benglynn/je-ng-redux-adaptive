@@ -1,3 +1,5 @@
+@import './shared/less/media';
+
 @keyframes rotating {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -22,14 +24,22 @@
   display: block;
 }
 
-.debug-button {
-  background: rgba(0,0,0,.5);
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 5px;
+.app {
+  @media @console {
+    max-width: @desktop-min-width;
+  }
+}
+
+.console {
+  display: none;
   position: fixed;
-  left: 0;
-  bottom: 0;
-  text-transform: uppercase;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: calc(~"100vw - @{desktop-min-width}");
+  background: red;
+
+  @media @console {
+    display: block;
+  }
 }
