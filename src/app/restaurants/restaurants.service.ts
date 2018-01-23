@@ -37,7 +37,7 @@ export class RestaurantsService {
     const params = { q: area, c: '', name: '' };
     return this.http.get<PublicApiRestaurantsResponse>(
       this.uri, { headers: this.headers, params: params })
-      .map(apiResponse => apiResponse.OpenRestaurants
+      .map(apiResponse => (apiResponse.OpenRestaurants.concat(apiResponse.ClosedRestaurants)
       .map(apiRestaurnat => <IRestaurant>{
         logoUrl: apiRestaurnat.LogoUrl,
         title: apiRestaurnat.Name,
