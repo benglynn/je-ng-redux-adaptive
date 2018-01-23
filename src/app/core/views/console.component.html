@@ -6,8 +6,8 @@
   <h2 class="console__heading console__heading--interactive"
     (click)="isAppStateVisible = !isAppStateVisible"
     [ngSwitch]="isAppStateVisible">
-    <span *ngSwitchCase="true">App state <span class="dim dim--right">Config state</span></span>
-    <span *ngSwitchCase="false"><span class="dim dim--left">App State</span> Config state</span>
+    <span *ngSwitchCase="true">Other slices <span class="dim dim--right">Config slice</span></span>
+    <span *ngSwitchCase="false"><span class="dim dim--left">Other slices</span> Config slice</span>
   </h2>
   <div class="console__section console__section--state console__section--scroll"
     [class.console__section--collapsed]="!isAppStateVisible">
