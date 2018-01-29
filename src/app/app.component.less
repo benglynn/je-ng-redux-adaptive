@@ -12,7 +12,7 @@
 .app {
   position: relative;
   @media @console {
-    max-width: @desktop-min-width;
+    max-width: @tablet-min-width;
   }
 }
 
@@ -38,7 +38,7 @@
   top: 0;
   right: 0;
   height: 100%;
-  width: calc(~"100vw - @{desktop-min-width}");
+  width: calc(~"100vw - @{tablet-min-width}");
   background: red;
 
   @media @console {
