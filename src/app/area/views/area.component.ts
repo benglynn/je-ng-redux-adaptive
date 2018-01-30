@@ -24,7 +24,8 @@ export class AreaComponent implements OnDestroy {
   constructor( private store: Store ) {
     this.area$ = store.select('area');
     this.restaurants$ = store.select('restaurants')
-      .map(state => state.data);
+      .filter(state => state.data != null)
+      .map(state => state.data as IRestaurant[]);
     this.openRestaurants$ = this.restaurants$
       .map(restaurants => restaurants.filter(restaurant => restaurant.isOpen));
     this.closedRestaurants$ = this.restaurants$

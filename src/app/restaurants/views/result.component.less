@@ -1,18 +1,30 @@
+@import '../../shared/less/typography.less';
+
 .result {
   display: flex;
-  padding: 10px;
-  text-align: left;
+  justify-content: flex-start;
+  margin: 16px 0;
 
-  &__image {
+  .logo {
     flex-grow: 0;
-    margin-right: 20px;
-    width: 50px;
+    padding: 0 16px;
   }
 
-  &__heading {
+  .details {
     flex-grow: 1;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+
+    .heading {
+      .ubuntu-heading();
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #535353;
+      margin: 0;
+    }
   }
+
+  .extra-details {
+    flex-grow: 0;
+  }
+
 }
