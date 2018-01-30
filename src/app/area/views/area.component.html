@@ -1,9 +1,11 @@
 <app-header></app-header>
 <div class="page">
+
   <nav class="breadcrumb">
     <a class="item" [routerLink]="['/']">Home</a>
     <span class="item">{{ (area$|async) | uppercase }}</span>
   </nav>
+
   <div class="filters">
     <form class="search">
       <label class="search-label" for="search">Search</label>
@@ -11,13 +13,15 @@
     </form>
     <a href="#filters" class="refine">Refine</a>
   </div>
+
   <div class="banner">
-    <h1 class="heading">{{ (restaurants$|async)?.data?.length }} restaurants in {{ (area$|async) | uppercase }}</h1>
+    <h1 class="heading">{{ (restaurants$|async).length }} restaurants in {{ (area$|async) | uppercase }}</h1>
     <a class="change-location" [routerLink]="['/']">change location</a>
   </div>
+
   <div class="results-frame">
     <div class="results">
-      <div class="result" *ngFor="let restaurant of (restaurants$|async)?.data">
+      <div class="result" *ngFor="let restaurant of (openRestaurants$|async)">
         <app-result-seam
           [restaurant]="restaurant"
           [viewName$]="resultViewName$">
@@ -25,4 +29,20 @@
       </div>
     </div>
   </div>
+
+  <div class="banner">
+    <h1 class="heading">{{ (closedRestaurants$|async).length }} restaurants taking pre-orders for later</h1>
+  </div>
+
+  <div class="results-frame">
+      <div class="results">
+        <div class="result" *ngFor="let restaurant of (closedRestaurants$|async)">
+          <app-result-seam
+            [restaurant]="restaurant"
+            [viewName$]="resultViewName$">
+          </app-result-seam>
+        </div>
+      </div>
+    </div>
+
 </div>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { IRestaurantsState, RemoveRestaurants } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
 import { IAreaState } from '../state';
+import { IRestaurant } from '../../restaurant';
 
 @Component({
   selector: 'app-area',
@@ -15,12 +16,22 @@ import { IAreaState } from '../state';
 export class AreaComponent implements OnDestroy {
 
   area$: Observable<IAreaState>;
-  restaurants$: Observable<IRestaurantsState>;
+  restaurants$: Observable<IRestaurant[]>;
+  openRestaurants$: Observable<IRestaurant[]>;
+  closedRestaurants$: Observable<IRestaurant[]>;
   resultViewName$: Observable<string>;
 
   constructor( private store: Store ) {
     this.area$ = store.select('area');
-    this.restaurants$ = store.select('restaurants');
+    this.restaurants$ = store.select('restaurants')
+      .map(state => state.data);
+    this.openRestaurants$ = this.restaurants$
+      .map(restaurants => restaurants.filter(restaurant => restaurant.isOpen));
+    this.closedRestaurants$ = this.restaurants$
+    .map(restaurants => restaurants.filter(restaurant => !restaurant.isOpen));
+
+
+
     this.resultViewName$ = store.select('configuration')
       .map(config => config.restaurants.views.resultView);
   }

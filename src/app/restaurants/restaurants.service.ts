@@ -38,16 +38,28 @@ export class RestaurantsService {
   constructor( private http: HttpClient ) {}
 
   getRestaurants(area: string): Observable<IRestaurant[]> {
+
+    const simplifyRestaurant = (apiRestaurant: PublicApiRestaurant, isOpen: boolean
+    ): IRestaurant => {
+      return <IRestaurant>{
+        isOpen: isOpen,
+        logoUrl: apiRestaurant.LogoUrl,
+        title: apiRestaurant.Name,
+        rating: apiRestaurant.RatingDetails.StarRating,
+        ratings: apiRestaurant.RatingDetails.Count
+      };
+    };
+
     const params = { q: area, c: '', name: '' };
     return this.http.get<PublicApiRestaurantsResponse>(
       this.uri, { headers: this.headers, params: params })
-      // .do(apiResponse => debugger)
-      .map(apiResponse => (apiResponse.OpenRestaurants.concat(apiResponse.ClosedRestaurants)
-      .map(apiRestaurnat => <IRestaurant>{
-        logoUrl: apiRestaurnat.LogoUrl,
-        title: apiRestaurnat.Name,
-        rating: apiRestaurnat.RatingDetails.StarRating,
-        ratings: apiRestaurnat.RatingDetails.Count
-      })));
+      // .do(apiResponse => { debugger })
+      .map(apiResponse => {
+        const open = apiResponse.OpenRestaurants
+          .map(apiRestaurant => simplifyRestaurant(apiRestaurant, true));
+        const closed = apiResponse.ClosedRestaurants
+          .map(apiRestaurant => simplifyRestaurant(apiRestaurant, false));
+        return open.concat(closed);
+      });
   }
 }
