@@ -8,9 +8,10 @@
 
 .breadcrumb {
 
-  padding: 14px 30px;
+  padding: 14px 16px;
   max-width: @max-page-width;
   margin: auto;
+  border-bottom: 1px solid rgb(202, 202, 202);
 
   .item {
     .hind-vadodara();
@@ -37,36 +38,88 @@
   }
 }
 
+.filters {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+
+  .search {
+    flex-grow: 1;
+
+    .search-label {
+      .ubuntu-heading();
+      font-weight: 500;
+      background-image: url(/assets/img/search-icon-black.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      padding: 0 0 3px 22px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .search-box {
+      font-family: 'Hind Vadodara', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      padding: 0 16px;
+      width: 100%;
+      line-height: 43px;
+      margin: 0;
+      outline: none;
+      border: 1px solid rgb(202, 202, 202);
+      border-radius: 4px;
+    }
+  }
+
+  .refine {
+    .ubuntu-heading();
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+    flex-grow: 0;
+    margin: 0 0 10px 16px;
+    background-image: url(/assets/img/refine.svg);
+    background-repeat: no-repeat;
+    background-size: 28px;
+    background-position: bottom;
+  }
+}
+
 .banner {
   background: rgb(245, 245, 245);
-  padding: 16px 30px;
+  padding: 16px;
   border: 1px solid rgb(202, 202, 202);
   border-width: 1px 0px;
   margin-bottom: 30px;
 
   .heading {
-    .banner-heading();
+    .hind-vadodara-heading();
+    font-weight: 300;
+    font-size: 20px;
+    color: #535353;
     max-width: @max-page-width;
     margin: auto;
   }
+
+  .change-location {
+    .hind-vadodara-heading();
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    color: rgb(38, 106, 189);
+  }
 }
 
-.results-frame {
-  padding: 0 20px;
+.results {
+  padding: 0 16px;
 
-  .results {
-    max-width: 600px;
-    border: 1px solid rgb(234, 234, 234);
-    border-radius: 2px;
-    margin: 0 auto 40px auto;
-    padding: 0 18px;
+  .result {
+    border-bottom: 1px solid rgb(202, 202, 202);
 
-    .result {
-      border-bottom: 1px solid rgb(202, 202, 202);
-
-      &:last-child {
-        border-bottom: none;
-      }
+    &:last-child {
+      border-bottom: none;
     }
   }
 }

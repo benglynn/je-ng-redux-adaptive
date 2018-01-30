@@ -4,8 +4,16 @@
     <a class="item" [routerLink]="['/']">Home</a>
     <span class="item">{{ (area$|async) | uppercase }}</span>
   </nav>
+  <div class="filters">
+    <form class="search">
+      <label class="search-label" for="search">Search</label>
+      <input class="search-box" type="text" id="search" placeholder="Cuisine type or restaurant">
+    </form>
+    <a href="#filters" class="refine">Refine</a>
+  </div>
   <div class="banner">
     <h1 class="heading">{{ (restaurants$|async)?.data?.length }} restaurants in {{ (area$|async) | uppercase }}</h1>
+    <a class="change-location" [routerLink]="['/']">change location</a>
   </div>
   <div class="results-frame">
     <div class="results">
