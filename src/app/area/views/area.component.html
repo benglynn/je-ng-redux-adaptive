@@ -14,7 +14,7 @@
     <a href="#filters" class="refine">Refine</a>
   </div>
 
-  <div class="banner">
+  <div class="banner" >
     <h1 class="heading">{{ (restaurants$|async).length }} restaurants in {{ (area$|async) | uppercase }}</h1>
     <a class="change-location" [routerLink]="['/']">change location</a>
   </div>
