@@ -1,6 +1,7 @@
 @import '../../shared/less/typography.less';
 
 .result {
+  .body-copy();
   display: flex;
   justify-content: flex-start;
   margin: 16px 0;
@@ -15,35 +16,40 @@
 
     .heading {
       .ubuntu-heading();
+      color: #535353;
       font-family: 'Ubuntu', sans-serif;
       font-size: 16px;
       font-weight: 500;
-      color: #535353;
       margin: 0;
     }
   }
 
   @rating-width: 96px;
 
+  .rating {
+    margin-top: 0;
+  }
+
   .stars {
+    background-size: 96px 12px;
+    background: url(/assets/img/stars-background.svg);
     display: inline-block;
-    width: 96px;
     height: 12px;
-    text-indent: -9999px;
     margin-left: -2px;
     position: relative;
-    background: url(/assets/img/stars-background.svg);
-    background-size: 96px 12px;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 96px;
 
     &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
+      background: #D50525;
       content: "";
       display: block;
       height: 12px;
-      background: #D50525;
+      left: 0;
       mask-image: url(/assets/img/stars-background.svg);
+      position: absolute;
+      top: 0;
     }
   }
 
@@ -58,6 +64,9 @@
   .rating-5::after { width: @rating-width * 5/6; }
   .rating-5-5::after { width: @rating-width * 5.5/6; }
   .rating-6::after { width: @rating-width * 2.6/6; }
+
+  .ratings {
+  }
 
 
 
