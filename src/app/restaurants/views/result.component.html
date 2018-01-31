@@ -1,14 +1,16 @@
 <div class="result">
-    <div class="logo">
-      <img
-        class="image" width="50" height="50"
-        [src]="restaurant.logoUrl || '/assets/img/restaurant-logo-placeholder.svg'">
-    </div>
-    <div class="details">
-      <h3 class="heading">{{ restaurant.title }}</h3>
-      <p class="rating">Rated {{ restaurant.rating }}/6 ({{ restaurant.ratings }} ratings in total)</p>
-    </div>
-    <div class="extra-detail">
-      Extra detail
-    </div>
+  <div class="logo">
+    <img
+      class="image" width="50" height="50"
+      [src]="restaurant.logoUrl || '/assets/img/restaurant-logo-placeholder.svg'">
   </div>
+  <div class="details">
+    <h3 class="heading">{{ restaurant.title }}</h3>
+    <p class="rating">
+      <span class="stars" [ngClass]="ratingClass">Rated {{ restaurant.rating }}/6</span>
+      <span class="ratings">({{ restaurant.ratings }})</span>
+  </div>
+  <div class="extra-detail">
+    Extra detail
+  </div>
+</div>
