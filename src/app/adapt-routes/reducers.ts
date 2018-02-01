@@ -5,7 +5,6 @@ import { IRouteConfig } from '../app.configuration';
 
 export const initAdaptRoutes: IConfigurationReducer = ( action: IAction, newState: IConfigurationState
 ): IConfigurationState => {
-  newState.core.routes.home.viewName = 'newHomeView';
   newState.adaptRoutes.routes = { new: { pattern: '^new$', viewName: 'newView' } };
   return newState;
 };
