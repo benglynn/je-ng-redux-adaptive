@@ -1,4 +1,5 @@
 import { Input, Component, ChangeDetectionStrategy } from '@angular/core';
+import { ResultComponent } from '../../restaurants/views/result.component';
 import { IRestaurant } from '../../restaurant';
 
 export interface IResultView {
@@ -11,6 +12,4 @@ export interface IResultView {
   styleUrls: ['./new-result.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewResultComponent implements IResultView {
-  @Input() restaurant: IRestaurant;
-}
+export class NewResultComponent extends ResultComponent {}
