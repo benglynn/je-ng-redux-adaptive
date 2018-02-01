@@ -9,8 +9,18 @@
     <p class="rating">
       <span class="stars" [ngClass]="ratingClass">Rated {{ restaurant.rating }}/6</span>
       <span class="ratings">({{ restaurant.ratings }})</span>
+    </p>
+    <p class="cuisines">{{ restaurant.cuisines }}</p>
+    <p class="collect" *ngIf="restaurant.isCollectNow">Collect now</p>
+    <p class="deliver" *ngIf="restaurant.isDeliveryNow">Delivery: £{{ restaurant.deliveryCost }}</p>
+    <p class="deliver" *ngIf="!restaurant.isDeliveryNow">Delivering from: {{ restaurant.deliveryStartTime|date:'H:mm' }}</p>
+    <ng-container *ngIf="!restaurant.isOpen">
+      <p class="pre-order">Pre-order</p>
+      <p class="opening-time">Opening at {{ restaurant.openingTime|date:'H:mm' }}</p>
+    </ng-container>
   </div>
   <div class="extra-detail">
-    Extra detail
+    <p class="sponsored" *ngIf="restaurant.isSponsored">Sponsored</p>
+    <p class="percent-off" *ngIf="restaurant.percentOff > 0">{{ restaurant.percentOff }}% off</p>
   </div>
 </div>

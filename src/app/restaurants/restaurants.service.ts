@@ -11,6 +11,14 @@ interface PublicApiRestaurant {
   LogoUrl: string;
   Badges: [String];
   RatingDetails: { Count: number, StarRating: number };
+  Cuisines: [{ Name: string, SeoName: string }];
+  IsCollection: boolean;
+  IsDelivery: boolean;
+  DeliveryCost: number;
+  DeliveryStartTime: string;
+  IsSponsored: boolean;
+  OfferPercent: number;
+  OpeningTime: string;
 }
 
 interface PublicApiRestaurantsResponse {
@@ -42,18 +50,26 @@ export class RestaurantsService {
     const simplifyRestaurant = (apiRestaurant: PublicApiRestaurant, isOpen: boolean
     ): IRestaurant => {
       return <IRestaurant>{
+        cuisines: apiRestaurant.Cuisines.map(cuisine => cuisine.Name).join(', '),
+        deliveryCost: apiRestaurant.DeliveryCost,
+        deliveryStartTime: apiRestaurant.DeliveryStartTime,
+        isCollectNow: apiRestaurant.IsCollection,
+        isDeliveryNow: apiRestaurant.IsDelivery,
         isOpen: isOpen,
+        isSponsored: apiRestaurant.IsSponsored,
         logoUrl: apiRestaurant.LogoUrl,
-        title: apiRestaurant.Name,
+        openingTime: apiRestaurant.OpeningTime,
+        percentOff: apiRestaurant.OfferPercent,
         rating: apiRestaurant.RatingDetails.StarRating,
-        ratings: apiRestaurant.RatingDetails.Count
+        ratings: apiRestaurant.RatingDetails.Count,
+        title: apiRestaurant.Name,
       };
     };
 
     const params = { q: area, c: '', name: '' };
     return this.http.get<PublicApiRestaurantsResponse>(
       this.uri, { headers: this.headers, params: params })
-      // .do(apiResponse => { debugger })
+      // .do(apiResponse => { [debugger })
       .map(apiResponse => {
         const open = apiResponse.OpenRestaurants
           .map(apiRestaurant => simplifyRestaurant(apiRestaurant, true));

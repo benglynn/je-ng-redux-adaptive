@@ -13,7 +13,7 @@ export interface IResultView {
 })
 export class ResultComponent implements IResultView, OnInit {
   @Input() restaurant: IRestaurant;
-  ratingClass: string;
+  public  ratingClass: string;
 
   ngOnInit() {
     this.ratingClass = 'rating-' + this.restaurant.rating

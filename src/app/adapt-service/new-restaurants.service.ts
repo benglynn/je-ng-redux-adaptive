@@ -8,9 +8,7 @@ import { IRestaurant } from '../restaurant';
 export class NewRestaurantsService {
 
   getRestaurants(area: string): Observable<IRestaurant[]> {
-    return Observable.from([[
-      {title: 'Your favourite restaurant', rating: 5, ratings: 300, isOpen: true}
-    ]])
+    return Observable.from([])
     .delay(500);
   }
 }
