@@ -20,7 +20,11 @@
     </ng-container>
   </div>
   <div class="extra-detail">
-    <p class="sponsored" *ngIf="restaurant.isSponsored">Sponsored</p>
-    <p class="percent-off" *ngIf="restaurant.percentOff > 0">{{ restaurant.percentOff }}% off</p>
+    <div class="flags">
+      <p class="sponsored" *ngIf="restaurant.isSponsored">Sponsored</p>
+      <p class="percent-off" *ngIf="restaurant.percentOff > 0">{{ restaurant.percentOff }}% off</p>
+    </div>
+    <div class="distance">{{ restaurant.drivingDistance }} miles</div>
+
   </div>
 </div>

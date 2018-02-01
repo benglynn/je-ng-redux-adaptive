@@ -7,18 +7,19 @@ import 'rxjs/add/operator/scan';
 import { IRestaurant } from '../restaurant';
 
 interface PublicApiRestaurant {
-  Name: string;
-  LogoUrl: string;
   Badges: [String];
-  RatingDetails: { Count: number, StarRating: number };
   Cuisines: [{ Name: string, SeoName: string }];
-  IsCollection: boolean;
-  IsDelivery: boolean;
   DeliveryCost: number;
   DeliveryStartTime: string;
+  DriveDistance: number;
+  IsCollection: boolean;
+  IsDelivery: boolean;
   IsSponsored: boolean;
+  LogoUrl: string;
+  Name: string;
   OfferPercent: number;
   OpeningTime: string;
+  RatingDetails: { Count: number, StarRating: number };
 }
 
 interface PublicApiRestaurantsResponse {
@@ -53,6 +54,7 @@ export class RestaurantsService {
         cuisines: apiRestaurant.Cuisines.map(cuisine => cuisine.Name).join(', '),
         deliveryCost: apiRestaurant.DeliveryCost,
         deliveryStartTime: apiRestaurant.DeliveryStartTime,
+        drivingDistance: apiRestaurant.DriveDistance,
         isCollectNow: apiRestaurant.IsCollection,
         isDeliveryNow: apiRestaurant.IsDelivery,
         isOpen: isOpen,

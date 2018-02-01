@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="28px" viewBox="0 0 21 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>location-pin</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-739.000000, -914.000000)">
+        <g id="location-pin" transform="translate(739.000000, 914.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M10.4770142,28 L2.98363184,19.0284238 C-0.832016821,14.4944014 -1.15381852,7.59689922 2.98363184,3.25581395 C7.12108221,-1.08527132 13.8789178,-1.08527132 18.0163682,3.25581395 C22.1538185,7.59689922 21.8320168,14.2049957 18.0163682,19.0284238 L10.4770142,28 Z M10.4770142,6.96985357 C8.27037397,6.96985357 6.47747882,8.85099053 6.47747882,11.166236 C6.47747882,13.4814815 8.27037397,15.3626184 10.4770142,15.3626184 C12.6836544,15.3626184 14.4765495,13.4814815 14.4765495,11.166236 C14.4765495,8.85099053 12.6836544,6.96985357 10.4770142,6.96985357 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
