@@ -9,7 +9,9 @@ export interface IResultView {
 @Component({
   selector: 'app-new-result',
   templateUrl: '../../restaurants/views/result.component.html',
-  styleUrls: ['./new-result.component.less'],
+  styleUrls: [
+    '../../restaurants/views/result.component.less',
+    './new-result.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewResultComponent extends ResultComponent {}
