@@ -1,5 +1,4 @@
 import { IRouteConfig } from '../app.configuration';
-import { IAllCoreReducerName } from '../app.reducers';
 import { ICoreEffectName } from './effects';
 
 export interface ICoreState {
@@ -7,6 +6,7 @@ export interface ICoreState {
   isUrlResolved: boolean;
   isAdapted: boolean;
   isDebugging: boolean;
+  routes: IRouteConfig[];
 }
 
 export const initialCoreState: ICoreState = {
@@ -14,17 +14,24 @@ export const initialCoreState: ICoreState = {
   isUrlResolved: false,
   isAdapted: false,
   isDebugging: false,
+  routes: [
+    {
+      viewName: 'homeView',
+      pattern: '^$'
+    }, {
+      viewName: 'areaView',
+      pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
+      effectName: 'loadRestaurantsEffect'
+    }
+  ],
 };
 
 export interface ICoreConfiguration {
-  routes: {
-    home: IRouteConfig;
-  };
   reducers: {
-    NAVIGATION_END: IAllCoreReducerName;
-    UPDATE_IS_ADAPTED: IAllCoreReducerName;
-    UPDATE_IS_DEBUGGING: IAllCoreReducerName;
-    UPDATE_IS_URL_RESOLVED: IAllCoreReducerName;
+    NAVIGATION_END: string;
+    UPDATE_IS_ADAPTED: string;
+    UPDATE_IS_DEBUGGING: string;
+    UPDATE_IS_URL_RESOLVED: string;
   };
   effects: {
     UPDATE_AREA: ICoreEffectName;
@@ -32,9 +39,6 @@ export interface ICoreConfiguration {
 }
 
 export const initialCoreConfiguration: ICoreConfiguration = {
-  routes: {
-    home: { pattern: '^$', viewName: 'homeView' },
-  },
   reducers: {
     NAVIGATION_END: 'navigationEnd',
     UPDATE_IS_URL_RESOLVED: 'updateIsUrlResolved',

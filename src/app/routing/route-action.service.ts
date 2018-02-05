@@ -16,9 +16,9 @@ export class RouteActionService {
   ) {
     this.store.action$
       .filter(action => action.type === UPDATE_ROUTES)
-      .withLatestFrom(this.store.select('configuration'))
-      .subscribe(([action, configuration]) => {
-        const newRoutes = mapStateRoutes(configuration, this.views);
+      .withLatestFrom(this.store.select('core'))
+      .subscribe(([action, coreSlice]) => {
+        const newRoutes = mapStateRoutes(coreSlice, this.views);
         this.router.resetConfig(newRoutes);
       });
   }

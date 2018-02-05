@@ -1,25 +1,13 @@
-import { IConfigurationState } from '../app.configuration';
+import { ICoreState } from '../core/state';
 import { IAction } from '../app.reducers';
-import { IConfigurationReducer } from '../configuration/reducers';
+import { ICoreReducer } from '../core/reducers';
+import { IRouteConfig } from '../app.configuration';
 
-export const initAdaptService: IConfigurationReducer = ( action: IAction, newState: IConfigurationState
-): IConfigurationState => {
-  newState.area.routes.area.effectName = 'newLoadRestaurantsEffect';
-  return newState;
-};
-
-export interface IAdaptServiceConfigReducers {
-  initAdaptService: IConfigurationReducer;
-}
-
-export const adaptServiceConfigReducers: IAdaptServiceConfigReducers = {
-  initAdaptService: initAdaptService
-};
-
-export interface IAdaptServiceConfigReducersConfig {
-  INIT_ADAPT_SERVICE: 'initAdaptService';
-}
-
-export const adaptServiceConfigReducersConfig: IAdaptServiceConfigReducersConfig = {
-  INIT_ADAPT_SERVICE: 'initAdaptService',
+export const initAdaptService: ICoreReducer = ( action: IAction, coreSlice: ICoreState
+): ICoreState => {
+  const newRoutes = coreSlice.routes.map((routeConfig: IRouteConfig) => {
+    return routeConfig.effectName === 'loadRestaurantsEffect' ?
+      {...routeConfig, effectName: 'newLoadRestaurantsEffect'} : routeConfig;
+  });
+  return {...coreSlice, routes: newRoutes};
 };

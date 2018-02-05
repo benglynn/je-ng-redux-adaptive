@@ -1,4 +1,5 @@
-import { Routes, UrlSegment } from '@angular/router';
+import { Route, Routes, UrlSegment } from '@angular/router';
+import { ICoreState } from '../core/state';
 import { IConfigurationState, ISliceConfiguration, IRoutes, IRouteConfig
 } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
@@ -15,20 +16,17 @@ export const regexMatcher = (pattern) => {
 };
 
 export const mapStateRoutes = (
-  configuration: IConfigurationState, views: IViews
+  coreSlice: ICoreState, views: IViews
 ): Routes => {
-  return Object.values(configuration)
-    .filter((config: ISliceConfiguration) => config.routes !== undefined)
-    .reduce((prev, curr: ISliceConfiguration) => prev.concat(Object.values(curr.routes)), [])
-    .map((config: IRouteConfig) => {
-      const view = views[config.viewName] as IView;
-      const matcher = regexMatcher(config.pattern);
-      return {
+    return coreSlice.routes.map(routeConfig => {
+      const view = views[routeConfig.viewName] as IView;
+      const matcher = regexMatcher(routeConfig.pattern);
+      return <Route>{
         matcher: matcher,
         component: view,
-        data: config,
+        data: routeConfig,
         canActivate: [ GuardRoute ]
       };
     }
-  ).concat({ path: '**', component: views['error404View'], canActivate: [ GuardRoute ] });
+  ).concat(<Route>{ path: '**', component: views['error404View'], canActivate: [ GuardRoute ] });
 };

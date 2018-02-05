@@ -4,7 +4,6 @@ import { ICoreReducers, coreReducers } from './core/reducers';
 import { IAreaReducers, areaReducers } from './area/reducers';
 import { IAdaptResultViewConfigReducers, adaptResultViewConfigReducers } from './adapt-result-view/reducers';
 import { IAdaptRoutesConfigReducers, adaptRoutesConfigReducers } from './adapt-routes/reducers';
-import { IAdaptServiceConfigReducers, adaptServiceConfigReducers } from './adapt-service/reducers';
 
 type INoReducers = Object;
 
@@ -15,8 +14,6 @@ export interface IAction {
 
 export type IReducer<T> = (action: IAction, state: T) => T;
 
-export interface IAllCoreReducers extends ICoreReducers, INoReducers {}
-
 export interface IAllAreaReducers extends IAreaReducers, INoReducers {}
 
 export interface IAllRestaurantsReducers extends IRestaurantsReducers,
@@ -24,21 +21,13 @@ export interface IAllRestaurantsReducers extends IRestaurantsReducers,
 
 export interface IAllConfigurationReducers extends
   IAdaptResultViewConfigReducers,
-  IAdaptRoutesConfigReducers,
-  IAdaptServiceConfigReducers {}
-
-export type IAllCoreReducerName = keyof IAllCoreReducers;
+  IAdaptRoutesConfigReducers {}
 
 export type IAllAreaReducerName = keyof IAllAreaReducers;
 
 export type IAllRestaurantsReducerName = keyof IAllRestaurantsReducers;
 
 export type IAllConfigurationReducerName = keyof IAllConfigurationReducers;
-
-export const allCoreReducers: IAllCoreReducers = {
-  ...coreReducers,
-  /** no adaptations */
-};
 
 export const allAreaReducers: IAllAreaReducers = {
   ...areaReducers,
@@ -53,6 +42,5 @@ export const allRestaurantsReducers: IAllRestaurantsReducers = {
 export const allConfigurationReducers: IAllConfigurationReducers = {
   ...adaptResultViewConfigReducers,
   ...adaptRoutesConfigReducers,
-  ...adaptServiceConfigReducers,
 };
 
