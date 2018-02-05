@@ -1,32 +1,13 @@
-import {
-  ICoreState,
-  initialCoreState,
-  ICoreConfiguration
-} from './core/state';
-import {
-  coreReducers
-} from './core/reducers';
-import {
-  IAreaState,
-  initialAreaState,
-  IAreaConfiguration
-} from './area/state';
-import {
-  IRestaurantsState,
-  initialRestaurantState,
-  IRestaurantsConfiguration
+import { ICoreState, initialCoreState, ICoreConfiguration } from './core/state';
+import { coreReducers } from './core/reducers';
+import { IAreaState, initialAreaState, IAreaConfiguration } from './area/state';
+import { areaReducers } from './area/reducers';
+import { IRestaurantsState, initialRestaurantState, IRestaurantsConfiguration
 } from './restaurants/state';
-import {
-  IConfigurationState,
-  initialConfigurationState,
-  IConfigurationConfiguration
+import { restaurantsReducers } from './restaurants/reducers';
+import { IConfigurationState, initialConfigurationState, IConfigurationConfiguration
 } from './app.configuration';
-import {
-  IAction,
-  IAllAreaReducers, allAreaReducers,
-  IAllRestaurantsReducers, allRestaurantsReducers,
-  IAllConfigurationReducers, allConfigurationReducers,
-} from './app.reducers';
+import { IAction } from './app.reducers';
 
 export interface IAppState {
   core: ICoreState;
@@ -46,7 +27,7 @@ export const initialState: IAppState = {
 
 export const stateReducers = {
   core: coreReducers,
-  area: allAreaReducers,
-  restaurants: allRestaurantsReducers,
-  configuration: allConfigurationReducers,
+  area: areaReducers,
+  restaurants: restaurantsReducers,
+  configuration: {},
 };

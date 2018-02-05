@@ -24,7 +24,7 @@ export interface IRestaurantsReducers  {
 
 export type IRestaurantsReducerName = keyof IRestaurantsReducers;
 
-export const restaurantReducers: IRestaurantsReducers = {
+export const restaurantsReducers: IRestaurantsReducers = {
   updateRestaurants: updateRestaurants,
   removeRestaurants: removeRestaurants,
 };
