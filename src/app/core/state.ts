@@ -1,7 +1,17 @@
 import { IRouteConfig } from '../app.configuration';
 import { ICoreEffectName } from './effects';
 
-export interface ICoreState {
+import { Reducible } from '../store';
+
+export enum CoreReducer {
+  navigationEndReducer = 'navigationEndReducer',
+  updateIsUrlResolvedReducer = 'updateIsUrlResolvedReducer',
+  updateIsAdaptedReducer = 'updateIsAdaptedReducer',
+  updateIsDebuggingReducer = 'updateIsDebuggingReducer',
+  initAdaptServiceReducer = 'initAdaptServiceReducer',
+}
+
+export interface ICoreState extends Reducible<CoreReducer> {
   url: string|null;
   isUrlResolved: boolean;
   isAdapted: boolean;
@@ -24,6 +34,11 @@ export const initialCoreState: ICoreState = {
       effectName: 'loadRestaurantsEffect'
     }
   ],
+  reducers: {
+    navigationEndAction: CoreReducer.navigationEndReducer,
+    updateIsUrlResolvedAction: CoreReducer.updateIsUrlResolvedReducer,
+    updateIsAdaptedAction: CoreReducer.updateIsAdaptedReducer,
+  }
 };
 
 export interface ICoreConfiguration {
