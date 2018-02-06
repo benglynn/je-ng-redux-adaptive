@@ -1,5 +1,5 @@
 import { Route, Routes, UrlSegment } from '@angular/router';
-import { ICoreState } from '../core/state';
+import { CoreState } from '../core/state';
 import { IConfigurationState, ISliceConfiguration, IRoutes, IRouteConfig
 } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
@@ -16,7 +16,7 @@ export const regexMatcher = (pattern) => {
 };
 
 export const mapStateRoutes = (
-  coreSlice: ICoreState, views: IViews
+  coreSlice: CoreState, views: IViews
 ): Routes => {
     return coreSlice.routes.map(routeConfig => {
       const view = views[routeConfig.viewName] as IView;

@@ -1,17 +1,9 @@
 import { IRouteConfig } from '../app.configuration';
 import { ICoreEffectName } from './effects';
+import { CoreReducer } from './reducers';
+import { ReducerFunc, Reducible } from '../store';
 
-import { Reducible } from '../store';
-
-export enum CoreReducer {
-  navigationEndReducer = 'navigationEndReducer',
-  updateIsUrlResolvedReducer = 'updateIsUrlResolvedReducer',
-  updateIsAdaptedReducer = 'updateIsAdaptedReducer',
-  updateIsDebuggingReducer = 'updateIsDebuggingReducer',
-  initAdaptServiceReducer = 'initAdaptServiceReducer',
-}
-
-export interface ICoreState extends Reducible<CoreReducer> {
+export interface CoreState extends Reducible<CoreReducer> {
   url: string|null;
   isUrlResolved: boolean;
   isAdapted: boolean;
@@ -19,7 +11,7 @@ export interface ICoreState extends Reducible<CoreReducer> {
   routes: IRouteConfig[];
 }
 
-export const initialCoreState: ICoreState = {
+export const initialCoreState: CoreState = {
   url: null,
   isUrlResolved: false,
   isAdapted: false,
@@ -40,6 +32,8 @@ export const initialCoreState: ICoreState = {
     updateIsAdaptedAction: CoreReducer.updateIsAdaptedReducer,
   }
 };
+
+/* Deprecated below *//////////////////////////////////////////////////////////
 
 export interface ICoreConfiguration {
   reducers: {

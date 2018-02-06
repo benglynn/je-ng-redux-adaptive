@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/take';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { ICoreState } from './core/state';
+import { CoreState } from './core/state';
 import { UpdateIsDebuggingAction } from './core/actions';
 
 @Component({
@@ -14,7 +14,7 @@ import { UpdateIsDebuggingAction } from './core/actions';
 })
 export class AppComponent {
 
-  private core$: Observable<ICoreState>;
+  private core$: Observable<CoreState>;
   isDebugging$: Observable<boolean>;
   isUrlResolved: Observable<boolean>;
 

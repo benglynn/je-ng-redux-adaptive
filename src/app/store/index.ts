@@ -10,7 +10,7 @@ export interface Actionable {
   type: Action;
 }
 
-export type ReducerFunc<T> = (action: Actionable, stateSlice: T) => T;
+export type ReducerFunc<StateSlice> = (action: Actionable, stateSlice: StateSlice) => StateSlice;
 
 type ActionName = keyof Action;
 

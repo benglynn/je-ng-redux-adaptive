@@ -1,5 +1,4 @@
 import { IRestaurant } from '../restaurant';
-import { IAllRestaurantsReducerName } from '../app.reducers';
 
 export interface IRestaurantsState {
   data: null | IRestaurant[];
@@ -9,8 +8,8 @@ export const initialRestaurantState: IRestaurantsState = { data: null };
 
 export interface IRestaurantsConfiguration {
   reducers: {
-    UPDATE_RESTAURANTS: IAllRestaurantsReducerName;
-    REMOVE_RESTAURANTS: IAllRestaurantsReducerName;
+    UPDATE_RESTAURANTS: String;
+    REMOVE_RESTAURANTS: String;
   };
   views: {
     resultView: string;

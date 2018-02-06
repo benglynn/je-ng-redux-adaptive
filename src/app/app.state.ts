@@ -1,4 +1,4 @@
-import { ICoreState, initialCoreState, ICoreConfiguration } from './core/state';
+import { CoreState, initialCoreState, ICoreConfiguration } from './core/state';
 import { coreReducers } from './core/reducers';
 import { IAreaState, initialAreaState, IAreaConfiguration } from './area/state';
 import { areaReducers } from './area/reducers';
@@ -10,7 +10,7 @@ import { IConfigurationState, initialConfigurationState, IConfigurationConfigura
 import { IAction } from './app.reducers';
 
 export interface IAppState {
-  core: ICoreState;
+  core: CoreState;
   area: IAreaState;
   restaurants: IRestaurantsState;
   configuration: IConfigurationState;

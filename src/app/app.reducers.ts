@@ -14,24 +14,3 @@ export interface IAction {
 
 export type IReducer<T> = (action: IAction, state: T) => T;
 
-export interface IAllRestaurantsReducers extends IRestaurantsReducers,
-  INoReducers {}
-
-export interface IAllConfigurationReducers extends
-  IAdaptResultViewConfigReducers,
-  IAdaptRoutesConfigReducers {}
-
-export type IAllRestaurantsReducerName = keyof IAllRestaurantsReducers;
-
-export type IAllConfigurationReducerName = keyof IAllConfigurationReducers;
-
-export const allRestaurantsReducers: IAllRestaurantsReducers = {
-  ...restaurantsReducers,
-  /** no adaptations */
-};
-
-export const allConfigurationReducers: IAllConfigurationReducers = {
-  ...adaptResultViewConfigReducers,
-  ...adaptRoutesConfigReducers,
-};
-
