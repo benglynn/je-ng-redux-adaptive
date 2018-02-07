@@ -1,7 +1,7 @@
 import { IRouteConfig } from '../app.configuration';
 import { ICoreEffectName } from './effects';
 import { CoreReducer, coreReducerAsFunc } from './reducers';
-import { Actionable, ReducerFunc, Reducible } from '../store';
+import { Actionable, ReducerFunc, Reducible, ReduceStateSlice } from '../store';
 
 export interface CoreState extends Reducible<CoreReducer> {
   url: string|null;
@@ -10,10 +10,6 @@ export interface CoreState extends Reducible<CoreReducer> {
   isDebugging: boolean;
   routes: IRouteConfig[];
 }
-
-type ReduceStateSlice<StateSlice> = (
-  currentState: StateSlice, action: Actionable
-) => StateSlice;
 
 export const reduceCoreState: ReduceStateSlice<CoreState> = (
   currentState: CoreState, action: Actionable
@@ -46,6 +42,18 @@ export const initialCoreState: CoreState = {
   }
 };
 
+export const initialCoreConfiguration: ICoreConfiguration = {
+  reducers: {
+    NAVIGATION_END: 'navigationEnd',
+    UPDATE_IS_URL_RESOLVED: 'updateIsUrlResolved',
+    UPDATE_IS_ADAPTED: 'updateIsAdapted',
+    UPDATE_IS_DEBUGGING: 'updateIsDebugging',
+  },
+  effects: {
+    UPDATE_AREA: 'logPostcodeEffect'
+  }
+};
+
 /* Deprecated below *//////////////////////////////////////////////////////////
 
 export interface ICoreConfiguration {
@@ -59,15 +67,3 @@ export interface ICoreConfiguration {
     UPDATE_AREA: ICoreEffectName;
   };
 }
-
-export const initialCoreConfiguration: ICoreConfiguration = {
-  reducers: {
-    NAVIGATION_END: 'navigationEnd',
-    UPDATE_IS_URL_RESOLVED: 'updateIsUrlResolved',
-    UPDATE_IS_ADAPTED: 'updateIsAdapted',
-    UPDATE_IS_DEBUGGING: 'updateIsDebugging',
-  },
-  effects: {
-    UPDATE_AREA: 'logPostcodeEffect'
-  }
-};

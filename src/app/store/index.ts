@@ -21,10 +21,10 @@ export interface Actionable {
 
 export type ReducerFunc<StateSlice> = (action: Actionable, stateSlice: StateSlice) => StateSlice;
 
-type ActionName = keyof Action;
-
 export interface Reducible<SliceReducer> {
   reducers: {[_ in Action]?: SliceReducer};
 }
 
-
+export type ReduceStateSlice<StateSlice> = (
+  currentState: StateSlice, action: Actionable
+) => StateSlice;
