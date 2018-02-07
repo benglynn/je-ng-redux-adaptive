@@ -15,6 +15,9 @@ import * as fromPostcode from '../area';
 import { EFFECTS, IEffects } from '../app.effects';
 import { UpdateRoutesAction } from '../routing/update-routes';
 
+import { reduceCoreState } from '../core/state';
+import { Action } from '../store';
+
 @Injectable()
 export class Store {
   state$: BehaviorSubject<IAppState>; // Todo: generic as not in module?
@@ -62,13 +65,15 @@ export class Store {
     private injector: Injector,
     private loggerService: LoggerService
   ) {
-    this.state$ = new BehaviorSubject(initialState);
-    this.action$ = new BehaviorSubject({ type: 'APP_LAUNCH'});
+    this.state$ = new BehaviorSubject<IAppState>(initialState);
+    this.action$ = new BehaviorSubject<IAction>({ type: 'APP_LAUNCH', actionType: Action.initialAction});
 
     this.action$
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
+
+        const newCoreState = reduceCoreState(state.core, action);
 
         const [nextState, changeList] = getNextState(action, state);
         if (changeList.length > 0) {

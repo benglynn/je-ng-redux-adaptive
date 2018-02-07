@@ -5,10 +5,13 @@ import { IAreaReducers, areaReducers } from './area/reducers';
 import { IAdaptResultViewConfigReducers, adaptResultViewConfigReducers } from './adapt-result-view/reducers';
 import { IAdaptRoutesConfigReducers, adaptRoutesConfigReducers } from './adapt-routes/reducers';
 
+import { Action } from './store';
+
 type INoReducers = Object;
 
 export interface IAction {
   type: string;
+  actionType: Action;
   payload?: any;
 }
 

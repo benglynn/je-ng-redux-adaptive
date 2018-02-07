@@ -1,7 +1,7 @@
 import { IRouteConfig } from '../app.configuration';
 import { ICoreEffectName } from './effects';
-import { CoreReducer } from './reducers';
-import { ReducerFunc, Reducible } from '../store';
+import { CoreReducer, coreReducerAsFunc } from './reducers';
+import { Actionable, ReducerFunc, Reducible } from '../store';
 
 export interface CoreState extends Reducible<CoreReducer> {
   url: string|null;
@@ -10,6 +10,18 @@ export interface CoreState extends Reducible<CoreReducer> {
   isDebugging: boolean;
   routes: IRouteConfig[];
 }
+
+type ReduceStateSlice<StateSlice> = (
+  currentState: StateSlice, action: Actionable
+) => StateSlice;
+
+export const reduceCoreState: ReduceStateSlice<CoreState> = (
+  currentState: CoreState, action: Actionable
+): CoreState => { // TODO: null if no change
+  const reducer = currentState.reducers[action.actionType];
+  return reducer === undefined ? currentState : coreReducerAsFunc(reducer)(
+    action, currentState);
+};
 
 export const initialCoreState: CoreState = {
   url: null,
@@ -30,6 +42,7 @@ export const initialCoreState: CoreState = {
     navigationEndAction: CoreReducer.navigationEndReducer,
     updateIsUrlResolvedAction: CoreReducer.updateIsUrlResolvedReducer,
     updateIsAdaptedAction: CoreReducer.updateIsAdaptedReducer,
+    initAdaptServiceAction: CoreReducer.initAdaptServiceReducer,
   }
 };
 

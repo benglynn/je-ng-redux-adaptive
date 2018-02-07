@@ -1,13 +1,22 @@
 export enum Action {
-  navigationEndAction = 'navigationEndAction',
   initialAction = 'initialAction',
+  navigationStartAction = 'navigationStartAction',
+  navigationEndAction = 'navigationEndAction',
   updateIsAdaptedAction = 'updateIsAdaptedAction',
   updateIsUrlResolvedAction = 'updateIsUrlResolvedAction',
+  updateIsDebuggingAction = 'updateIsDebuggingAction',
+  initAdaptServiceAction = 'initAdaptServiceAction',
+  updateAreaAction = 'updateAreaAction',
+  visitAreaAction = 'visitAreaAction',
+  loadRestaurantsAction = 'loadRestaurantsAction',
+  updateRestaurnatsAction = 'updateRestaurnatsAction',
+  removeRestaurantsAction = 'removeRestaurantsAction',
+  updateRoutesAction = 'updateRoutesAction',
   // Adapters add actions below
 }
 
 export interface Actionable {
-  type: Action;
+  actionType: Action;
 }
 
 export type ReducerFunc<StateSlice> = (action: Actionable, stateSlice: StateSlice) => StateSlice;
@@ -16,7 +25,6 @@ type ActionName = keyof Action;
 
 export interface Reducible<SliceReducer> {
   reducers: {[_ in Action]?: SliceReducer};
-  // reduce: (action: Actionable) => StateSlice;
 }
 
 

@@ -1,14 +1,15 @@
 import { ReducerFunc } from '../store';
+import { initAdaptServiceReducer } from '../adapt-service/reducers';
+import { Actionable } from '../store';
 
 export enum CoreReducer {
   navigationEndReducer = 'navigationEndReducer',
   updateIsUrlResolvedReducer = 'updateIsUrlResolvedReducer',
   updateIsAdaptedReducer = 'updateIsAdaptedReducer',
-  updateIsDebuggingReducer = 'updateIsDebuggingReducer',
   initAdaptServiceReducer = 'initAdaptServiceReducer',
 }
 
-const callCoreReucer = (coreReducer: CoreReducer): ReducerFunc<CoreState> => {
+export const coreReducerAsFunc = (coreReducer: CoreReducer): ReducerFunc<CoreState> => {
   switch (coreReducer) {
     case CoreReducer.initAdaptServiceReducer:
     return initAdaptServiceReducer;
@@ -16,56 +17,64 @@ const callCoreReucer = (coreReducer: CoreReducer): ReducerFunc<CoreState> => {
     return navigationEndReducer;
     case CoreReducer.updateIsAdaptedReducer:
     return updateIsAdapatedReducer;
-    case CoreReducer.updateIsDebuggingReducer:
-    return updateIsDebuggingReducer;
     case CoreReducer.updateIsUrlResolvedReducer:
     return updateIsUrlResolvedReducer;
   }
   return noCaseFor(coreReducer);
 };
-function noCaseFor(_: never): never { throw new Error(); }
+function noCaseFor(_: never): never { throw new Error('Switch not exhaustive'); }
 
 
-/* Actions to separate files */////////////////////////////////////////////////
+// TODO: move the following to separate files
 
+export type CoreReducerFunc = ReducerFunc<CoreState>;
 
-
-
-
-
-/* Reducers to separate files *////////////////////////////////////////////////
-
-
-
-
-
-
-/* Deprecated below *//////////////////////////////////////////////////////////
-
-
-import { IReducer } from '../app.reducers';
-import { NavigationEndAction } from '../routing/actions';
-import { CoreState } from './state';
-import { UpdateIsAdaptedAction, UpdateIsDebuggingAction, UpdateIsUrlResolved } from './actions';
-import { initAdaptServiceReducer } from '../adapt-service/reducers';
-
-
-
-export type ICoreReducer = IReducer<CoreState>;
-
-const navigationEndReducer: ICoreReducer = (
+const navigationEndReducer: CoreReducerFunc = (
   action: NavigationEndAction, state: CoreState
 ): CoreState => {
   return { ...state, url: action.payload };
 };
 
-const updateIsUrlResolvedReducer: ICoreReducer = (
-  action: UpdateIsUrlResolved, state: CoreState
+const updateIsAdapatedReducer: CoreReducerFunc = (
+  action: UpdateIsAdaptedAction, state: CoreState
+): CoreState => {
+  return { ...state, isAdapted: action.payload };
+};
+
+const updateIsUrlResolvedReducer: CoreReducerFunc = (
+  action: UpdateIsUrlResolvedAction, state: CoreState
 ): CoreState => {
   return { ...state, isUrlResolved: action.payload };
 };
 
-const updateIsAdapatedReducer: ICoreReducer = (
+
+
+
+
+
+import { IReducer } from '../app.reducers';
+import { NavigationEndAction } from '../routing/actions';
+import { CoreState } from './state';
+import { UpdateIsAdaptedAction, UpdateIsDebuggingAction, UpdateIsUrlResolvedAction } from './actions';
+import { initAdaptServiceReducerOld } from '../adapt-service/reducers';
+
+
+
+export type ICoreReducer = IReducer<CoreState>;
+
+const navigationEndReducerOld: ICoreReducer = (
+  action: NavigationEndAction, state: CoreState
+): CoreState => {
+  return { ...state, url: action.payload };
+};
+
+const updateIsUrlResolvedReducerOld: ICoreReducer = (
+  action: UpdateIsUrlResolvedAction, state: CoreState
+): CoreState => {
+  return { ...state, isUrlResolved: action.payload };
+};
+
+const updateIsAdapatedReducerOld: ICoreReducer = (
   action: UpdateIsAdaptedAction, state: CoreState
 ): CoreState => {
   return { ...state, isAdapted: action.payload };
@@ -88,10 +97,10 @@ export interface ICoreReducers {
 export type ICoreReducerName = keyof ICoreReducers;
 
 export const coreReducers: ICoreReducers = {
-  navigationEnd: navigationEndReducer,
-  updateIsUrlResolved: updateIsUrlResolvedReducer,
-  updateIsAdapted: updateIsAdapatedReducer,
+  navigationEnd: navigationEndReducerOld,
+  updateIsUrlResolved: updateIsUrlResolvedReducerOld,
+  updateIsAdapted: updateIsAdapatedReducerOld,
   updateIsDebugging: updateIsDebuggingReducer,
-  INIT_ADAPT_SERVICE: initAdaptServiceReducer,
+  INIT_ADAPT_SERVICE: initAdaptServiceReducerOld,
 };
 
