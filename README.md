@@ -25,4 +25,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Deploy
 
-Build first, then `gcloud app deploy --project jepd-future`.
+Build first, then `gcloud app deploy --project mpd-proto`.
