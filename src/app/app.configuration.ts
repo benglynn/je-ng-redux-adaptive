@@ -3,7 +3,6 @@ import { IAreaConfiguration, initialAreaConfiguration } from './area/state';
 import { IRestaurantsConfiguration, initialRestaurantsConfiguration } from './restaurants/state';
 import { IAdaptRoutesConfiguration, initialAdaptRoutesConfiguration } from './adapt-routes/state';
 import { IAdaptResultViewConfigReducersConfig, adaptResultViewConfigReducersConfig } from './adapt-result-view/reducers';
-import { IAdaptRoutesConfigReducersConfig, adaptRoutesConfigReducersConfig } from './adapt-routes/reducers';
 import { IEffectName } from './app.effects';
 import { IViewName } from './app.views';
 
@@ -27,7 +26,6 @@ export const initialConfigurationState: IConfigurationState = {
   configuration: {
     reducers: {
       ...adaptResultViewConfigReducersConfig,
-      ...adaptRoutesConfigReducersConfig,
     }
   },
 };

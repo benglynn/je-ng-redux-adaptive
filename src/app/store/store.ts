@@ -74,6 +74,7 @@ export class Store {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
 
         const newCoreState = reduceCoreState(state.core, action);
+        console.log(newCoreState);
 
         const [nextState, changeList] = getNextState(action, state);
         if (changeList.length > 0) {

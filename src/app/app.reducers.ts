@@ -3,7 +3,6 @@ import { IRestaurantsReducers, restaurantsReducers } from './restaurants/reducer
 import { ICoreReducers, coreReducers } from './core/reducers';
 import { IAreaReducers, areaReducers } from './area/reducers';
 import { IAdaptResultViewConfigReducers, adaptResultViewConfigReducers } from './adapt-result-view/reducers';
-import { IAdaptRoutesConfigReducers, adaptRoutesConfigReducers } from './adapt-routes/reducers';
 
 import { Action } from './store';
 

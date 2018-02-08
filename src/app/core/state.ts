@@ -39,6 +39,7 @@ export const initialCoreState: CoreState = {
     updateIsUrlResolvedAction: CoreReducer.updateIsUrlResolvedReducer,
     updateIsAdaptedAction: CoreReducer.updateIsAdaptedReducer,
     initAdaptServiceAction: CoreReducer.initAdaptServiceReducer,
+    initAdaptRoutesAction: CoreReducer.initAdaptRoutesReducer,
   }
 };
 

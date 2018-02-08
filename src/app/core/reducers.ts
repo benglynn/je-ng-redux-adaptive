@@ -1,12 +1,17 @@
 import { ReducerFunc } from '../store';
 import { initAdaptServiceReducer } from '../adapt-service/reducers';
 import { Actionable } from '../store';
+import { initAdaptRoutesReducer } from '../adapt-routes/reducers';
+
+export type CoreReducerFunc = ReducerFunc<CoreState>;
 
 export enum CoreReducer {
   navigationEndReducer = 'navigationEndReducer',
   updateIsUrlResolvedReducer = 'updateIsUrlResolvedReducer',
   updateIsAdaptedReducer = 'updateIsAdaptedReducer',
+  // Adapters add core reducers below
   initAdaptServiceReducer = 'initAdaptServiceReducer',
+  initAdaptRoutesReducer = 'initAdaptRoutesReducer',
 }
 
 export const coreReducerAsFunc = (coreReducer: CoreReducer): ReducerFunc<CoreState> => {
@@ -19,6 +24,8 @@ export const coreReducerAsFunc = (coreReducer: CoreReducer): ReducerFunc<CoreSta
     return updateIsAdapatedReducer;
     case CoreReducer.updateIsUrlResolvedReducer:
     return updateIsUrlResolvedReducer;
+    case CoreReducer.initAdaptRoutesReducer:
+    return initAdaptRoutesReducer;
   }
   return noCaseFor(coreReducer);
 };
@@ -27,7 +34,7 @@ function noCaseFor(_: never): never { throw new Error('Switch not exhaustive'); 
 
 // TODO: move the following to separate files
 
-export type CoreReducerFunc = ReducerFunc<CoreState>;
+
 
 const navigationEndReducer: CoreReducerFunc = (
   action: NavigationEndAction, state: CoreState

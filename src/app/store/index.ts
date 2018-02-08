@@ -5,7 +5,6 @@ export enum Action {
   updateIsAdaptedAction = 'updateIsAdaptedAction',
   updateIsUrlResolvedAction = 'updateIsUrlResolvedAction',
   updateIsDebuggingAction = 'updateIsDebuggingAction',
-  initAdaptServiceAction = 'initAdaptServiceAction',
   updateAreaAction = 'updateAreaAction',
   visitAreaAction = 'visitAreaAction',
   loadRestaurantsAction = 'loadRestaurantsAction',
@@ -13,6 +12,9 @@ export enum Action {
   removeRestaurantsAction = 'removeRestaurantsAction',
   updateRoutesAction = 'updateRoutesAction',
   // Adapters add actions below
+  initAdaptServiceAction = 'initAdaptServiceAction',
+  initAdaptRoutesAction = 'initAdaptRoutesAction',
+  initAdaptResultsView = 'initAdaptResultsView',
 }
 
 export interface Actionable {
