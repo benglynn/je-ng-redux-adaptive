@@ -16,14 +16,14 @@ export enum CoreReducer {
 
 export const coreReducerAsFunc = (coreReducer: CoreReducer): ReducerFunc<CoreState> => {
   switch (coreReducer) {
-    case CoreReducer.initAdaptServiceReducer:
-    return initAdaptServiceReducer;
     case CoreReducer.navigationEndReducer:
     return navigationEndReducer;
     case CoreReducer.updateIsAdaptedReducer:
     return updateIsAdapatedReducer;
     case CoreReducer.updateIsUrlResolvedReducer:
     return updateIsUrlResolvedReducer;
+    case CoreReducer.initAdaptServiceReducer:
+    return initAdaptServiceReducer;
     case CoreReducer.initAdaptRoutesReducer:
     return initAdaptRoutesReducer;
   }
@@ -63,7 +63,6 @@ import { IReducer } from '../app.reducers';
 import { NavigationEndAction } from '../routing/actions';
 import { CoreState } from './state';
 import { UpdateIsAdaptedAction, UpdateIsDebuggingAction, UpdateIsUrlResolvedAction } from './actions';
-import { initAdaptServiceReducerOld } from '../adapt-service/reducers';
 
 
 
@@ -98,7 +97,6 @@ export interface ICoreReducers {
   updateIsUrlResolved: ICoreReducer;
   updateIsAdapted: ICoreReducer;
   updateIsDebugging: ICoreReducer;
-  INIT_ADAPT_SERVICE: ICoreReducer;
 }
 
 export type ICoreReducerName = keyof ICoreReducers;
@@ -108,6 +106,5 @@ export const coreReducers: ICoreReducers = {
   updateIsUrlResolved: updateIsUrlResolvedReducerOld,
   updateIsAdapted: updateIsAdapatedReducerOld,
   updateIsDebugging: updateIsDebuggingReducer,
-  INIT_ADAPT_SERVICE: initAdaptServiceReducerOld,
 };
 

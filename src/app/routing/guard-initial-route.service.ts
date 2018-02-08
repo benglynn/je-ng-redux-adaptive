@@ -29,7 +29,6 @@ export class GuardInitialRoute implements CanActivate {
       .switchMap(ready => this.store.select('core'))
       .map(coreSlice => {
         const newRoutes = mapStateRoutes(coreSlice, this.views);
-        console.log(newRoutes);
         this.router.resetConfig(newRoutes);
         this.routActionService.subscribeToRouterEvents();
         this.router.navigateByUrl(state.url, { replaceUrl: true });

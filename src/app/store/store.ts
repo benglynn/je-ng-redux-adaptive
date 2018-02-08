@@ -73,8 +73,10 @@ export class Store {
       .subscribe(([action, state]) => {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
 
-        const newCoreState = reduceCoreState(state.core, action);
+        const newCoreState = reduceCoreState({...state.core}, action);
+        console.group(`reduce core with ${action.type}:`);
         console.log(newCoreState);
+        console.groupEnd();
 
         const [nextState, changeList] = getNextState(action, state);
         if (changeList.length > 0) {

@@ -28,16 +28,17 @@ export class AdaptationService {
   fetchActions () {
     this.http.get<IServiceResponse>(this.stateServiceUri)
       .map(response => response.actions)
-      .mergeMap(action => action)
-      .filter(action => action.active)
-      .map(action => {
+      .mergeMap(serviceAction => serviceAction)
+      .filter(serviceAction => serviceAction.active)
+      .map(serviceAction => {
         // Temporarily map from old to new action types
         const actionType: Action|null =
-          action.type === 'INIT_ADAPT_ROUTES' ? Action.initAdaptRoutesAction :
-          action.type === 'INIT_ADAPT_SERVICE' ? Action.initAdaptServiceAction :
-          action.type === 'INIT_ADAPT_RESULT_VIEW' ? Action.initAdaptResultsView :
+          serviceAction.type === 'INIT_ADAPT_ROUTES' ? Action.initAdaptRoutesAction :
+          serviceAction.type === 'INIT_ADAPT_SERVICE' ? Action.initAdaptServiceAction :
+          serviceAction.type === 'INIT_ADAPT_RESULT_VIEW' ? Action.initAdaptResultsView :
           null;
-        return <IAction>{ type: action.type, actionType: actionType };
+          const action = <IAction>{ type: serviceAction.type, actionType: actionType }
+        return action;
       })
       .do(action => this.store.dispatch(action))
       .subscribe(() => {}, () => {}, () => {
