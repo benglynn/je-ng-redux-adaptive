@@ -1,4 +1,3 @@
-import { IRouteConfig } from '../app.configuration';
 import { UPDATE_AREA } from './actions';
 import { AreaReducer, areaReducerAsFunc } from './reducers';
 import { Actionable, ReducerFunc, Reducible, ReduceStateSlice } from '../store';
@@ -24,21 +23,4 @@ export const reduceAreaStateOrNull: ReduceStateSlice<AreaState> = (
   const reducer = currentState.reducers[action.actionType];
   return reducer === undefined ? null : areaReducerAsFunc(reducer)(
     action, currentState);
-};
-
-
-
-/* Deprecated below *//////////////////////////////////////////////////////////
-
-export interface IAreaConfiguration {
-  reducers: {
-    UPDATE_AREA: String;
-  };
-}
-
-
-export const initialAreaConfiguration: IAreaConfiguration = {
-  reducers: {
-    UPDATE_AREA: 'updateArea',
-  }
 };

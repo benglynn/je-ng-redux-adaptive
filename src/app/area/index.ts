@@ -1,7 +1,6 @@
 export {
   AreaState,
   initialAreaState,
-  areaPattern,
-  initialAreaConfiguration
+  areaPattern
 } from './state';
 export { UpdateAreaAction, VisitAreaAction } from './actions';

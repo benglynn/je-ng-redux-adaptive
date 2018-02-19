@@ -1,11 +1,11 @@
 import { CoreState, initialCoreState, ICoreConfiguration } from './core/state';
 import { coreReducers } from './core/reducers';
-import { AreaState, initialAreaState, IAreaConfiguration } from './area/state';
+import { AreaState, initialAreaState } from './area/state';
 import { areaReducers } from './area/reducers';
 import { RestaurantsState, initialRestaurantsState, IRestaurantsConfiguration
 } from './restaurants/state';
 import { restaurantsReducers } from './restaurants/reducers';
-import { IConfigurationState, initialConfigurationState, IConfigurationConfiguration
+import { IConfigurationState, initialConfigurationState
 } from './app.configuration';
 import { IAction } from './app.reducers';
 

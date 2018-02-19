@@ -1,7 +1,5 @@
 import { Route, Routes, UrlSegment } from '@angular/router';
 import { CoreState } from '../core/state';
-import { IConfigurationState, ISliceConfiguration, IRoutes, IRouteConfig
-} from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
 import { IView, IViews } from '../app.views';

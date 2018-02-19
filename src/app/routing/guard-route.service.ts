@@ -4,7 +4,7 @@ import { CanActivate, Router, Routes, ActivatedRouteSnapshot,
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
-import { IConfigurationState, IRouteConfig } from '../app.configuration';
+import { RouteConfig } from './route-config';
 import { LoggerService } from '../core/logger.service';
 import { UpdateIsUrlResolvedAction } from '../core/actions';
 import { NavigationStartAction } from '../routing/actions';
@@ -22,7 +22,7 @@ export class GuardRoute implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot
   ): Observable<boolean> {
-    const config = route.data as IRouteConfig;
+    const config = route.data as RouteConfig;
     if (config.effectName === undefined) {
       this.store.dispatch(new UpdateIsUrlResolvedAction(true));
       return Observable.of(true);

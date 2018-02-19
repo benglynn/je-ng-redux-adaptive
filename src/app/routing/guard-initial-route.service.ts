@@ -4,7 +4,6 @@ import { CanActivate, Router, Routes, RouterStateSnapshot,
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { Store } from '../store/store';
-import { IConfigurationState, IRouteConfig } from '../app.configuration';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
 import { VIEWS, IViews } from '../app.views';
