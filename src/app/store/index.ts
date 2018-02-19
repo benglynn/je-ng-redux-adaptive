@@ -29,4 +29,4 @@ export interface Reducible<SliceReducer> {
 
 export type ReduceStateSlice<StateSlice> = (
   currentState: StateSlice, action: Actionable
-) => StateSlice;
+) => StateSlice|null;

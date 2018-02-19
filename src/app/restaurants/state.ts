@@ -14,11 +14,11 @@ export const initialRestaurantsState: RestaurantsState = {
   }
 };
 
-export const reduceRestaurantsState: ReduceStateSlice<RestaurantsState> = (
+export const reduceRestaurantsStateOrNull: ReduceStateSlice<RestaurantsState> = (
   currentState: RestaurantsState, action: Actionable
-): RestaurantsState => { // TODO: null if no change
+): RestaurantsState|null => {
   const reducer = currentState.reducers[action.actionType];
-  return reducer === undefined ? currentState : restaurantsReducerAsFunc(reducer)(
+  return reducer === undefined ? null : restaurantsReducerAsFunc(reducer)(
     action, currentState);
 };
 

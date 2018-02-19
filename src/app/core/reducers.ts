@@ -3,8 +3,6 @@ import { initAdaptServiceReducer } from '../adapt-service/reducers';
 import { Actionable } from '../store';
 import { initAdaptRoutesReducer } from '../adapt-routes/reducers';
 
-export type CoreReducerFunc = ReducerFunc<CoreState>;
-
 export enum CoreReducer {
   navigationEndReducer = 'navigationEndReducer',
   updateIsUrlResolvedReducer = 'updateIsUrlResolvedReducer',
@@ -13,6 +11,8 @@ export enum CoreReducer {
   initAdaptServiceReducer = 'initAdaptServiceReducer',
   initAdaptRoutesReducer = 'initAdaptRoutesReducer',
 }
+
+export type CoreReducerFunc = ReducerFunc<CoreState>;
 
 export const coreReducerAsFunc = (coreReducer: CoreReducer): CoreReducerFunc => {
   switch (coreReducer) {

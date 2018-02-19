@@ -9,15 +9,14 @@ import { IAppState } from '../app.state';
 import { IAction, IReducer } from '../app.reducers';
 import {  IEffect } from '../app.effects';
 import { INITIAL_STATE } from './tokens';
-import { getNextState } from './utils';
 import { LoggerService } from '../core/logger.service';
 import * as fromPostcode from '../area';
 import { EFFECTS, IEffects } from '../app.effects';
 import { UpdateRoutesAction } from '../routing/update-routes';
 
-import { reduceCoreState } from '../core/state';
-import { reduceAreaState } from '../area/state';
-import { reduceRestaurantsState } from '../restaurants/state';
+import { reduceCoreStateOrNull } from '../core/state';
+import { reduceAreaStateOrNull } from '../area/state';
+import { reduceRestaurantsStateOrNull } from '../restaurants/state';
 import { Action } from '../store';
 
 @Injectable()
@@ -75,21 +74,23 @@ export class Store {
       .subscribe(([action, state]) => {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
 
-        const newCoreState = reduceCoreState({ ...state.core }, action);
-        const newAreaState = reduceAreaState({ ...state.area }, action);
-        const newRestaurantsState = reduceRestaurantsState({ ...state.restaurants }, action);
-        console.group(`reduce restaurants with ${action.type}:`);
-        console.log(newRestaurantsState);
-        console.groupEnd();
-
-
-
-        const [nextState, changeList] = getNextState(action, state);
-        if (changeList.length > 0) {
-          this.state$.next(nextState);
-          if (changeList.indexOf('configuration') > -1) {
-            this.action$.next(new UpdateRoutesAction());
-          }
+        const coreStateOrNull = reduceCoreStateOrNull({ ...state.core }, action);
+        const areaStateOrNull = reduceAreaStateOrNull({ ...state.area }, action);
+        const restaurantsStateOrNull = reduceRestaurantsStateOrNull(
+          { ...state.restaurants }, action);
+        const isUpdatedState = Boolean(
+          coreStateOrNull !== null ||
+          areaStateOrNull !== null ||
+          restaurantsStateOrNull !== null
+        );
+        if (isUpdatedState) {
+          this.state$.next({
+            ...state, // <- TODO remove when config has gone
+            core: coreStateOrNull || state.core,
+            area: areaStateOrNull || state.area,
+            restaurants: restaurantsStateOrNull || state.restaurants,
+          });
+          this.action$.next(new UpdateRoutesAction());
         }
 
         this.effect(action, state, this.effects, this.injector, this.loggerService);

@@ -9,7 +9,7 @@ export const VISIT_AREA = 'VISIT_AREA';
 
 export class UpdateAreaAction implements IAction, Actionable {
   readonly type = UPDATE_AREA;
-  readonly actionType = Action.updateIsAdaptedAction;
+  readonly actionType = Action.updateAreaAction;
 
   constructor(public payload: PostcodeOrNull) {}
 }

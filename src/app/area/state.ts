@@ -18,11 +18,11 @@ export const initialAreaState: AreaState = {
   }
 };
 
-export const reduceAreaState: ReduceStateSlice<AreaState> = (
+export const reduceAreaStateOrNull: ReduceStateSlice<AreaState> = (
   currentState: AreaState, action: Actionable
-): AreaState => { // TODO: null if no change
+): AreaState|null => {
   const reducer = currentState.reducers[action.actionType];
-  return reducer === undefined ? currentState : areaReducerAsFunc(reducer)(
+  return reducer === undefined ? null : areaReducerAsFunc(reducer)(
     action, currentState);
 };
 

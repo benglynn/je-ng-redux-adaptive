@@ -35,15 +35,13 @@ export const initialCoreState: CoreState = {
   }
 };
 
-export const reduceCoreState: ReduceStateSlice<CoreState> = (
+export const reduceCoreStateOrNull: ReduceStateSlice<CoreState> = (
   currentState: CoreState, action: Actionable
-): CoreState => { // TODO: null if no change
+): CoreState|null => {
   const reducer = currentState.reducers[action.actionType];
-  return reducer === undefined ? currentState : coreReducerAsFunc(reducer)(
+  return reducer === undefined ? null : coreReducerAsFunc(reducer)(
     action, currentState);
 };
-
-
 
 /* Deprecated below *//////////////////////////////////////////////////////////
 

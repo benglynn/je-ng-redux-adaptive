@@ -32,7 +32,7 @@ export class NewRestaurantsService {
         rating: 6,
         ratings: 150,
         title: 'Your favourite place!',
-        })
+        });
         return restaurants;
       });
   }
