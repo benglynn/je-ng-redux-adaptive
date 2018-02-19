@@ -1,8 +1,6 @@
-import { IAction } from '../app.reducers';
-import { Action } from '../store';
+import { Action, Actionable } from '../store';
 export const UPDATE_ROUTES = 'UPDATE_ROUTES';
 
-export class UpdateRoutesAction implements IAction {
-  readonly type = UPDATE_ROUTES;
+export class UpdateRoutesAction implements Actionable {
   readonly actionType = Action.updateRoutesAction;
 }

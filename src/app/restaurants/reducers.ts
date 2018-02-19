@@ -1,5 +1,4 @@
 import { ReducerFunc } from '../store';
-import { IReducer } from '../app.reducers';
 import { UpdateRestaurantsAction, RemoveRestaurantsAction } from './actions';
 import { RestaurantsState } from './state';
 
@@ -35,33 +34,3 @@ const removeRestaurantsReducer: RestaurantsReducerFunc = (
 ): RestaurantsState => {
   return { ...state, data: null };
 };
-
-
-/* Deprecated below *//////////////////////////////////////////////////////////
-
-type IRestaurantsReducer = IReducer<RestaurantsState>;
-
-export const updateRestaurantsOld: IRestaurantsReducer = (
-  action: UpdateRestaurantsAction, state: RestaurantsState
-) => {
-  return { ...state, data: action.payload};
-};
-
-export const removeRestaurantsOld: IRestaurantsReducer = (
-  action: RemoveRestaurantsAction, state: RestaurantsState
-) => {
-  return { ...state, status: null, data: null };
-};
-
-export interface IRestaurantsReducers  {
-  updateRestaurants: IRestaurantsReducer;
-  removeRestaurants: IRestaurantsReducer;
-}
-
-export type IRestaurantsReducerName = keyof IRestaurantsReducers;
-
-export const restaurantsReducers: IRestaurantsReducers = {
-  updateRestaurants: updateRestaurantsOld,
-  removeRestaurants: removeRestaurantsOld,
-};
-

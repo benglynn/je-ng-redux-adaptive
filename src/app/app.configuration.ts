@@ -12,10 +12,6 @@ export const initialConfigurationState: IConfigurationState = {
   restaurants: initialRestaurantsConfiguration,
 };
 
-interface IStringHash {
-  [name: string]: string;
-}
-
 interface IEffects {
   [name: string]: IEffectName;
 }

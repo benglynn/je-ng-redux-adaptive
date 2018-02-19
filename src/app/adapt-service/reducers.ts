@@ -1,5 +1,4 @@
 import { CoreState } from '../core/state';
-import { IAction } from '../app.reducers';
 import { RouteConfig } from '../routing/route-config';
 import { CoreReducerFunc } from '../core/reducers';
 import { Actionable } from '../store';

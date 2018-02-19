@@ -1,4 +1,3 @@
-import { UPDATE_AREA } from './actions';
 import { AreaReducer, areaReducerAsFunc } from './reducers';
 import { Actionable, ReducerFunc, Reducible, ReduceStateSlice } from '../store';
 

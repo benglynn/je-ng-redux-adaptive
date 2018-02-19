@@ -1,13 +1,13 @@
 import { InjectionToken, Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from './store/store';
-import { IAction } from './app.reducers';
+import { Actionable } from './store';
 import { IRestaurantsEffects, restaurantsEffects
 } from './restaurants/effects';
 import { ICoreEffects, coreEffects } from './core/effects';
 import { IAdaptServiceEffects, adaptServiceEffects } from './adapt-service/effects';
 
-export type IEffect<T extends IAction> = (
+export type IEffect<T extends Actionable> = (
   action: T,
   store: Store,
   injector: Injector

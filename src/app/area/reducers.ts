@@ -1,5 +1,4 @@
 import { ReducerFunc } from '../store';
-import { IReducer } from '../app.reducers';
 import { UpdateAreaAction } from './actions';
 import { AreaState } from './state';
 
@@ -26,26 +25,3 @@ const updateAreaReducer: AreaReducerFunc = (
 ): AreaState => {
   return { ...state, postcode: action.payload };
 };
-
-/* Deprecated below *//////////////////////////////////////////////////////////
-
-
-type IAreaReducer = IReducer<AreaState>;
-
-export const updateAreaReducerOld: IAreaReducer = (
-  action: UpdateAreaAction,
-  state: AreaState
-): AreaState => {
-  return <AreaState>{ ...state, postcode: action.payload };
-};
-
-export interface IAreaReducers {
-  updateArea: IAreaReducer;
-}
-
-export type IAreaReducerName = keyof IAreaReducers;
-
-export const areaReducers: IAreaReducers = {
-  updateArea: updateAreaReducerOld
-};
-

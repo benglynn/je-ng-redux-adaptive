@@ -1,18 +1,11 @@
-import { Action, Actionable } from '../store';
+import { Action, Actionable } from '../store';;
 
-import { IAction } from '../app.reducers';
-
-export const NAVIGATION_START = 'NAVIGATION_START';
-export const NAVIGATION_END = 'NAVIGATION_END';
-
-export class NavigationStartAction implements IAction, Actionable {
-  readonly type = NAVIGATION_START;
+export class NavigationStartAction implements Actionable {
   readonly actionType = Action.navigationStartAction;
   constructor( public payload: string ) {}
 }
 
-export class NavigationEndAction implements IAction, Actionable {
-  readonly type = NAVIGATION_END;
+export class NavigationEndAction implements Actionable {
   readonly actionType = Action.navigationEndAction;
   constructor( public payload: string ) {}
 }

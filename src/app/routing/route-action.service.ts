@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { NavigationStartAction, NavigationEndAction } from './actions';
 import { Store } from '../store/store';
+import { Action } from '../store';
 import { UPDATE_ROUTES } from './update-routes';
 import { VIEWS, IViews } from '../app.views';
 import { mapStateRoutes } from './map-state-routes';
@@ -15,7 +16,7 @@ export class RouteActionService {
     private store: Store
   ) {
     this.store.action$
-      .filter(action => action.type === UPDATE_ROUTES)
+      .filter(action => action.actionType === Action.updateRoutesAction)
       .withLatestFrom(this.store.select('core'))
       .subscribe(([action, coreSlice]) => {
         const newRoutes = mapStateRoutes(coreSlice, this.views);
