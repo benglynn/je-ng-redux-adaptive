@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { IAreaState } from '../../area/state';
+import { PostcodeOrNull } from '../../area/state';
 import { Store } from '../../store/store';
 
 @Component({
@@ -10,10 +10,11 @@ import { Store } from '../../store/store';
 })
 export class Error404Component {
 
-  area$: Observable<IAreaState>;
+  postcodeOrNull$: Observable<PostcodeOrNull>;
 
   constructor( private store: Store ) {
-    this.area$ = store.select('area');
+    this.postcodeOrNull$ = store.select('area')
+      .map(area => area.postcode);
   }
 }
 

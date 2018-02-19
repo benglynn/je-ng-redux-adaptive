@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
-import { IAreaState } from '../../area/state';
+import { PostcodeOrNull } from '../../area/state';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +11,11 @@ import { IAreaState } from '../../area/state';
 })
 export class HomeComponent {
 
-  area$: Observable<IAreaState>;
+  postcodeOrNull$: Observable<PostcodeOrNull>;
 
   constructor( private store: Store) {
-    this.area$ = store.select('area');
+    this.postcodeOrNull$ = store.select('area')
+      .map(area => area.postcode);
   }
 
 }

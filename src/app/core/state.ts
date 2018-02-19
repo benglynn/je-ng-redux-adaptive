@@ -11,14 +11,6 @@ export interface CoreState extends Reducible<CoreReducer> {
   routes: IRouteConfig[];
 }
 
-export const reduceCoreState: ReduceStateSlice<CoreState> = (
-  currentState: CoreState, action: Actionable
-): CoreState => { // TODO: null if no change
-  const reducer = currentState.reducers[action.actionType];
-  return reducer === undefined ? currentState : coreReducerAsFunc(reducer)(
-    action, currentState);
-};
-
 export const initialCoreState: CoreState = {
   url: null,
   isUrlResolved: false,
@@ -43,6 +35,18 @@ export const initialCoreState: CoreState = {
   }
 };
 
+export const reduceCoreState: ReduceStateSlice<CoreState> = (
+  currentState: CoreState, action: Actionable
+): CoreState => { // TODO: null if no change
+  const reducer = currentState.reducers[action.actionType];
+  return reducer === undefined ? currentState : coreReducerAsFunc(reducer)(
+    action, currentState);
+};
+
+
+
+/* Deprecated below *//////////////////////////////////////////////////////////
+
 export const initialCoreConfiguration: ICoreConfiguration = {
   reducers: {
     NAVIGATION_END: 'navigationEnd',
@@ -54,8 +58,6 @@ export const initialCoreConfiguration: ICoreConfiguration = {
     UPDATE_AREA: 'logPostcodeEffect'
   }
 };
-
-/* Deprecated below *//////////////////////////////////////////////////////////
 
 export interface ICoreConfiguration {
   reducers: {

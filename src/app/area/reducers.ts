@@ -8,7 +8,7 @@ export const updateAreaReducer: IAreaReducer = (
   action: UpdateAreaAction,
   state: IAreaState
 ): IAreaState => {
-  return action.payload;
+  return <IAreaState>{ ...state, postcode: action.payload };
 };
 
 export interface IAreaReducers {

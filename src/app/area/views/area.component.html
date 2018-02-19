@@ -3,7 +3,7 @@
 
   <nav class="breadcrumb">
     <a class="item" [routerLink]="['/']">Home</a>
-    <span class="item">{{ (area$|async) | uppercase }}</span>
+    <span class="item">{{ (postcodeOrNull$|async) | uppercase }}</span>
   </nav>
 
   <div class="filters">
@@ -15,7 +15,7 @@
   </div>
 
   <div class="banner" >
-    <h1 class="heading">{{ (restaurants$|async).length }} restaurants in {{ (area$|async) | uppercase }}</h1>
+    <h1 class="heading">{{ (restaurants$|async).length }} restaurants in {{ (postcodeOrNull$|async) | uppercase }}</h1>
     <a class="change-location" [routerLink]="['/']">change location</a>
   </div>
 
