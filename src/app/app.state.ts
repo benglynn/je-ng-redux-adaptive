@@ -1,6 +1,6 @@
 import { CoreState, initialCoreState, ICoreConfiguration } from './core/state';
 import { coreReducers } from './core/reducers';
-import { IAreaState, initialAreaState, IAreaConfiguration } from './area/state';
+import { AreaState, initialAreaState, IAreaConfiguration } from './area/state';
 import { areaReducers } from './area/reducers';
 import { IRestaurantsState, initialRestaurantState, IRestaurantsConfiguration
 } from './restaurants/state';
@@ -11,7 +11,7 @@ import { IAction } from './app.reducers';
 
 export interface IAppState {
   core: CoreState;
-  area: IAreaState;
+  area: AreaState;
   restaurants: IRestaurantsState;
   configuration: IConfigurationState;
 }

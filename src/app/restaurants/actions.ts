@@ -1,6 +1,6 @@
 import { IAction } from '../app.reducers';
 import { IRestaurant } from '../restaurant';
-import { IAreaState as Postcode } from '../area';
+import { AreaState as Postcode } from '../area';
 import { Action } from '../store';
 
 export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';

@@ -1,5 +1,5 @@
 export {
-  IAreaState,
+  AreaState,
   initialAreaState,
   areaPattern,
   initialAreaConfiguration
