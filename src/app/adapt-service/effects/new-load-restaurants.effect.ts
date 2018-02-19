@@ -4,7 +4,7 @@ import { NavigationStartAction } from '../../routing/actions';
 import { IEffect } from '../../app.effects';
 import { NewRestaurantsService } from '../new-restaurants.service';
 import { Observable } from 'rxjs/Observable';
-import { UpdateRestaurants } from '../../restaurants/actions';
+import { UpdateRestaurantsAction } from '../../restaurants/actions';
 import { UpdateAreaAction } from '../../area/actions';
 
 export const newLoadRestaurantsEffect: IEffect<NavigationStartAction> =  (
@@ -18,7 +18,7 @@ export const newLoadRestaurantsEffect: IEffect<NavigationStartAction> =  (
   return restaurantsService.getRestaurants(url)
     .map(data => {
       store.dispatch(new UpdateAreaAction(url));
-      store.dispatch(new UpdateRestaurants(data));
+      store.dispatch(new UpdateRestaurantsAction(data));
       return true;
     });
 };

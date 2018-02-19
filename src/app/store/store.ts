@@ -17,6 +17,7 @@ import { UpdateRoutesAction } from '../routing/update-routes';
 
 import { reduceCoreState } from '../core/state';
 import { reduceAreaState } from '../area/state';
+import { reduceRestaurantsState } from '../restaurants/state';
 import { Action } from '../store';
 
 @Injectable()
@@ -75,12 +76,10 @@ export class Store {
         this.loggerService.log(`Action ${action.type} ${action.payload || ''}`);
 
         const newCoreState = reduceCoreState({ ...state.core }, action);
-        console.group(`reduce core with ${action.type}:`);
-        console.log(newCoreState);
-        console.groupEnd();
         const newAreaState = reduceAreaState({ ...state.area }, action);
-        console.group(`reduce area with ${action.type}:`);
-        console.log(newAreaState);
+        const newRestaurantsState = reduceRestaurantsState({ ...state.restaurants }, action);
+        console.group(`reduce restaurants with ${action.type}:`);
+        console.log(newRestaurantsState);
         console.groupEnd();
 
 

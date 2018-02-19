@@ -1,8 +1,8 @@
 import { OnInit, Input, Component, ChangeDetectionStrategy } from '@angular/core';
-import { IRestaurant } from '../../restaurant';
+import { Restaurant } from '../../restaurant';
 
 export interface IResultView {
-  restaurant: IRestaurant;
+  restaurant: Restaurant;
 }
 
 @Component({
@@ -12,7 +12,7 @@ export interface IResultView {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResultComponent implements IResultView, OnInit {
-  @Input() restaurant: IRestaurant;
+  @Input() restaurant: Restaurant;
   public  ratingClass: string;
 
   ngOnInit() {

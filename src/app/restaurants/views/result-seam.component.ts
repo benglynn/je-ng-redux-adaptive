@@ -4,7 +4,7 @@ import { Inject, Input, Component, ChangeDetectionStrategy, ViewChild,
 import { IConfigurationState } from '../../app.configuration';
 import { ResultComponent, IResultView } from '../../restaurants/views/result.component';
 import { ResultSeamDirective } from '../../restaurants/views/result-seam.directive';
-import { IRestaurant } from '../../restaurant';
+import { Restaurant } from '../../restaurant';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { IView } from '../../app.views';
@@ -18,7 +18,7 @@ import { VIEWS, IViews } from '../../app.views';
 export class ResultSeamComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild(ResultSeamDirective) resultDirective: ResultSeamDirective;
-  @Input() restaurant: IRestaurant;
+  @Input() restaurant: Restaurant;
   @Input() viewName$: Observable<string>;
   viewNameSubscription: Subscription;
 

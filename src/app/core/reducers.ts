@@ -14,7 +14,7 @@ export enum CoreReducer {
   initAdaptRoutesReducer = 'initAdaptRoutesReducer',
 }
 
-export const coreReducerAsFunc = (coreReducer: CoreReducer): ReducerFunc<CoreState> => {
+export const coreReducerAsFunc = (coreReducer: CoreReducer): CoreReducerFunc => {
   switch (coreReducer) {
     case CoreReducer.navigationEndReducer:
     return navigationEndReducer;

@@ -1,10 +1,31 @@
-import { IRestaurant } from '../restaurant';
+import { Restaurant } from '../restaurant';
+import { Actionable, ReducerFunc, Reducible, ReduceStateSlice } from '../store';
+import { RestaurantsReducer, restaurantsReducerAsFunc } from './reducers';
 
-export interface IRestaurantsState {
-  data: null | IRestaurant[];
+export interface RestaurantsState extends Reducible<RestaurantsReducer> {
+  data: null | Restaurant[];
 }
 
-export const initialRestaurantState: IRestaurantsState = { data: null };
+export const initialRestaurantsState: RestaurantsState = {
+  data: null,
+  reducers: {
+    updateRestaurnatsAction: RestaurantsReducer.updateRestaurantsReducer,
+    removeRestaurantsAction: RestaurantsReducer.removeRestaurantsReducer,
+  }
+};
+
+export const reduceRestaurantsState: ReduceStateSlice<RestaurantsState> = (
+  currentState: RestaurantsState, action: Actionable
+): RestaurantsState => { // TODO: null if no change
+  const reducer = currentState.reducers[action.actionType];
+  return reducer === undefined ? currentState : restaurantsReducerAsFunc(reducer)(
+    action, currentState);
+};
+
+
+
+/* Deprecated below *//////////////////////////////////////////////////////////
+
 
 export interface IRestaurantsConfiguration {
   reducers: {

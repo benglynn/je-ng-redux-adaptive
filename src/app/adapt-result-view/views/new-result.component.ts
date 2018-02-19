@@ -1,9 +1,9 @@
 import { Input, Component, ChangeDetectionStrategy } from '@angular/core';
 import { ResultComponent } from '../../restaurants/views/result.component';
-import { IRestaurant } from '../../restaurant';
+import { Restaurant } from '../../restaurant';
 
 export interface IResultView {
-  restaurant: IRestaurant;
+  restaurant: Restaurant;
 }
 
 @Component({

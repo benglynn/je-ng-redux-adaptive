@@ -2,10 +2,10 @@ import { Component, ChangeDetectionStrategy, ViewChild,
   AfterViewInit, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
-import { IRestaurantsState, RemoveRestaurants } from '../../restaurants';
+import { RestaurantsState, RemoveRestaurantsAction } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
 import { PostcodeOrNull } from '../state';
-import { IRestaurant } from '../../restaurant';
+import { Restaurant } from '../../restaurant';
 
 @Component({
   selector: 'app-area',
@@ -16,16 +16,16 @@ import { IRestaurant } from '../../restaurant';
 export class AreaComponent implements OnDestroy {
 
   postcodeOrNull$: Observable<PostcodeOrNull>;
-  restaurants$: Observable<IRestaurant[]>;
-  openRestaurants$: Observable<IRestaurant[]>;
-  closedRestaurants$: Observable<IRestaurant[]>;
+  restaurants$: Observable<Restaurant[]>;
+  openRestaurants$: Observable<Restaurant[]>;
+  closedRestaurants$: Observable<Restaurant[]>;
   resultViewName$: Observable<string>;
 
   constructor( private store: Store ) {
     this.postcodeOrNull$ = store.select('area').map(area => area.postcode);
     this.restaurants$ = store.select('restaurants')
       .filter(state => state.data != null)
-      .map(state => state.data as IRestaurant[]);
+      .map(state => state.data as Restaurant[]);
     this.openRestaurants$ = this.restaurants$
       .map(restaurants => restaurants.filter(restaurant => restaurant.isOpen));
     this.closedRestaurants$ = this.restaurants$
@@ -38,6 +38,6 @@ export class AreaComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.store.dispatch(new RemoveRestaurants());
+    this.store.dispatch(new RemoveRestaurantsAction());
   }
 }

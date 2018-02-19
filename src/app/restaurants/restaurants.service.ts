@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/scan';
-import { IRestaurant } from '../restaurant';
+import { Restaurant } from '../restaurant';
 
 interface PublicApiRestaurant {
   Badges: [String];
@@ -46,11 +46,11 @@ export class RestaurantsService {
 
   constructor( private http: HttpClient ) {}
 
-  getRestaurants(area: string): Observable<IRestaurant[]> {
+  getRestaurants(area: string): Observable<Restaurant[]> {
 
     const simplifyRestaurant = (apiRestaurant: PublicApiRestaurant, isOpen: boolean
-    ): IRestaurant => {
-      return <IRestaurant>{
+    ): Restaurant => {
+      return <Restaurant>{
         cuisines: apiRestaurant.Cuisines.map(cuisine => cuisine.Name).join(', '),
         deliveryCost: apiRestaurant.DeliveryCost,
         deliveryStartTime: apiRestaurant.DeliveryStartTime,

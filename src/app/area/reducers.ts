@@ -10,7 +10,7 @@ export enum AreaReducer {
   // Adapters add area reducers below
 }
 
-export const areaReducerAsFunc = (areaReducer: AreaReducer): ReducerFunc<AreaState> => {
+export const areaReducerAsFunc = (areaReducer: AreaReducer): AreaReducerFunc => {
   switch (areaReducer) {
     case AreaReducer.updateAreaReducer:
     return updateAreaReducer;

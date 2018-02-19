@@ -1,4 +1,4 @@
-export interface IRestaurant {
+export interface Restaurant {
   cuisines: string;
   deliveryCost: number;
   deliveryStartTime: string;

@@ -2,7 +2,7 @@ import {Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
-import { IRestaurant } from '../restaurant';
+import { Restaurant } from '../restaurant';
 import { RestaurantsService } from '../restaurants';
 
 @Injectable()
@@ -14,11 +14,11 @@ export class NewRestaurantsService {
     this.restaurantsServie = restaurantsService;
   }
 
-  getRestaurants(area: string): Observable<IRestaurant[]> {
+  getRestaurants(area: string): Observable<Restaurant[]> {
     return this.restaurantsServie.getRestaurants(area)
       .map(restaurants => {
         const newRestaurants = restaurants;
-        newRestaurants.unshift(<IRestaurant>{
+        newRestaurants.unshift(<Restaurant>{
         cuisines: 'Curry',
         deliveryCost: 2,
         deliveryStartTime: '',
