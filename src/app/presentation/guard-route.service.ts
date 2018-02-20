@@ -6,7 +6,7 @@ import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
 import { RouteConfig } from './route-config';
 import { UpdateIsUrlResolvedAction } from '../core/actions/update-is-url-resolved-action';
-import { NavigationStartAction } from '../routing/actions/navigation-start-action';
+import { NavigationStartAction } from '../presentation/actions/navigation-start-action';
 import { Effect } from '../core/effects/effect';
 import { effectCall } from '../core/effects/effect-call';
 

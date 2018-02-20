@@ -1,5 +1,5 @@
 import { CoreState } from '../../core/state/core-state';
-import { RouteConfig } from '../../routing/route-config';
+import { RouteConfig } from '../../presentation/route-config';
 import { CoreReducerFunc } from '../../core/reducers/core-reducer-func';
 import { Actionable } from '../../store/actionable';
 import { Effect } from '../../core/effects/effect';

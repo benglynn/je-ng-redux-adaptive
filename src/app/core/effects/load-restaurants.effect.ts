@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { Store } from '../../store/store';
-import { NavigationStartAction } from '../../routing/actions/navigation-start-action';
+import { NavigationStartAction } from '../../presentation/actions/navigation-start-action';
 import { EffectFunc } from '../../store/effect-func';
 import { RestaurantsService } from '../../restaurants';
 import { Observable } from 'rxjs/Observable';

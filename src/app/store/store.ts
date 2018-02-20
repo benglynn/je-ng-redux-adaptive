@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { State } from './state';
 import {  EffectFunc } from '../store/effect-func';
 import { INITIAL_STATE } from './tokens';
-import { UpdateRoutesAction } from '../routing/update-routes';
+import { UpdateRoutesAction } from '../presentation/update-routes';
 import { reduceCoreStateOrNull } from '../core/state/reduce-core-state-or-null';
 import { reduceAreaStateOrNull } from '../area/state/reduce-area-state-or-null';
 import { reduceRestaurantsStateOrNull } from '../restaurants/state/reduce-restaurants-state-or-null';

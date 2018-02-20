@@ -1,6 +1,6 @@
 import { Reducible } from '../../store/reducible';
 import { CoreReducer } from '../reducers/core-reducer';
-import { RouteConfig } from '../../routing/route-config';
+import { RouteConfig } from '../../presentation/route-config';
 import { Action } from '../../store/action';
 import { Effect } from '../effects/effect';
 

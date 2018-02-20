@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { StoreModule } from './store/module';
 import { CoreModule } from './core/module';
-import { RoutingModule } from './routing/module';
+import { PresentationModule } from './presentation/module';
 import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
 import { VIEWS, views } from './app.views';
@@ -18,7 +18,7 @@ import { AdaptServiceModule } from './adapt-service/module';
   imports: [
     BrowserModule,
     RouterModule,
-    RoutingModule,
+    PresentationModule,
     HttpClientModule,
     StoreModule,
     CoreModule,
