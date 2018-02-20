@@ -14,7 +14,7 @@ export const initialCoreState: CoreState = {
     }, {
       viewName: 'areaView',
       pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
-      effectName: 'loadRestaurantsEffect'
+      effect: Effect.loadRestaurantsEffect
     }
   ],
   reducers: {
