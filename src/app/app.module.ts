@@ -8,7 +8,6 @@ import { CoreModule } from './core/module';
 import { PresentationModule } from './presentation/module';
 import { AreaModule } from './area/module';
 import { RestaurantsModule } from './restaurants/module';
-import { VIEWS, views } from './app.views';
 import { AdaptResultViewModule } from './adaptations/adapt-result-view/module';
 import { AdaptRoutesModule } from './adaptations/adapt-routes/module';
 import { AdaptServiceModule } from './adaptations/adapt-service/module';
@@ -27,9 +26,6 @@ import { AdaptServiceModule } from './adaptations/adapt-service/module';
     AdaptResultViewModule,
     AdaptRoutesModule,
     AdaptServiceModule,
-  ],
-  providers: [
-    { provide: VIEWS, useValue: views },
   ],
   bootstrap: [AppComponent]
 })

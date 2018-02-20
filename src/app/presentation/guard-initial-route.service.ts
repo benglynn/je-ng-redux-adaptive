@@ -6,7 +6,6 @@ import 'rxjs/add/operator/switchMap';
 import { Store } from '../store/store';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
-import { VIEWS, IViews } from '../app.views';
 import { Viewable } from '../presentation/viewable';
 import { mapStateRoutes } from './map-state-routes';
 
@@ -14,7 +13,6 @@ import { mapStateRoutes } from './map-state-routes';
 export class GuardInitialRoute implements CanActivate {
 
   constructor(
-    @Inject(VIEWS) private views: IViews|IViews,
     private routActionService: RouteActionService,
     private router: Router,
     private store: Store
@@ -27,7 +25,7 @@ export class GuardInitialRoute implements CanActivate {
       .take(1)
       .switchMap(ready => this.store.select('core'))
       .map(coreSlice => {
-        const newRoutes = mapStateRoutes(coreSlice, this.views);
+        const newRoutes = mapStateRoutes(coreSlice);
         this.router.resetConfig(newRoutes);
         this.routActionService.subscribeToRouterEvents();
         this.router.navigateByUrl(state.url, { replaceUrl: true });

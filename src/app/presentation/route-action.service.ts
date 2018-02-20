@@ -5,14 +5,12 @@ import {NavigationEndAction } from './actions';
 import { Store } from '../store/store';
 import { Action } from '../store/action';
 import { UPDATE_ROUTES } from './update-routes';
-import { VIEWS, IViews } from '../app.views';
 import { mapStateRoutes } from './map-state-routes';
 
 @Injectable()
 export class RouteActionService {
 
   constructor(
-    @Inject(VIEWS) private views: IViews|IViews,
     private router: Router,
     private store: Store
   ) {
@@ -20,7 +18,7 @@ export class RouteActionService {
       .filter(action => action.actionType === Action.updateRoutesAction)
       .withLatestFrom(this.store.select('core'))
       .subscribe(([action, coreSlice]) => {
-        const newRoutes = mapStateRoutes(coreSlice, this.views);
+        const newRoutes = mapStateRoutes(coreSlice);
         this.router.resetConfig(newRoutes);
       });
   }

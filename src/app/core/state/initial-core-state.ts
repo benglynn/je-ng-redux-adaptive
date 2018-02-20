@@ -10,11 +10,9 @@ export const initialCoreState: CoreState = {
   isDebugging: false,
   routes: [
     {
-      viewName: 'homeView',
       view: View.homeView,
       pattern: '^$'
     }, {
-      viewName: 'areaView',
       view: View.areaView,
       pattern: '^[A-Z]{1,2}[0-9][0-9A-Z]?[0-9][A-Z]{2}$',
       effect: Effect.loadRestaurantsEffect

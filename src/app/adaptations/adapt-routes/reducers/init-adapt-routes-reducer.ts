@@ -6,6 +6,6 @@ import { View } from '../../../presentation/view';
 
 export const initAdaptRoutesReducer: CoreReducerFunc = (action: Actionable, state: CoreState
 ): CoreState => {
-  const newroutes = state.routes.concat({ pattern: '^new$', viewName: 'newView', view: View.newView });
+  const newroutes = state.routes.concat({ pattern: '^new$', view: View.newView });
   return {...state, routes: newroutes};
 };
