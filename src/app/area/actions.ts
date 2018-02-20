@@ -1,4 +1,5 @@
-import { Action, Actionable } from '../store';
+import { Action } from '../store/action';
+import { Actionable } from '../store/actionable';
 import { PostcodeOrNull } from './state';
 
 export class UpdateAreaAction implements Actionable {

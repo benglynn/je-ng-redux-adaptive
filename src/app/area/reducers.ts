@@ -1,4 +1,4 @@
-import { ReducerFunc } from '../store';
+import { ReducerFunc } from '../store/reducer-func';
 import { UpdateAreaAction } from './actions';
 import { AreaState } from './state';
 

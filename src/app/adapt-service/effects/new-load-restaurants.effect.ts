@@ -1,7 +1,7 @@
 import { Injector } from '@angular/core';
 import { Store } from '../../store/store';
 import { NavigationStartAction } from '../../routing/actions';
-import { Effect } from '../../app.effects';
+import { Effect } from '../../store/effect';
 import { NewRestaurantsService } from '../new-restaurants.service';
 import { Observable } from 'rxjs/Observable';
 import { UpdateRestaurantsAction } from '../../restaurants/actions';

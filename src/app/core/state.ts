@@ -1,7 +1,10 @@
 import { RouteConfig } from '../routing/route-config';
 import { ICoreEffectName } from './effects';
 import { CoreReducer, coreReducerAsFunc } from './reducers';
-import { Actionable, ReducerFunc, Reducible, ReduceStateSlice } from '../store';
+import { Actionable } from '../store/actionable';
+import { ReducerFunc } from '../store/reducer-func';
+import { Reducible } from '../store/reducible';
+import { ReduceStateSlice } from '../store/reduce-state-slice';
 
 export interface CoreState extends Reducible<CoreReducer> {
   url: string|null;

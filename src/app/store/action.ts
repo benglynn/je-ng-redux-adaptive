@@ -16,17 +16,3 @@ export enum Action {
   initAdaptRoutesAction = 'initAdaptRoutesAction',
   initAdaptResultsView = 'initAdaptResultsView',
 }
-
-export interface Actionable {
-  actionType: Action;
-}
-
-export type ReducerFunc<StateSlice> = (action: Actionable, stateSlice: StateSlice) => StateSlice;
-
-export interface Reducible<SliceReducer> {
-  reducers: {[_ in Action]?: SliceReducer};
-}
-
-export type ReduceStateSlice<StateSlice> = (
-  currentState: StateSlice, action: Actionable
-) => StateSlice|null;

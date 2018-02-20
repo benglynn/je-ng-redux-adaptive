@@ -1,5 +1,8 @@
 import { AreaReducer, areaReducerAsFunc } from './reducers';
-import { Actionable, ReducerFunc, Reducible, ReduceStateSlice } from '../store';
+import { Actionable } from '../store/actionable';
+import { ReducerFunc } from '../store/reducer-func';
+import { Reducible } from '../store/reducible';
+import { ReduceStateSlice } from '../store/reduce-state-slice';
 
 export const areaPattern = /^\s*([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})\s*$/i;
 

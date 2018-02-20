@@ -1,4 +1,4 @@
-import { ReducerFunc } from '../store';
+import { ReducerFunc } from '../store/reducer-func';
 import { UpdateRestaurantsAction, RemoveRestaurantsAction } from './actions';
 import { RestaurantsState } from './state';
 

@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { NavigationStartAction, NavigationEndAction } from './actions';
 import { Store } from '../store/store';
-import { Action } from '../store';
+import { Action } from '../store/action';
 import { UPDATE_ROUTES } from './update-routes';
 import { VIEWS, IViews } from '../app.views';
 import { mapStateRoutes } from './map-state-routes';

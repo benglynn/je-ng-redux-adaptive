@@ -6,7 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/withLatestFrom';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../app.state';
-import {  Effect } from '../app.effects';
+import {  Effect } from '../store/effect';
 import { INITIAL_STATE } from './tokens';
 import { LoggerService } from '../core/logger.service';
 import * as fromPostcode from '../area';
@@ -16,7 +16,8 @@ import { UpdateRoutesAction } from '../routing/update-routes';
 import { reduceCoreStateOrNull } from '../core/state';
 import { reduceAreaStateOrNull } from '../area/state';
 import { reduceRestaurantsStateOrNull } from '../restaurants/state';
-import { Action, Actionable } from '../store';
+import { Actionable } from '../store/actionable';
+import { Action } from '../store/action';
 
 @Injectable()
 export class Store {

@@ -1,5 +1,6 @@
 
-import { Action, Actionable } from '../store';
+import { Action } from '../store/action';
+import { Actionable } from '../store/actionable';
 
 export class UpdateIsUrlResolvedAction implements Actionable {
   readonly actionType = Action.updateIsUrlResolvedAction;

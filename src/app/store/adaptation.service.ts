@@ -5,7 +5,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 import { Store } from './store';
 import { UpdateIsAdaptedAction } from '../core/actions';
-import { Action, Actionable } from '../store';
+import { Action } from '../store/action';
+import { Actionable } from '../store/actionable';
 
 
 interface IServiceAction {

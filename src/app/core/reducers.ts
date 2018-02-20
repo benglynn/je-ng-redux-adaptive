@@ -1,6 +1,6 @@
-import { ReducerFunc } from '../store';
+import { ReducerFunc } from '../store/reducer-func';
 import { initAdaptServiceReducer } from '../adapt-service/reducers';
-import { Actionable } from '../store';
+import { Actionable } from '../store/actionable';
 import { initAdaptRoutesReducer } from '../adapt-routes/reducers';
 import { UpdateIsAdaptedAction, UpdateIsDebuggingAction, UpdateIsUrlResolvedAction } from './actions';
 import { NavigationEndAction } from '../routing/actions';

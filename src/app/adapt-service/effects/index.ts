@@ -1,4 +1,4 @@
-import { Effect } from '../../app.effects';
+import { Effect } from '../../store/effect';
 import { NavigationStartAction } from '../../routing/actions';
 import { newLoadRestaurantsEffect } from './new-load-restaurants.effect';
 

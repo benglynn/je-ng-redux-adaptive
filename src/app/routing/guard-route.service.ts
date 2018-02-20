@@ -8,7 +8,8 @@ import { RouteConfig } from './route-config';
 import { LoggerService } from '../core/logger.service';
 import { UpdateIsUrlResolvedAction } from '../core/actions';
 import { NavigationStartAction } from '../routing/actions';
-import { EFFECTS, Effect, Effects } from '../app.effects';
+import { Effect } from '../store/effect';
+import { EFFECTS, Effects } from '../app.effects';
 
 @Injectable()
 export class GuardRoute implements CanActivate {

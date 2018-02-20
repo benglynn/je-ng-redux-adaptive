@@ -1,4 +1,4 @@
-import { Effect } from '../../app.effects';
+import { Effect } from '../../store/effect';
 import { UpdateAreaAction } from '../../area/actions';
 import { logPostcodeEffect } from './log-postcode.effect';
 

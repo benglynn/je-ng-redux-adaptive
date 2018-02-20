@@ -1,4 +1,4 @@
-import { Actionable } from '../store';
+import { Actionable } from '../store/actionable';
 import { CoreState } from '../core/state';
 import { RouteConfig } from '../routing/route-config';
 import { CoreReducerFunc } from '../core/reducers';
