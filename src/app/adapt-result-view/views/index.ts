@@ -1,8 +1,8 @@
 import { NewResultComponent } from './new-result.component';
-import { IView } from '../../app.views';
+import { View } from '../../app.views';
 
 export interface IAdaptResultsViewViews {
-  newResultView: IView;
+  newResultView: View;
 }
 
 export const adaptRresultViewViews: IAdaptResultsViewViews = {

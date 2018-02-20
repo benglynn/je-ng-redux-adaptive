@@ -5,7 +5,7 @@ import { IRestaurantsViews, restaurantsViews } from './restaurants/views';
 import { IAdaptResultsViewViews, adaptRresultViewViews } from './adapt-result-view/views';
 import { IAdaptRoutesViews, adaptRoutesViews } from './adapt-routes/views';
 
-export type IView = any; // TODO: is there a more appropriate interface?
+export type View = any; // TODO: is there a more appropriate interface?
 
 export interface IViews extends
   ICoreViews,

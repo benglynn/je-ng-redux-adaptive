@@ -1,8 +1,8 @@
 import { NewComponent } from './new.component';
-import { IView } from '../../app.views';
+import { View } from '../../app.views';
 
 export interface IAdaptRoutesViews {
-  newView: IView;
+  newView: View;
 }
 
 export const adaptRoutesViews: IAdaptRoutesViews = {

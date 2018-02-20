@@ -1,8 +1,8 @@
-import { IView } from '../../app.views';
+import { View } from '../../app.views';
 import { ResultComponent } from './result.component';
 
 export interface IRestaurantsViews {
-  resultView: IView;
+  resultView: View;
 }
 
 export const restaurantsViews: IRestaurantsViews = {

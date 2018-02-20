@@ -7,7 +7,7 @@ import { ResultSeamDirective } from '../../restaurants/views/result-seam.directi
 import { Restaurant } from '../../restaurants/restaurant';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { IView } from '../../app.views';
+import { View } from '../../app.views';
 import { VIEWS, IViews } from '../../app.views';
 
 @Component({
@@ -31,7 +31,7 @@ export class ResultSeamComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.viewNameSubscription = this.viewName$.subscribe(viewName => {
       this.resultDirective.viewContainerRef.clear();
-      const component = this.views[viewName] as IView;
+      const component = this.views[viewName] as View;
       const factory = this.cfr.resolveComponentFactory(component);
       const componentRef = this.resultDirective.viewContainerRef
         .createComponent(factory);

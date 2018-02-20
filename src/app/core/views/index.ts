@@ -1,10 +1,10 @@
 import { HomeComponent } from './home.component';
 import { Error404Component } from './error404.component';
-import { IView } from '../../app.views';
+import { View } from '../../app.views';
 
 export interface ICoreViews {
-  homeView: IView;
-  error404View: IView;
+  homeView: View;
+  error404View: View;
 }
 
 export const coreViews: ICoreViews = {
