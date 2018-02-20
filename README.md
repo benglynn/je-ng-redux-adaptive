@@ -1,7 +1,5 @@
 # Consumer app web prototype
 
-A prototype of the Just Eat web. Read the [narrative](https://goo.gl/TPobJD).
-
 ## Develop & test locally
 
 ### In VS Code for macOS
