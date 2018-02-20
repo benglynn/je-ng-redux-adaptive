@@ -1,6 +1,6 @@
-import { areaReducerCall } from './reducers/area-reducer-call';
-import { Actionable } from '../store/actionable';
-import { ReduceStateSlice } from '../store/reduce-state-slice';
+import { areaReducerCall } from '../reducers/area-reducer-call';
+import { Actionable } from '../../store/actionable';
+import { ReduceStateSlice } from '../../store/reduce-state-slice';
 import { AreaState } from './area-state';
 
 export const reduceAreaStateOrNull: ReduceStateSlice<AreaState> = (
