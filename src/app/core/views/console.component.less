@@ -1,66 +1,14 @@
 .console {
   background: #333;
+  color: #ccffcc;
   display: flex;
   flex-direction: column;
+  flex-grow: 0;
   flex-grow: 1;
+  flex-shrink: 0;
+  font-family: monospace;
   height: 100%;
-
-  &__section {
-    padding: 0 10px;
-    flex-shrink: 0;
-    flex-grow: 0;
-
-    &--scroll {
-      overflow: auto;
-    }
-
-    &--state, &--config {
-      flex-shrink: 1;
-    }
-
-    &--collapsed {
-      display: none;
-    }
-
-    &--trace {
-      height: 200px;
-    }
+  overflow: auto;
+  padding: 10px;
+  white-space: pre;
   }
-
-  &__heading {
-    background-color: #666;
-    color: white;
-    flex-grow: 0;
-    flex-shrink: 0;
-    font-family: sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    margin: 0;
-    padding: 5px 10px;
-    text-transform: uppercase;
-
-    &--interactive {
-      cursor: pointer;
-    }
-
-    .dim {
-      opacity: .6;
-
-      &--left {
-        margin-right: 10px;
-      }
-
-      &--right {
-        margin-left: 10px;
-      }
-    }
-
-  }
-
-  &__pre {
-    color: #ccffcc;
-    font-family: monospace;
-    white-space: pre;
-    padding-top: 10px;
-  }
-}

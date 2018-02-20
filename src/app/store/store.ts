@@ -52,7 +52,6 @@ export class Store {
           restaurantsStateOrNull !== null
         );
         const currentOrUpdatedState = isUpdatedState ? <State>{
-          ...state, // <- TODO remove when config has gone
           core: coreStateOrNull || state.core,
           area: areaStateOrNull || state.area,
           restaurants: restaurantsStateOrNull || state.restaurants,

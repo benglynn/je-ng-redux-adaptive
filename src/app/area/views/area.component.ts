@@ -3,8 +3,7 @@ import { Component, ChangeDetectionStrategy, ViewChild,
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
 import { RestaurantsState } from '../../restaurants/state/restaurants-state';
-import { RemoveRestaurantsAction } from '../../restaurants';
-import { IConfigurationState } from '../../app.configuration';
+import { RemoveRestaurantsAction } from '../../restaurants/actions/remove-restaurants-action';
 import { PostcodeOrNull } from '../postcode-or-null';
 import { Restaurant } from '../../restaurants/restaurant';
 import { View } from '../../presentation/view';
@@ -21,7 +20,6 @@ export class AreaComponent implements OnDestroy {
   restaurants$: Observable<Restaurant[]>;
   openRestaurants$: Observable<Restaurant[]>;
   closedRestaurants$: Observable<Restaurant[]>;
-  resultViewName$: Observable<string>;
   resultView$: Observable<View>;
 
   constructor( private store: Store ) {
@@ -37,9 +35,6 @@ export class AreaComponent implements OnDestroy {
 
     this.closedRestaurants$ = this.restaurants$
     .map(restaurants => restaurants.filter(restaurant => !restaurant.isOpen));
-
-    this.resultViewName$ = store.select('configuration')
-      .map(config => config.restaurants.views.resultView);
 
     this.resultView$ = store.select('core')
       .map(state => state.views.resultView);
