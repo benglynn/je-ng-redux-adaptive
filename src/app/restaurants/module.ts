@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { restaurantsEffects } from './effects';
 import { RestaurantsService } from './restaurants.service';
 import { ResultComponent } from './views/result.component';
 import { ResultSeamDirective } from './views/result-seam.directive';

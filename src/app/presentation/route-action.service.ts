@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { NavigationStartAction } from './actions/navigation-start-action';
-import {NavigationEndAction } from './actions';
+import {NavigationEndAction } from './actions/navigation-end-action';
 import { Store } from '../store/store';
 import { Action } from '../store/action';
 import { UPDATE_ROUTES } from './update-routes';
