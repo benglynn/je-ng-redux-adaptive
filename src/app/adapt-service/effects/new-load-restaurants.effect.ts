@@ -1,13 +1,13 @@
 import { Injector } from '@angular/core';
 import { Store } from '../../store/store';
 import { NavigationStartAction } from '../../routing/actions';
-import { IEffect } from '../../app.effects';
+import { Effect } from '../../app.effects';
 import { NewRestaurantsService } from '../new-restaurants.service';
 import { Observable } from 'rxjs/Observable';
 import { UpdateRestaurantsAction } from '../../restaurants/actions';
 import { UpdateAreaAction } from '../../area/actions';
 
-export const newLoadRestaurantsEffect: IEffect<NavigationStartAction> =  (
+export const newLoadRestaurantsEffect: Effect<NavigationStartAction> =  (
   action: NavigationStartAction,
   store: Store,
   injector: Injector

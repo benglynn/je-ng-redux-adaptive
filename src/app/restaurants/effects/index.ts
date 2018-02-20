@@ -1,9 +1,9 @@
-import { IEffect } from '../../app.effects';
+import { Effect } from '../../app.effects';
 import { NavigationStartAction } from '../../routing/actions';
 import { loadRestaurantsEffect } from './load-restaurants.effect';
 
 export interface IRestaurantsEffects {
-  loadRestaurantsEffect: IEffect<NavigationStartAction>;
+  loadRestaurantsEffect: Effect<NavigationStartAction>;
 }
 
 export type IRestaurantsEffectName = keyof IRestaurantsEffects;

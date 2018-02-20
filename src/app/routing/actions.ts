@@ -1,4 +1,4 @@
-import { Action, Actionable } from '../store';;
+import { Action, Actionable } from '../store';
 
 export class NavigationStartAction implements Actionable {
   readonly actionType = Action.navigationStartAction;

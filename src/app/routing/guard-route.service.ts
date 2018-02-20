@@ -8,13 +8,13 @@ import { RouteConfig } from './route-config';
 import { LoggerService } from '../core/logger.service';
 import { UpdateIsUrlResolvedAction } from '../core/actions';
 import { NavigationStartAction } from '../routing/actions';
-import { EFFECTS, IEffect, IEffects } from '../app.effects';
+import { EFFECTS, Effect, Effects } from '../app.effects';
 
 @Injectable()
 export class GuardRoute implements CanActivate {
 
   constructor(
-    @Inject(EFFECTS) private effects: IEffects|IEffects, // TODO: remove union
+    @Inject(EFFECTS) private effects: Effects|Effects, // TODO: remove union
     private injector: Injector,
     private router: Router,
     private store: Store,
@@ -27,7 +27,7 @@ export class GuardRoute implements CanActivate {
       this.store.dispatch(new UpdateIsUrlResolvedAction(true));
       return Observable.of(true);
     }
-    const effect: IEffect<NavigationStartAction> = this.effects[config.effectName];
+    const effect: Effect<NavigationStartAction> = this.effects[config.effectName];
     const action = new NavigationStartAction(route.url.join('/'));
     this.loggerService.log(`Effect ${config.effectName}`);
     return effect(action, this.store, this.injector)

@@ -6,11 +6,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/withLatestFrom';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../app.state';
-import {  IEffect } from '../app.effects';
+import {  Effect } from '../app.effects';
 import { INITIAL_STATE } from './tokens';
 import { LoggerService } from '../core/logger.service';
 import * as fromPostcode from '../area';
-import { EFFECTS, IEffects } from '../app.effects';
+import { EFFECTS, Effects } from '../app.effects';
 import { UpdateRoutesAction } from '../routing/update-routes';
 
 import { reduceCoreStateOrNull } from '../core/state';
@@ -36,7 +36,7 @@ export class Store {
 
   constructor(
     @Inject(INITIAL_STATE) private initialState: IAppState|IAppState,
-    @Inject(EFFECTS) private effects: IEffects|IEffects, // TODO: remove union
+    @Inject(EFFECTS) private effects: Effects|Effects, // TODO: remove union
     private injector: Injector,
     private loggerService: LoggerService
   ) {

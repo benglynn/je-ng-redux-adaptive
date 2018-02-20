@@ -1,9 +1,9 @@
-import { IEffect } from '../../app.effects';
+import { Effect } from '../../app.effects';
 import { NavigationStartAction } from '../../routing/actions';
 import { newLoadRestaurantsEffect } from './new-load-restaurants.effect';
 
 export interface IAdaptServiceEffects {
-  newLoadRestaurantsEffect: IEffect<NavigationStartAction>;
+  newLoadRestaurantsEffect: Effect<NavigationStartAction>;
 }
 
 export const adaptServiceEffects: IAdaptServiceEffects = {
