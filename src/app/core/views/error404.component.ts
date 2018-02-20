@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { PostcodeOrNull } from '../../area/state';
+import { PostcodeOrNull } from '../../area/postcode-or-null';
 import { Store } from '../../store/store';
 
 @Component({

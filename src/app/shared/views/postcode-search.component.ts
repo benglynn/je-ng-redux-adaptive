@@ -9,7 +9,7 @@ import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/map';
 import { UpdateAreaAction } from '../../area/actions/update-area-action';
-import { areaPattern } from '../../area/state';
+import { postcodePattern } from '../../area/postcode-pattern';
 import { VisitAreaAction } from '../../area/actions/visit-area-action';
 
 @Component({
@@ -38,13 +38,13 @@ export class PostcodeSearchComponent implements OnInit, OnDestroy {
         .startWith(postcode === null ? '' : postcode);
 
       this.isValidPostcode$ = this.input$
-      .map(value => value.match(areaPattern) !== null);
+      .map(value => value.match(postcodePattern) !== null);
 
       this.inputKeyUp$
         .filter((e => (e as KeyboardEvent).keyCode === this.returnKeyCode))
         .merge(this.buttonClick$)
         .withLatestFrom(this.input$, (event, str) => {
-          return str.match(areaPattern);
+          return str.match(postcodePattern);
         })
         .subscribe(match => {
           if (match !== null) {

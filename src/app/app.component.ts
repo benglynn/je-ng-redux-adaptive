@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/take';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { CoreState } from './core/state';
+import { CoreState } from './core/state/core-state';
 import { UpdateIsDebuggingAction } from './core/actions/update-is-debugging-action';
 
 @Component({

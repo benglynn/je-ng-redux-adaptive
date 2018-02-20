@@ -4,7 +4,7 @@ import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
 import { RestaurantsState, RemoveRestaurantsAction } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
-import { PostcodeOrNull } from '../state';
+import { PostcodeOrNull } from '../postcode-or-null';
 import { Restaurant } from '../../restaurants/restaurant';
 
 @Component({

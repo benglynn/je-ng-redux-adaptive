@@ -1,5 +1,5 @@
 import { UpdateAreaAction } from '../actions/update-area-action';
-import { AreaState } from '../state';
+import { AreaState } from '../area-state';
 import { AreaReducerFunc } from './area-reducer-func';
 
 export const updateAreaReducer: AreaReducerFunc = (

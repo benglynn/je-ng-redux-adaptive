@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
-import { PostcodeOrNull } from '../../area/state';
+import { PostcodeOrNull } from '../../area/postcode-or-null';
 
 @Component({
   selector: 'app-home',

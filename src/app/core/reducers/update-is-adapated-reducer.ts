@@ -1,5 +1,5 @@
 import { CoreReducerFunc } from './core-reducer-func';
-import { CoreState } from '../state';
+import { CoreState } from '../state/core-state';
 import { UpdateIsAdaptedAction } from '../actions/update-is-adapted-action';
 
 export const updateIsAdapatedReducer: CoreReducerFunc = (
