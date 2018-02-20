@@ -3,7 +3,7 @@ import { NavigationStartAction } from '../../routing/actions/navigation-start-ac
 import { newLoadRestaurantsEffect } from './new-load-restaurants.effect';
 
 export interface IAdaptServiceEffects {
-  newLoadRestaurantsEffect: EffectFunc<NavigationStartAction>;
+  newLoadRestaurantsEffect: EffectFunc;
 }
 
 export const adaptServiceEffects: IAdaptServiceEffects = {

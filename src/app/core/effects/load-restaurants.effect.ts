@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { UpdateRestaurantsAction } from '../../restaurants/actions/update-restaurants-action';
 import { UpdateAreaAction } from '../../area/actions/update-area-action';
 
-export const loadRestaurantsEffect: EffectFunc<NavigationStartAction> =  (
+export const loadRestaurantsEffect: EffectFunc =  (
   action: NavigationStartAction,
   store: Store,
   injector: Injector

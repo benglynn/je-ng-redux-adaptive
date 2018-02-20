@@ -3,7 +3,7 @@ import { NavigationStartAction } from '../../routing/actions/navigation-start-ac
 import { loadRestaurantsEffect } from '../../core/effects/load-restaurants.effect';
 
 export interface IRestaurantsEffects {
-  loadRestaurantsEffect: EffectFunc<NavigationStartAction>;
+  loadRestaurantsEffect: EffectFunc;
 }
 
 export type IRestaurantsEffectName = keyof IRestaurantsEffects;

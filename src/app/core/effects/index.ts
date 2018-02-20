@@ -3,7 +3,7 @@ import { UpdateAreaAction } from '../../area/actions/update-area-action';
 import { logPostcodeEffect } from './log-postcode.effect';
 
 export interface ICoreEffects {
-  logPostcodeEffect: EffectFunc<UpdateAreaAction>;
+  logPostcodeEffect: EffectFunc;
 }
 
 export type ICoreEffectName = keyof ICoreEffects;
