@@ -8,7 +8,8 @@ import { Restaurant } from '../../restaurants/restaurant';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Viewable } from '../../presentation/viewable';
-import { VIEWS, IViews } from '../../app.views';
+import { View } from '../../presentation/view';
+import { viewInstance } from '../../presentation/view-instance';
 
 @Component({
   selector: 'app-result-seam',
@@ -19,19 +20,19 @@ export class ResultSeamComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild(ResultSeamDirective) resultDirective: ResultSeamDirective;
   @Input() restaurant: Restaurant;
-  @Input() viewName$: Observable<string>;
-  viewNameSubscription: Subscription;
+  @Input() view$: Observable<View>;
+  viewSubscription: Subscription;
 
   constructor(
-    @Inject(VIEWS) private views: IViews|IViews,
     private cfr: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngAfterViewInit() {
-    this.viewNameSubscription = this.viewName$.subscribe(viewName => {
+
+    this.viewSubscription = this.view$.subscribe(view => {
+      const component = viewInstance(view);
       this.resultDirective.viewContainerRef.clear();
-      const component = this.views[viewName] as Viewable;
       const factory = this.cfr.resolveComponentFactory(component);
       const componentRef = this.resultDirective.viewContainerRef
         .createComponent(factory);
@@ -41,6 +42,6 @@ export class ResultSeamComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.viewNameSubscription.unsubscribe();
+    this.viewSubscription.unsubscribe();
   }
 }

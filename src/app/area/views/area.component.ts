@@ -7,6 +7,7 @@ import { RemoveRestaurantsAction } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
 import { PostcodeOrNull } from '../postcode-or-null';
 import { Restaurant } from '../../restaurants/restaurant';
+import { View } from '../../presentation/view';
 
 @Component({
   selector: 'app-area',
@@ -21,21 +22,27 @@ export class AreaComponent implements OnDestroy {
   openRestaurants$: Observable<Restaurant[]>;
   closedRestaurants$: Observable<Restaurant[]>;
   resultViewName$: Observable<string>;
+  resultView$: Observable<View>;
 
   constructor( private store: Store ) {
+
     this.postcodeOrNull$ = store.select('area').map(area => area.postcode);
+
     this.restaurants$ = store.select('restaurants')
       .filter(state => state.data != null)
       .map(state => state.data as Restaurant[]);
+
     this.openRestaurants$ = this.restaurants$
       .map(restaurants => restaurants.filter(restaurant => restaurant.isOpen));
+
     this.closedRestaurants$ = this.restaurants$
     .map(restaurants => restaurants.filter(restaurant => !restaurant.isOpen));
 
-
-
     this.resultViewName$ = store.select('configuration')
       .map(config => config.restaurants.views.resultView);
+
+    this.resultView$ = store.select('core')
+      .map(state => state.views.resultView);
   }
 
   ngOnDestroy() {

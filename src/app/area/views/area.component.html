@@ -24,7 +24,7 @@
       <div class="result" *ngFor="let restaurant of (openRestaurants$|async)">
         <app-result-seam
           [restaurant]="restaurant"
-          [viewName$]="resultViewName$">
+          [view$]="resultView$">
         </app-result-seam>
       </div>
     </div>
@@ -39,7 +39,7 @@
         <div class="result" *ngFor="let restaurant of (closedRestaurants$|async)">
           <app-result-seam
             [restaurant]="restaurant"
-            [viewName$]="resultViewName$">
+            [view$]="resultView$">
           </app-result-seam>
         </div>
       </div>
