@@ -5,7 +5,7 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/withLatestFrom';
 import { Subscription } from 'rxjs/Subscription';
-import { IAppState } from '../app.state';
+import { State } from './state';
 import {  Effect } from '../store/effect';
 import { INITIAL_STATE } from './tokens';
 import { LoggerService } from '../core/logger.service';
@@ -20,7 +20,7 @@ import { Action } from '../store/action';
 
 @Injectable()
 export class Store {
-  state$: BehaviorSubject<IAppState>; // Todo: generic as not in module?
+  state$: BehaviorSubject<State>; // Todo: generic as not in module?
   action$: BehaviorSubject<Actionable>;
   private actionSubscription: Subscription;
 
@@ -28,19 +28,19 @@ export class Store {
     this.action$.next(action);
   }
 
-  select<T extends keyof IAppState>(slice: T) {
+  select<T extends keyof State>(slice: T) {
     return this.state$
       .pluck(slice)
-      .distinctUntilChanged() as Observable<IAppState[T]>;
+      .distinctUntilChanged() as Observable<State[T]>;
   }
 
   constructor(
-    @Inject(INITIAL_STATE) private initialState: IAppState|IAppState,
+    @Inject(INITIAL_STATE) private initialState: State|State,
     @Inject(EFFECTS) private effects: Effects|Effects, // TODO: remove union
     private injector: Injector,
     private loggerService: LoggerService
   ) {
-    this.state$ = new BehaviorSubject<IAppState>(initialState);
+    this.state$ = new BehaviorSubject<State>(initialState);
     this.action$ = new BehaviorSubject<Actionable>({ actionType: Action.initialAction});
 
     this.action$

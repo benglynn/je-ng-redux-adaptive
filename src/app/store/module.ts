@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Store } from './store';
 import { INITIAL_STATE } from './tokens';
-import { initialState } from '../app.state';
+import { initialState } from './initial-state';
 import { AdaptationService } from './adaptation.service';
 
 @NgModule({

@@ -1,4 +1,4 @@
 import { Injectable, Inject, NgModule, InjectionToken } from '@angular/core';
-import { IAppState } from '../app.state';
+import { State } from './state';
 
-export const INITIAL_STATE = new InjectionToken<IAppState>('initial state');
+export const INITIAL_STATE = new InjectionToken<State>('initial state');
