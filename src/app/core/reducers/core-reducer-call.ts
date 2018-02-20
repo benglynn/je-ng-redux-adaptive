@@ -5,6 +5,7 @@ import { updateIsAdapatedReducer } from './update-is-adapated-reducer';
 import { updateIsUrlResolvedReducer } from './update-is-url-resolved-reducer';
 import { initAdaptServiceReducer } from '../../adapt-service/reducers/init-adapt-service-reducer';
 import { initAdaptRoutesReducer } from '../../adapt-routes/reducers/init-adapt-routes-reducer';
+import { initAdaptResultViewReducer } from '../../adapt-result-view/reducers/init-adapt-result-view-reducer';
 
 
 export const coreReducerCall = (coreReducer: CoreReducer): CoreReducerFunc => {
@@ -19,6 +20,8 @@ export const coreReducerCall = (coreReducer: CoreReducer): CoreReducerFunc => {
     return initAdaptServiceReducer;
     case CoreReducer.initAdaptRoutesReducer:
     return initAdaptRoutesReducer;
+    case CoreReducer.initAdaptResultViewReducer:
+    return initAdaptResultViewReducer;
   }
   return noCaseFor(coreReducer);
 };

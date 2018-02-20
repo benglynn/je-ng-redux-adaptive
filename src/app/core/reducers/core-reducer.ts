@@ -5,4 +5,5 @@ export enum CoreReducer {
   // Adapters add core reducers below
   initAdaptServiceReducer = 'initAdaptServiceReducer',
   initAdaptRoutesReducer = 'initAdaptRoutesReducer',
+  initAdaptResultViewReducer = 'initAdaptResultViewReducer',
 }

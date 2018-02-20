@@ -29,6 +29,7 @@ export const initialCoreState: CoreState = {
     updateIsAdaptedAction: CoreReducer.updateIsAdaptedReducer,
     initAdaptServiceAction: CoreReducer.initAdaptServiceReducer,
     initAdaptRoutesAction: CoreReducer.initAdaptRoutesReducer,
+    initAdaptResultsViewAction: CoreReducer.initAdaptResultViewReducer,
   },
   effects: {
     updateAreaAction: Effect.logPostcodeEffect,

@@ -14,5 +14,5 @@ export enum Action {
   // Adapters add actions below
   initAdaptServiceAction = 'initAdaptServiceAction',
   initAdaptRoutesAction = 'initAdaptRoutesAction',
-  initAdaptResultsView = 'initAdaptResultsView',
+  initAdaptResultsViewAction = 'initAdaptResultsViewAction',
 }
