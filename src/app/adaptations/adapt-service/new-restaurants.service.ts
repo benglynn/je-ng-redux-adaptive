@@ -2,8 +2,8 @@ import {Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
-import { Restaurant } from '../restaurants/restaurant';
-import { RestaurantsService } from '../restaurants/restaurants.service';
+import { Restaurant } from '../../restaurants/restaurant';
+import { RestaurantsService } from '../../restaurants/restaurants.service';
 
 @Injectable()
 export class NewRestaurantsService {

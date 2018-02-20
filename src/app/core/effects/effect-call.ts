@@ -2,7 +2,7 @@ import { Effect } from './effect';
 import { EffectFunc } from '../../store/effect-func';
 import { loadRestaurantsEffect } from './load-restaurants.effect';
 import { logPostcodeEffect } from './log-postcode.effect';
-import { newLoadRestaurantsEffect } from '../../adapt-service/effects/new-load-restaurants.effect';
+import { newLoadRestaurantsEffect } from '../../adaptations/adapt-service/effects/new-load-restaurants.effect';
 
 export const effectCall = (effect: Effect): EffectFunc => {
   switch (effect) {

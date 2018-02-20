@@ -4,8 +4,8 @@ import { HomeComponent } from '../core/views/home.component';
 import { Error404Component } from '../core/views/error404.component';
 import { AreaComponent } from '../area/views/area.component';
 import { ResultComponent } from '../restaurants/views/result.component';
-import { NewResultComponent } from '../adapt-result-view/views/new-result.component';
-import { NewComponent } from '../adapt-routes/views/new.component';
+import { NewResultComponent } from '../adaptations/adapt-result-view/views/new-result.component';
+import { NewComponent } from '../adaptations/adapt-routes/views/new.component';
 
 export const viewInstance = (view: View): Viewable => {
  switch (view) {

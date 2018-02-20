@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Store } from '../../store/store';
+import { Store } from '../../../store/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
