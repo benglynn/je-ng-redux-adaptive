@@ -1,8 +1,8 @@
 import { AreaComponent } from './area.component';
-import { View } from '../../app.views';
+import { Viewable } from '../../presentation/viewable';
 
 export interface IAreaViews {
-  areaView: View;
+  areaView: Viewable;
 }
 
 export const areaViews: IAreaViews = {

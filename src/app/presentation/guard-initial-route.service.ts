@@ -7,7 +7,7 @@ import { Store } from '../store/store';
 import { GuardRoute } from './guard-route.service';
 import { RouteActionService } from './route-action.service';
 import { VIEWS, IViews } from '../app.views';
-import { View } from '../app.views';
+import { Viewable } from '../presentation/viewable';
 import { mapStateRoutes } from './map-state-routes';
 
 @Injectable()
