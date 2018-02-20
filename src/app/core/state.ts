@@ -6,6 +6,8 @@ import { Actionable } from '../store/actionable';
 import { ReducerFunc } from '../store/reducer-func';
 import { Reducible } from '../store/reducible';
 import { ReduceStateSlice } from '../store/reduce-state-slice';
+import { Action } from '../store/action';
+import { Effect } from './effects/effect';
 
 export interface CoreState extends Reducible<CoreReducer> {
   url: string|null;
@@ -13,6 +15,7 @@ export interface CoreState extends Reducible<CoreReducer> {
   isAdapted: boolean;
   isDebugging: boolean;
   routes: RouteConfig[];
+  effects: { [_ in Action]?: Effect };
 }
 
 export const initialCoreState: CoreState = {
@@ -36,6 +39,9 @@ export const initialCoreState: CoreState = {
     updateIsAdaptedAction: CoreReducer.updateIsAdaptedReducer,
     initAdaptServiceAction: CoreReducer.initAdaptServiceReducer,
     initAdaptRoutesAction: CoreReducer.initAdaptRoutesReducer,
+  },
+  effects: {
+    updateAreaAction: Effect.logPostcodeEffect,
   }
 };
 
