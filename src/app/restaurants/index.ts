@@ -1,6 +1,4 @@
 export {
-  RestaurantsState,
-  initialRestaurantsState,
   IRestaurantsConfiguration,
   initialRestaurantsConfiguration
 } from './state';

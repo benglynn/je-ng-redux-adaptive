@@ -14,7 +14,7 @@ import { UpdateRoutesAction } from '../routing/update-routes';
 
 import { reduceCoreStateOrNull } from '../core/state/reduce-core-state-or-null';
 import { reduceAreaStateOrNull } from '../area/state/reduce-area-state-or-null';
-import { reduceRestaurantsStateOrNull } from '../restaurants/state';
+import { reduceRestaurantsStateOrNull } from '../restaurants/state/reduce-restaurants-state-or-null';
 import { Actionable } from '../store/actionable';
 import { Action } from '../store/action';
 

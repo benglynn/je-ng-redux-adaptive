@@ -2,7 +2,8 @@ import { Component, ChangeDetectionStrategy, ViewChild,
   AfterViewInit, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { Store } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
-import { RestaurantsState, RemoveRestaurantsAction } from '../../restaurants';
+import { RestaurantsState } from '../../restaurants/state/restaurants-state';
+import { RemoveRestaurantsAction } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
 import { PostcodeOrNull } from '../postcode-or-null';
 import { Restaurant } from '../../restaurants/restaurant';

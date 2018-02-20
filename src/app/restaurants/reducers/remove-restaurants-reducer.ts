@@ -1,6 +1,6 @@
 import { RestaurantsReducerFunc } from './restaurants-reducer-func';
 import { RemoveRestaurantsAction } from '../actions/remove-restaurants-action';
-import { RestaurantsState } from '../state';
+import { RestaurantsState } from '../state/restaurants-state';
 
 export const removeRestaurantsReducer: RestaurantsReducerFunc = (
   action: RemoveRestaurantsAction, state: RestaurantsState
