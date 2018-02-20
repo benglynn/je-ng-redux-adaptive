@@ -8,19 +8,17 @@ import { Subscription } from 'rxjs/Subscription';
 import { State } from './state';
 import {  EffectFunc } from '../store/effect-func';
 import { INITIAL_STATE } from './tokens';
-import { LoggerService } from '../core/logger.service';
-import { EFFECTS, Effects } from '../app.effects';
 import { UpdateRoutesAction } from '../routing/update-routes';
-
 import { reduceCoreStateOrNull } from '../core/state/reduce-core-state-or-null';
 import { reduceAreaStateOrNull } from '../area/state/reduce-area-state-or-null';
 import { reduceRestaurantsStateOrNull } from '../restaurants/state/reduce-restaurants-state-or-null';
 import { Actionable } from '../store/actionable';
 import { Action } from '../store/action';
+import { callEffects } from '../core/effects/call-effects';
 
 @Injectable()
 export class Store {
-  state$: BehaviorSubject<State>; // Todo: generic as not in module?
+  state$: BehaviorSubject<State>;
   action$: BehaviorSubject<Actionable>;
   private actionSubscription: Subscription;
 
@@ -36,9 +34,7 @@ export class Store {
 
   constructor(
     @Inject(INITIAL_STATE) private initialState: State|State,
-    @Inject(EFFECTS) private effects: Effects|Effects, // TODO: remove union
-    private injector: Injector,
-    private loggerService: LoggerService
+    private injector: Injector
   ) {
     this.state$ = new BehaviorSubject<State>(initialState);
     this.action$ = new BehaviorSubject<Actionable>({ actionType: Action.initialAction});
@@ -46,8 +42,6 @@ export class Store {
     this.action$
       .withLatestFrom(this.state$)
       .subscribe(([action, state]) => {
-        this.loggerService.log(`Action ${action.actionType}`);
-
         const coreStateOrNull = reduceCoreStateOrNull({ ...state.core }, action);
         const areaStateOrNull = reduceAreaStateOrNull({ ...state.area }, action);
         const restaurantsStateOrNull = reduceRestaurantsStateOrNull(
@@ -57,15 +51,17 @@ export class Store {
           areaStateOrNull !== null ||
           restaurantsStateOrNull !== null
         );
+        const currentOrUpdatedState = isUpdatedState ? <State>{
+          ...state, // <- TODO remove when config has gone
+          core: coreStateOrNull || state.core,
+          area: areaStateOrNull || state.area,
+          restaurants: restaurantsStateOrNull || state.restaurants,
+        } : state;
         if (isUpdatedState) {
-          this.state$.next({
-            ...state, // <- TODO remove when config has gone
-            core: coreStateOrNull || state.core,
-            area: areaStateOrNull || state.area,
-            restaurants: restaurantsStateOrNull || state.restaurants,
-          });
+          this.state$.next(currentOrUpdatedState);
           this.action$.next(new UpdateRoutesAction());
         }
+        callEffects(currentOrUpdatedState, action, this, injector);
       });
   }
 }
