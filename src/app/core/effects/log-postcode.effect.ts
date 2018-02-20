@@ -1,8 +1,8 @@
 import { UpdateAreaAction } from '../../area/actions/update-area-action';
-import { Effect } from '../../store/effect';
+import { EffectFunc } from '../../store/effect-func';
 import { Observable } from 'rxjs/Observable';
 
-export const logPostcodeEffect: Effect<UpdateAreaAction> =  (
+export const logPostcodeEffect: EffectFunc<UpdateAreaAction> =  (
   action: UpdateAreaAction
 ): Observable<boolean> => {
 

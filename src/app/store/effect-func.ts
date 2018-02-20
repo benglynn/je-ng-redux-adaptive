@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from './store';
 import { Actionable } from './actionable';
 
-export type Effect<T extends Actionable> = (
+export type EffectFunc<T extends Actionable> = (
   action: T,
   store: Store,
   injector: Injector

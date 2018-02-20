@@ -6,7 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/withLatestFrom';
 import { Subscription } from 'rxjs/Subscription';
 import { State } from './state';
-import {  Effect } from '../store/effect';
+import {  EffectFunc } from '../store/effect-func';
 import { INITIAL_STATE } from './tokens';
 import { LoggerService } from '../core/logger.service';
 import { EFFECTS, Effects } from '../app.effects';
