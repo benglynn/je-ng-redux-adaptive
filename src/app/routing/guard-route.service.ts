@@ -6,8 +6,8 @@ import 'rxjs/add/observable/of';
 import { Store } from '../store/store';
 import { RouteConfig } from './route-config';
 import { LoggerService } from '../core/logger.service';
-import { UpdateIsUrlResolvedAction } from '../core/actions';
-import { NavigationStartAction } from '../routing/actions';
+import { UpdateIsUrlResolvedAction } from '../core/actions/update-is-url-resolved-action';
+import { NavigationStartAction } from '../routing/actions/navigation-start-action';
 import { Effect } from '../store/effect';
 import { EFFECTS, Effects } from '../app.effects';
 

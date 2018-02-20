@@ -9,7 +9,6 @@ import { IAppState } from '../app.state';
 import {  Effect } from '../store/effect';
 import { INITIAL_STATE } from './tokens';
 import { LoggerService } from '../core/logger.service';
-import * as fromPostcode from '../area';
 import { EFFECTS, Effects } from '../app.effects';
 import { UpdateRoutesAction } from '../routing/update-routes';
 

@@ -8,7 +8,9 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/map';
-import { areaPattern, UpdateAreaAction, VisitAreaAction } from '../../area';
+import { UpdateAreaAction } from '../../area/actions/update-area-action';
+import { areaPattern } from '../../area/state';
+import { VisitAreaAction } from '../../area/actions/visit-area-action';
 
 @Component({
   selector: 'app-postcode-search',

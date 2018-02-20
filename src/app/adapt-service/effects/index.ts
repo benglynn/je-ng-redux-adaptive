@@ -1,5 +1,5 @@
 import { Effect } from '../../store/effect';
-import { NavigationStartAction } from '../../routing/actions';
+import { NavigationStartAction } from '../../routing/actions/navigation-start-action';
 import { newLoadRestaurantsEffect } from './new-load-restaurants.effect';
 
 export interface IAdaptServiceEffects {

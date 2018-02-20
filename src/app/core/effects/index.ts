@@ -1,5 +1,5 @@
 import { Effect } from '../../store/effect';
-import { UpdateAreaAction } from '../../area/actions';
+import { UpdateAreaAction } from '../../area/actions/update-area-action';
 import { logPostcodeEffect } from './log-postcode.effect';
 
 export interface ICoreEffects {

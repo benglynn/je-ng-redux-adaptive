@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { RestaurantsState, RemoveRestaurantsAction } from '../../restaurants';
 import { IConfigurationState } from '../../app.configuration';
 import { PostcodeOrNull } from '../state';
-import { Restaurant } from '../../restaurant';
+import { Restaurant } from '../../restaurants/restaurant';
 
 @Component({
   selector: 'app-area',

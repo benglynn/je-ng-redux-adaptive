@@ -1,7 +1,7 @@
-import { CoreState } from '../core/state';
-import { RouteConfig } from '../routing/route-config';
-import { CoreReducerFunc } from '../core/reducers';
-import { Actionable } from '../store/actionable';
+import { CoreState } from '../../core/state';
+import { RouteConfig } from '../../routing/route-config';
+import { CoreReducerFunc } from '../../core/reducers/core-reducer-func';
+import { Actionable } from '../../store/actionable';
 
 export const initAdaptServiceReducer: CoreReducerFunc = (
   action: Actionable, coreSlice: CoreState

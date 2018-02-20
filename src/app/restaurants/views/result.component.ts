@@ -1,5 +1,5 @@
 import { OnInit, Input, Component, ChangeDetectionStrategy } from '@angular/core';
-import { Restaurant } from '../../restaurant';
+import { Restaurant } from '../../restaurants/restaurant';
 
 export interface IResultView {
   restaurant: Restaurant;

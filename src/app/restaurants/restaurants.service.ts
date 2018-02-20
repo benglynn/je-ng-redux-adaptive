@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/scan';
-import { Restaurant } from '../restaurant';
+import { Restaurant } from '../restaurants/restaurant';
 
 interface PublicApiRestaurant {
   Badges: [String];

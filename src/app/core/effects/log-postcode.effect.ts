@@ -1,4 +1,4 @@
-import { UpdateAreaAction } from '../../area/actions';
+import { UpdateAreaAction } from '../../area/actions/update-area-action';
 import { Effect } from '../../store/effect';
 import { Observable } from 'rxjs/Observable';
 

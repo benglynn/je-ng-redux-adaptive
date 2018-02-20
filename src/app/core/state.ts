@@ -1,6 +1,7 @@
 import { RouteConfig } from '../routing/route-config';
 import { ICoreEffectName } from './effects';
-import { CoreReducer, coreReducerAsFunc } from './reducers';
+import { CoreReducer } from './reducers/core-reducer';
+import { coreReducerCall } from './reducers/core-reducer-call';
 import { Actionable } from '../store/actionable';
 import { ReducerFunc } from '../store/reducer-func';
 import { Reducible } from '../store/reducible';
@@ -42,7 +43,7 @@ export const reduceCoreStateOrNull: ReduceStateSlice<CoreState> = (
   currentState: CoreState, action: Actionable
 ): CoreState|null => {
   const reducer = currentState.reducers[action.actionType];
-  return reducer === undefined ? null : coreReducerAsFunc(reducer)(
+  return reducer === undefined ? null : coreReducerCall(reducer)(
     action, currentState);
 };
 

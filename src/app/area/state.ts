@@ -1,4 +1,5 @@
-import { AreaReducer, areaReducerAsFunc } from './reducers';
+import { AreaReducer } from './reducers/area-reducer';
+import { areaReducerCall } from './reducers/area-reducer-call';
 import { Actionable } from '../store/actionable';
 import { ReducerFunc } from '../store/reducer-func';
 import { Reducible } from '../store/reducible';
@@ -23,6 +24,6 @@ export const reduceAreaStateOrNull: ReduceStateSlice<AreaState> = (
   currentState: AreaState, action: Actionable
 ): AreaState|null => {
   const reducer = currentState.reducers[action.actionType];
-  return reducer === undefined ? null : areaReducerAsFunc(reducer)(
+  return reducer === undefined ? null : areaReducerCall(reducer)(
     action, currentState);
 };

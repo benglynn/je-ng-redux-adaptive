@@ -4,7 +4,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 import { Store } from './store';
-import { UpdateIsAdaptedAction } from '../core/actions';
+import { UpdateIsAdaptedAction } from '../core/actions/update-is-adapted-action';
 import { Action } from '../store/action';
 import { Actionable } from '../store/actionable';
 
